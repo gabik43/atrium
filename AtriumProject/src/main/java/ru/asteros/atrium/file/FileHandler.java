@@ -38,7 +38,6 @@ public class FileHandler extends Thread {
         this.treatedRegion = hashMap;
         this.path = AppConfiguration.get("PATH_TO_OUTPUT_FILES_FOR_XPRESSION")  + regionInfo.macroRegionEng + "/" + regionInfo.regionEng;
         beginTimeThread = new Date();
-
     }
 
     @Override
