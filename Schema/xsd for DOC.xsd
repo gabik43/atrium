@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2011 rel. 2 (http://www.altova.com) by User (None) -->
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+	<xsd:element name="ROOT">
+		<xsd:annotation>
+			<xsd:documentation>Основная таблица</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="CLIENTREPORT" maxOccurs="unbounded"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="CLIENTREPORT">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="CLIENTREPORT_ID" type="xsd:string"/>
+				<xsd:element ref="CLIENTROW" minOccurs="1" maxOccurs="1"/>
+				<xsd:element ref="PAYROW" minOccurs="1" maxOccurs="1"/>
+				<xsd:element ref="DETAIL" minOccurs="0" maxOccurs="1"/>
+				<xsd:element ref="FACTURASET" minOccurs="0" maxOccurs="1"/>
+				<xsd:element ref="ACTPSROW" minOccurs="0" maxOccurs="1"/>
+				<xsd:element ref="SERVOPTION" minOccurs="1" maxOccurs="1"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="CLIENTROW">
+		<xsd:annotation>
+			<xsd:documentation>Информация о клиенте</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="P_ITG_CLNT_ID" type="xsd:string"/>
+				<xsd:element name="ACCOUNT" type="xsd:string">
+					<xsd:annotation>
+						<xsd:documentation>Номер счета</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="CLNT_ID" type="xsd:string"/>
+				<xsd:element name="BRANCH_ID" type="xsd:integer">
+					<xsd:annotation>
+						<xsd:documentation>ID региона</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="CITY_NAME" type="xsd:string" minOccurs="0"/>
+				<xsd:element name="NAME" type="xsd:string" minOccurs="0"/>
+				<xsd:element name="ADDR_INDEX" type="xsd:string" minOccurs="0"/>
+				<xsd:element name="ADDR_CITY" type="xsd:string" minOccurs="0"/>
+				<xsd:element name="ADDR_STREET" type="xsd:string" minOccurs="0"/>
+				<xsd:element name="ADDR_HOUSE" type="xsd:string" minOccurs="0"/>
+				<xsd:element name="CONTACT_FACE" type="xsd:string" minOccurs="0"/>
+				<xsd:element name="LOC_INDEX" type="xsd:string" minOccurs="0"/>
+				<xsd:element name="LOC_CITY" type="xsd:string" minOccurs="0"/>
+				<xsd:element name="LOC_STREET" type="xsd:string" minOccurs="0"/>
+				<xsd:element name="LOC_HOUSE" type="xsd:string" minOccurs="0"/>
+				<xsd:element name="CONTRACT_INN" type="xsd:string" minOccurs="0"/>
+				<xsd:element name="CONTRACT_KPP" type="xsd:string" minOccurs="0"/>
+				<xsd:element name="CONTRACT_NUM" type="xsd:string"/>
+				<xsd:element name="CL_CONTACT_PHONE" type="xsd:string" minOccurs="0"/>
+				<xsd:element name="SHORT" type="xsd:string"/>
+				<xsd:element name="DEF" type="xsd:string"/>
+				<xsd:element name="COMPANY_NAME" type="xsd:string"/>
+				<xsd:element name="JUR_ADDRESS" type="xsd:string"/>
+				<xsd:element name="DELIVERY_ADDRESS" type="xsd:string"/>
+				<xsd:element name="DIRECTOR" type="xsd:string"/>
+				<xsd:element name="BUHGALTER" type="xsd:string"/>
+				<xsd:element name="COMPANY_PHONE" type="xsd:string" minOccurs="0"/>
+				<xsd:element name="COMPANY_INN" type="xsd:string"/>
+				<xsd:element name="COMPANY_KPP" type="xsd:string" minOccurs="0"/>
+				<xsd:element name="BANK_NAME" type="xsd:string"/>
+				<xsd:element name="BIK" type="xsd:string"/>
+				<xsd:element name="KS" type="xsd:string"/>
+				<xsd:element name="RS" type="xsd:string"/>
+				<xsd:element name="CJT_ID" type="xsd:byte"/>
+				<xsd:element name="TAX_RATE" type="xsd:double"/>
+				<xsd:element name="TAX_RATE_PERCENT" type="xsd:string"/>
+				<xsd:element name="OB_SDATE" type="xsd:date"/>
+				<xsd:element name="OB_EDATE" type="xsd:date"/>
+				<xsd:element name="DATE_NEXT_MONTH" type="xsd:date"/>
+				<xsd:element name="ITGC_ID" type="xsd:string"/>
+				<xsd:element name="PDOC_STR" type="xsd:string" minOccurs="0"/>
+				<xsd:element name="BDT_ID" type="xsd:integer"/>
+				<xsd:element name="BDT_NAME" type="xsd:string"/>
+				<xsd:element name="DG_ID" type="xsd:integer"/>
+				<xsd:element name="DELIVERY_GROUP" type="xsd:string"/>
+				<xsd:element name="V_TEMP_MONTH_NAME" type="xsd:string"/>
+				<xsd:element name="BRANCH_NAME" type="xsd:string"/>
+				<xsd:element name="MACRO_REGION_RUS" type="xsd:string"/>
+				<xsd:element name="E-MAIL" type="xsd:string" minOccurs="0"/>
+				<xsd:element name="CLIENT_TYPE" type="xsd:string"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="PAYROW">
+		<xsd:annotation>
+			<xsd:documentation>Информация о счете</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="P_ITG_CLNT_ID" type="xsd:string"/>
+				<xsd:element name="START_BAL" type="xsd:double"/>
+				<xsd:element name="END_BAL" type="xsd:double"/>
+				<xsd:element name="ALL_CHARGE" type="xsd:double"/>
+				<xsd:element name="DISCOUNT" type="xsd:double" minOccurs="0"/>
+				<xsd:element name="FIX_DISCOUNT" type="xsd:double" minOccurs="0"/>
+				<xsd:element name="ADM_SUM" type="xsd:double"/>
+				<xsd:element name="COM_CORRN" type="xsd:double"/>
+				<xsd:element name="CL_CORRN" type="xsd:double"/>
+				<xsd:element name="SUM_CALL" type="xsd:double"/>
+				<xsd:element name="SUM_PERIOD" type="xsd:double"/>
+				<xsd:element name="SUM_RAZ" type="xsd:double"/>
+				<xsd:element name="SUM_CALL_OTHER" type="xsd:double"/>
+				<xsd:element name="SUM_ROAM_CALL" type="xsd:double"/>
+				<xsd:element name="ALL_SUMM" type="xsd:double"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="DETAIL">
+		<xsd:annotation>
+			<xsd:documentation>Информация о детализации</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="PAYMENT" minOccurs="0" maxOccurs="unbounded"/>
+				<xsd:element ref="MSISDNSET" minOccurs="0" maxOccurs="unbounded"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="FACTURASET">
+		<xsd:annotation>
+			<xsd:documentation>Информация о счете-фактуре</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="FACTURAROW_1" minOccurs="1" maxOccurs="unbounded"/>
+				<xsd:element ref="FACTURAROW_2" minOccurs="0" maxOccurs="unbounded"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="ACTPSROW">
+		<xsd:annotation>
+			<xsd:documentation>Информация об акте</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="P_ITG_CLNT_ID" type="xsd:string"/>
+				<xsd:element name="ALL_PRICE_IN_WORDS" type="xsd:string"/>
+				<xsd:element name="NDS" type="xsd:double"/>
+				<xsd:element name="NDS_IN_WORDS" type="xsd:string"/>
+				<xsd:element name="ALL_PRICE" type="xsd:double"/>
+				<xsd:element name="ALL_VAT" type="xsd:double"/>
+				<xsd:element name="FACT_DATE" type="xsd:date"/>
+				<xsd:element name="FACT_NUM" type="xsd:string"/>
+				<xsd:element name="DET_NAME" type="xsd:string"/>
+				<xsd:element name="KOP" type="xsd:byte"/>
+				<xsd:element name="KOP_NDS" type="xsd:byte"/>
+				<xsd:element name="V_MONTH_NAME2" type="xsd:string"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="SERVOPTION">
+		<xsd:annotation>
+			<xsd:documentation>Служебные параметры</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="FILE_NAME" type="xsd:string"/>
+				<xsd:element name="YEAR_QUERY" type="xsd:integer"/>
+				<xsd:element name="MONTH_REQUEST" type="xsd:string"/>
+				<xsd:element name="LOGO_ID" type="xsd:byte"/>
+				<xsd:element name="DATE_CREATE" type="xsd:dateTime"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="PAYMENT">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="P_ITG_CLNT_ID" type="xsd:string"/>
+				<xsd:element name="PDOC_NUM" type="xsd:string" minOccurs="0"/>
+				<xsd:element name="PAY_DATE" type="xsd:date"/>
+				<xsd:element name="MSISDN" type="xsd:string" minOccurs="0"/>
+				<xsd:element name="KASSA_BANK" type="xsd:string" minOccurs="0"/>
+				<xsd:element name="SUMM_PAY" type="xsd:double" minOccurs="0"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="MSISDNSET">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="MSISDNROW" maxOccurs="unbounded"/>
+				<xsd:element name="CHARGE_SUM" type="xsd:double"/>
+				<xsd:element name="ADM_SUB_SUM" type="xsd:double"/>
+				<xsd:element name="MSISDN" type="xsd:string" minOccurs="0"/>
+				<xsd:element name="TRPL_NAME" type="xsd:string" minOccurs="0"/>
+				<xsd:element name="CHARGE_ID" type="xsd:byte"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="MSISDNROW">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="P_ITG_CLNT_ID" type="xsd:string"/>
+				<xsd:element name="P_SUBS_ID" type="xsd:string"/>
+				<xsd:element name="CLNT_ID" type="xsd:string" minOccurs="0"/>
+				<xsd:element name="GRP_NB" type="xsd:string"/>
+				<xsd:element name="CHARGE_GROUP" type="xsd:string"/>
+				<xsd:element name="CHARGE_TYPE" type="xsd:string" minOccurs="0"/>
+				<xsd:element name="CHARGE_SUM" type="xsd:double"/>
+				<xsd:element name="KOLVO" type="xsd:string" minOccurs="0"/>
+				<xsd:element name="ED_IZM" type="xsd:string" minOccurs="0"/>
+				<xsd:element name="V_MONTH_NAME" type="xsd:string" minOccurs="0"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="FACTURAROW_1">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="P_ITG_CLNT_ID" type="xsd:string"/>
+				<xsd:element name="FACT_ID" type="xsd:string"/>
+				<xsd:element name="FACT_DATE" type="xsd:date"/>
+				<xsd:element name="FACT_NUM" type="xsd:string"/>
+				<xsd:element name="DET_NAME" type="xsd:string"/>
+				<xsd:element name="WOVAT" type="xsd:double"/>
+				<xsd:element name="VAT" type="xsd:double"/>
+				<xsd:element name="SUMM" type="xsd:double"/>
+				<xsd:element name="FT_ID" type="xsd:byte"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="FACTURAROW_2">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="P_ITG_CLNT_ID" type="xsd:string"/>
+				<xsd:element name="FACT_ID" type="xsd:string"/>
+				<xsd:element name="FACT_DATE" type="xsd:date"/>
+				<xsd:element name="FACT_NUM" type="xsd:string"/>
+				<xsd:element name="DET_NAME" type="xsd:string"/>
+				<xsd:element name="WOVAT" type="xsd:double"/>
+				<xsd:element name="VAT" type="xsd:double"/>
+				<xsd:element name="SUMM" type="xsd:double"/>
+				<xsd:element name="FT_ID" type="xsd:byte"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+</xsd:schema>

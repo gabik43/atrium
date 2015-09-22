@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!--Indexes of library '/DATA/infoarchive_ad/Collection/TELE2_DEMO' of database 'infoarchive_ad'-->
+<indexes>
+  <pathvalueindex name="idx_month_request" concurrent="false" compressed="false" unique="false" version-info="false" path="/ROOT/CLIENTREPORT/SERVOPTION/MONTH_REQUEST&lt;STRING>"/>
+  <pathvalueindex name="idx_year_query" concurrent="false" compressed="false" unique="false" version-info="false" path="/ROOT/CLIENTREPORT/SERVOPTION/YEAR_QUERY&lt;STRING>"/>
+  <pathvalueindex name="idx_delivery_group" concurrent="false" compressed="false" unique="false" version-info="false" path="/ROOT/CLIENTREPORT/CLIENTROW/DELIVERY_GROUP&lt;STRING>"/>
+  <pathvalueindex name="idx_bdt_name" concurrent="false" compressed="false" unique="false" version-info="false" path="/ROOT/CLIENTREPORT/CLIENTROW/BDT_NAME&lt;STRING>"/>
+  <pathvalueindex name="idx_branch_name" concurrent="false" compressed="false" unique="false" version-info="false" path="/ROOT/CLIENTREPORT/CLIENTROW/BRANCH_NAME&lt;STRING>"/>
+  <pathvalueindex name="idx_macro_region_rus" concurrent="false" compressed="false" unique="false" version-info="false" path="/ROOT/CLIENTREPORT/CLIENTROW/MACRO_REGION_RUS&lt;STRING>"/>
+  <pathvalueindex name="idx_customer_name" concurrent="false" compressed="false" unique="false" version-info="false" path="/ROOT/CLIENTREPORT/CLIENTROW/NAME&lt;STRING>"/>
+</indexes>

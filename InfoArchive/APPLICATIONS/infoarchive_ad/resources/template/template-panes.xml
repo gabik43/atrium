@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-16"?>
+<panes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/template-panes.xsd">
+  <verticalPanel>
+    <headerPane/>
+    <dataSetListPane showTicketInfo="false" height="130" /> 
+    <!--<dataSetListPane height="130"/>-->
+    <searchPane/>
+    <searchResultPane maxListCount="14" truncateLabels="100" width="100px" height="300px"/>
+    <footerPane/>
+  </verticalPanel>
+</panes>

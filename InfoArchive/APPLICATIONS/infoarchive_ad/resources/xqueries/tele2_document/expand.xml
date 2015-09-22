@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-16"?>
+<xquery xmlns="http://www.emc.com/documentum/xml/dds">
+  <expression><![CDATA[
+      declare variable $FILE_NAME_TRANSLIT  as xs:string external;
+<result>
+{
+  <FILE_NAME_TRANSLIT>{$FILE_NAME_TRANSLIT}</FILE_NAME_TRANSLIT>
+
+}
+       </result>
+    ]]></expression>
+  <!--  doc('/DATA/infoarchive_ad/Collection/TELE2_DEMO')/REPORTDATA/CLIENTREPORT/SERVOPTION/FILE_NAME_TRANSLIT[FILE_NAME_TRANSLIT = FILE_NAME_TRANSLIT]-->
+</xquery>

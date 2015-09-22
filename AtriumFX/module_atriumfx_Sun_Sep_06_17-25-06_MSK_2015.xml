@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_atriumfx" default="compile.module.atriumfx">
+  <dirname property="module.atriumfx.basedir" file="${ant.file.module_atriumfx}"/>
+  
+  <property name="module.jdk.home.atriumfx" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.atriumfx" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.atriumfx" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.atriumfx" value="-encoding UTF-8 -source 1.6 ${compiler.args}"/>
+  
+  <property name="atriumfx.output.dir" value="${module.atriumfx.basedir}/out/production/AtriumFX"/>
+  <property name="atriumfx.testoutput.dir" value="${module.atriumfx.basedir}/out/test/AtriumFX"/>
+  
+  <path id="atriumfx.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="atriumfx.module.production.classpath">
+    <path refid="${module.jdk.classpath.atriumfx}"/>
+  </path>
+  
+  <path id="atriumfx.runtime.production.module.classpath">
+    <pathelement location="${atriumfx.output.dir}"/>
+  </path>
+  
+  <path id="atriumfx.module.classpath">
+    <path refid="${module.jdk.classpath.atriumfx}"/>
+    <pathelement location="${atriumfx.output.dir}"/>
+  </path>
+  
+  <path id="atriumfx.runtime.module.classpath">
+    <pathelement location="${atriumfx.testoutput.dir}"/>
+    <pathelement location="${atriumfx.output.dir}"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.atriumfx">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.atriumfx">
+    <patternset refid="excluded.from.module.atriumfx"/>
+  </patternset>
+  
+  <path id="atriumfx.module.sourcepath">
+    <dirset dir="${module.atriumfx.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.atriumfx" depends="compile.module.atriumfx.production,compile.module.atriumfx.tests" description="Compile module AtriumFX"/>
+  
+  <target name="compile.module.atriumfx.production" depends="register.custom.compilers" description="Compile module AtriumFX; production classes">
+    <mkdir dir="${atriumfx.output.dir}"/>
+    <javac2 destdir="${atriumfx.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.atriumfx}/javac">
+      <compilerarg line="${compiler.args.atriumfx}"/>
+      <bootclasspath refid="atriumfx.module.bootclasspath"/>
+      <classpath refid="atriumfx.module.production.classpath"/>
+      <src refid="atriumfx.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.atriumfx"/>
+    </javac2>
+    
+    <copy todir="${atriumfx.output.dir}">
+      <fileset dir="${module.atriumfx.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.atriumfx.tests" depends="register.custom.compilers,compile.module.atriumfx.production" description="compile module AtriumFX; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.atriumfx" description="cleanup module">
+    <delete dir="${atriumfx.output.dir}"/>
+    <delete dir="${atriumfx.testoutput.dir}"/>
+  </target>
+</project>

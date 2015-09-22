@@ -1,0 +1,3419 @@
+<?xml version="1.0" encoding="UTF-16"?>
+<content xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/template-content.xsd">
+  <dataset>
+    <name>infoarchive_ad</name>
+  </dataset>
+  <dataset>
+    <name>metadata</name>
+  </dataset>
+  <hierarchy>
+    <title>TELE2</title>
+    <node>
+      <id>infoarchive_ad</id>
+      <label>Архив документов</label>
+      <icon>allapplications16</icon>
+      <node>
+        <id>tele2</id>
+        <label>Клиентские документы</label>
+        <icon>businessobject16</icon>
+        <chainOfCustody>false</chainOfCustody>
+        <contentViewSettings>
+          <!--<contentViewSetting refid="tele2_customer"/>-->
+          <contentViewSetting refid="tele2_document"/>
+          <!--<contentViewSetting refid="displayChainOfCustodyInfo"/>-->
+        </contentViewSettings>
+        <searchSettings>
+          <!--<searchSetting name="Клиенты" refid="tele2_clients"/>-->
+          <searchSetting name="Документы" refid="tele2_client_documents"/>
+        </searchSettings>
+      </node>
+     <!-- <node>
+        <id>dctm</id>
+        <label>Documentum</label>
+        <icon>businessobject16</icon>
+        <chainOfCustody>true</chainOfCustody>
+        <contentViewSettings>
+          <contentViewSetting refid="gplg_document"/>
+          <contentViewSetting refid="displayChainOfCustodyInfo"/>
+        </contentViewSettings>
+        <searchSettings>
+          <searchSetting name="Documents Metatatda" refid="searchDCTM"/>
+        </searchSettings>
+      </node>
+      <node>
+        <id>employees</id>
+        <label>Employees</label>
+        <icon>businessobject16</icon>
+        <chainOfCustody>true</chainOfCustody>
+        <contentViewSettings>
+          <contentViewSetting refid="employees"/>
+          <contentViewSetting refid="salaries"/>
+          <contentViewSetting refid="employee_hold"/>
+          <contentViewSetting refid="displayChainOfCustodyInfo"/>
+        </contentViewSettings>
+        <searchSettings>
+          <searchSetting name="Search Employees" refid="searchMyEmployees"/>
+          <searchSetting name="Salary" refid="searchMyEmployeesSalaries"/>
+          <searchSetting name="Holds" refid="employeeHolds"/>
+        </searchSettings>
+      </node>
+      <node>
+        <id>baseball</id>
+        <label>Baseball</label>
+        <icon>businessobject16</icon>
+        <chainOfCustody>true</chainOfCustody>
+        <contentViewSettings>
+          <contentViewSetting refid="playerDetails"/>
+          <contentViewSetting refid="displayChainOfCustodyInfo"/>
+        </contentViewSettings>
+        <searchSettings>
+          <searchSetting name="Players" refid="searchPlayers"/>
+        </searchSettings>
+      </node>
+      <node>
+        <id>employee</id>
+        <label>Employee Management</label>
+        <icon>businessobject16</icon>
+        <chainOfCustody>true</chainOfCustody>
+        <contentViewSettings>
+          <contentViewSetting refid="employeeDetail"/>
+          <contentViewSetting refid="employeePayHistoryDetail"/>
+          <contentViewSetting refid="displayChainOfCustodyInfo"/>
+        </contentViewSettings>
+        <searchSettings>
+          <searchSetting name="Employee Search" refid="employeeSearch"/>
+          <searchSetting refid="employeePayrollDateSearch" name="Payroll Date Search"/>
+        </searchSettings>
+      </node>
+      <node>
+        <id>property</id>
+        <label>Property Management</label>
+        <icon>businessobject16</icon>
+        <chainOfCustody>true</chainOfCustody>
+        <contentViewSettings>
+          <contentViewSetting refid="propertyRentStreamDetail"/>
+          <contentViewSetting refid="propertyRentOptionsDetail"/>
+          <contentViewSetting refid="displayChainOfCustodyInfo"/>
+        </contentViewSettings>
+        <searchSettings>
+          <searchSetting name="Lease" refid="searchLeaseRentStream"/>
+          <searchSetting name="Options" refid="searchLeaseOptions"/>
+          <searchSetting name="Dynamic Columns" refid="searchLeaseDynamicColumns"/>
+        </searchSettings>
+      </node>
+      <node>
+        <id>reconciliation</id>
+        <label>Reconciliation/Account Management</label>
+        <icon>businessobject16</icon>
+        <chainOfCustody>true</chainOfCustody>
+        <contentViewSettings>
+          <contentViewSetting refid="generalLedgerDetails"/>
+          <contentViewSetting refid="subLedgerDetails"/>
+          <contentViewSetting refid="recDetails"/>
+          <contentViewSetting refid="historyDetails"/>
+          <contentViewSetting refid="accountDetails"/>
+          <contentViewSetting refid="displayChainOfCustodyInfo"/>
+        </contentViewSettings>
+        <searchSettings>
+          <searchSetting name="Reconciliation" refid="searchSVHarbor"/>
+          <searchSetting name="Account" refid="searchSVHarborAccount"/>
+        </searchSettings>
+      </node>
+      <node>
+        <id>sip</id>
+        <label>SIP Check Data</label>
+        <icon>businessobject16</icon>
+        <chainOfCustody>false</chainOfCustody>
+        <contentViewSettings>
+          <contentViewSetting refid="sipCheckDetails"/>
+        </contentViewSettings>
+        <searchSettings>
+          <searchSetting name="SIP Check Data" refid="searchSipCheck"/>
+        </searchSettings>
+      </node>
+      <node>
+        <id>acme</id>
+        <label>Acme Retention Records</label>
+        <icon>businessobject16</icon>
+        <chainOfCustody>false</chainOfCustody>
+        <contentViewSettings>
+          <contentViewSetting refid="AcmeRetentionPolicy"/>
+          <contentViewSetting refid="AcmeRecord"/>
+          <contentViewSetting refid="AcmeRetentionEvent"/>
+          <contentViewSetting refid="AcmeHold"/>
+        </contentViewSettings>
+        <searchSettings>
+          <searchSetting name="Records " refid="srchAcmeRecords"/>
+          <searchSetting name="Retention Policies" refid="srchAcmeRetentionPolicies"/>
+          <searchSetting name="Retention Events" refid="srchAcmeRetentionEvents"/>
+          <searchSetting name="Holds" refid="srchAcmeHolds"/>
+          <searchSetting name="Hold Records" refid="srchAcmeHoldRecords"/>
+        </searchSettings>
+      </node>
+      <node>
+        <id>auditlog</id>
+        <label>Audit Logs</label>
+        <icon>businessobject16</icon>
+        <chainOfCustody>false</chainOfCustody>
+        <contentViewSettings>
+          <contentViewSetting refid="auditLogDetails"/>
+        </contentViewSettings>
+        <searchSettings>
+          <searchSetting name="Audit Logs" refid="searchAuditLogs"/>
+        </searchSettings>
+      </node>
+    -->
+	</node>
+  </hierarchy>
+  <transformationConfigurations>
+    <transformationConfiguration id="tele2_customer">
+      <schemaIDs>tele2_customer</schemaIDs>
+      <!--styleURI>dds://DOMAIN=resource/xslt/gplg_document.xsl</styleURI-->
+      <styleURI>dds://DOMAIN=resource/xslt/xml-verbatim.xsl</styleURI>
+      <pipelineURI>dds://DOMAIN=resource/xproc/displayxqueryresult.xpl</pipelineURI>
+      <xquery>expand.xml</xquery>
+      <pdf>false</pdf>
+    </transformationConfiguration>
+    <transformationConfiguration id="tele2_document">
+      <schemaIDs>tele2_document</schemaIDs>
+      <styleURI>dds://DOMAIN=resource/xslt/tele2_document.xsl</styleURI>
+      <!--styleURI>dds://DOMAIN=resource/xslt/xml-verbatim.xsl</styleURI-->
+      <pipelineURI>dds://DOMAIN=resource/xproc/displayxqueryresult.xpl</pipelineURI>
+      <xquery>expand.xml</xquery>
+      <pdf>false</pdf>
+    </transformationConfiguration>
+    <transformationConfiguration id="gplg_document">
+      <schemaIDs>gplg_document</schemaIDs>
+      <styleURI>dds://DOMAIN=resource/xslt/gplg_document.xsl</styleURI>
+      <!--styleURI>dds://DOMAIN=resource/xslt/xml-verbatim.xsl</styleURI-->
+      <pipelineURI>dds://DOMAIN=resource/xproc/displayxqueryresult.xpl</pipelineURI>
+      <xquery>expand.xml</xquery>
+      <pdf>false</pdf>
+    </transformationConfiguration>
+    <transformationConfiguration id="employees">
+      <schemaIDs>employees</schemaIDs>
+      <styleURI>dds://DOMAIN=resource/xslt/employee.xsl</styleURI>
+      <pipelineURI>dds://DOMAIN=resource/xproc/displayxqueryresult.xpl</pipelineURI>
+      <xquery>expand.xml</xquery>
+      <pdf>false</pdf>
+    </transformationConfiguration>
+    <transformationConfiguration id="salaries">
+      <schemaIDs>salaries</schemaIDs>
+      <styleURI>dds://DOMAIN=resource/xslt/xml-verbatim.xsl</styleURI>
+      <pipelineURI>dds://DOMAIN=resource/xproc/displayxqueryresult.xpl</pipelineURI>
+      <xquery>expand.xml</xquery>
+      <pdf>false</pdf>
+    </transformationConfiguration>
+    <transformationConfiguration id="employee_hold">
+      <schemaIDs>employee_hold</schemaIDs>
+      <styleURI>dds://DOMAIN=resource/xslt/xml-verbatim.xsl</styleURI>
+      <pipelineURI>dds://DOMAIN=resource/xproc/displayxqueryresult.xpl</pipelineURI>
+      <xquery>expand.xml</xquery>
+      <pdf>false</pdf>
+    </transformationConfiguration>
+    <transformationConfiguration id="AcmeHold">
+      <schemaIDs>AcmeHold</schemaIDs>
+      <styleURI>dds://DOMAIN=resource/xslt/AcmeHold.xsl</styleURI>
+      <pipelineURI>dds://DOMAIN=resource/xproc/displayxqueryresult.xpl</pipelineURI>
+      <xquery>expand.xml</xquery>
+      <pdf>false</pdf>
+    </transformationConfiguration>
+    <transformationConfiguration id="AcmeHoldRecords">
+      <schemaIDs>AcmeHoldRecords</schemaIDs>
+      <styleURI>dds://DOMAIN=resource/xslt/AcmeHoldRecords.xsl</styleURI>
+      <pipelineURI>dds://DOMAIN=resource/xproc/displayxqueryresult.xpl</pipelineURI>
+      <xquery>expand.xml</xquery>
+      <pdf>false</pdf>
+    </transformationConfiguration>
+    <transformationConfiguration id="AcmeRetentionEvent">
+      <schemaIDs>AcmeRetentionEvent</schemaIDs>
+      <styleURI>dds://DOMAIN=resource/xslt/AcmeRetentionEvent.xsl</styleURI>
+      <pipelineURI>dds://DOMAIN=resource/xproc/displayxqueryresult.xpl</pipelineURI>
+      <xquery>expand.xml</xquery>
+      <pdf>false</pdf>
+    </transformationConfiguration>
+    <transformationConfiguration id="AcmeRecord">
+      <schemaIDs>AcmeRecord</schemaIDs>
+      <styleURI>dds://DOMAIN=resource/xslt/AcmeRecord.xsl</styleURI>
+      <pipelineURI>dds://DOMAIN=resource/xproc/displayxqueryresult.xpl</pipelineURI>
+      <xquery>expand.xml</xquery>
+      <pdf>false</pdf>
+    </transformationConfiguration>
+    <transformationConfiguration id="AcmeRetentionPolicy">
+      <schemaIDs>AcmeRetentionPolicy</schemaIDs>
+      <styleURI>dds://DOMAIN=resource/xslt/AcmeRetentionPolicy.xsl</styleURI>
+      <pipelineURI>dds://DOMAIN=resource/xproc/displayxqueryresult.xpl</pipelineURI>
+      <xquery>expand.xml</xquery>
+      <pdf>false</pdf>
+    </transformationConfiguration>
+    <transformationConfiguration id="displayDefault">
+      <schemaIDs/>
+      <styleURI>dds://DOMAIN=resource/xslt/xml-verbatim.xsl</styleURI>
+      <pipelineURI>dds://DOMAIN=resource/xproc/displayxqueryresult.xpl</pipelineURI>
+      <xquery>expand.xml</xquery>
+      <pdf>false</pdf>
+    </transformationConfiguration>
+    <transformationConfiguration id="displayURIDefault">
+      <schemaIDs/>
+      <styleURI>dds://DOMAIN=resource/xslt/xml-verbatim.xsl</styleURI>
+      <pipelineURI>dds://DOMAIN=resource/xproc/display.xpl</pipelineURI>
+      <xquery/>
+      <pdf>false</pdf>
+    </transformationConfiguration>
+    <transformationConfiguration id="empty">
+      <schemaIDs>empty.xsd</schemaIDs>
+      <styleURI>dds://DOMAIN=resource/xslt/empty.xsl</styleURI>
+      <pipelineURI>dds://DOMAIN=resource/xproc/display.xpl</pipelineURI>
+      <xquery/>
+      <pdf>false</pdf>
+    </transformationConfiguration>
+    <transformationConfiguration id="playerDetails">
+      <schemaIDs>playerDetails</schemaIDs>
+      <styleURI>dds://DOMAIN=resource/xslt/playerDetails.xsl</styleURI>
+      <pipelineURI>dds://DOMAIN=resource/xproc/displayxqueryresult.xpl</pipelineURI>
+      <xquery>expand.xml</xquery>
+      <pdf>false</pdf>
+    </transformationConfiguration>
+    <!-- Employee Management -->
+    <transformationConfiguration id="employeeDetail">
+      <schemaIDs>employeeDetail</schemaIDs>
+      <styleURI>dds://DOMAIN=resource/xslt/employeeDetail.xsl</styleURI>
+      <pipelineURI>dds://DOMAIN=resource/xproc/displayxqueryresult.xpl</pipelineURI>
+      <xquery>expand.xml</xquery>
+      <pdf>false</pdf>
+    </transformationConfiguration>
+    <transformationConfiguration id="employeePayHistoryDetail">
+      <schemaIDs>employeePayHistoryDetail</schemaIDs>
+      <styleURI>dds://DOMAIN=resource/xslt/employeePayHistoryDetail.xsl</styleURI>
+      <pipelineURI>dds://DOMAIN=resource/xproc/displayxqueryresult.xpl</pipelineURI>
+      <xquery>expand.xml</xquery>
+      <pdf>false</pdf>
+    </transformationConfiguration>
+    <transformationConfiguration id="generalLedgerDetails">
+      <schemaIDs>generalLedgerDetails</schemaIDs>
+      <styleURI>dds://DOMAIN=resource/xslt/generalLedgerDetail.xsl</styleURI>
+      <pipelineURI>dds://DOMAIN=resource/xproc/displayxqueryresult.xpl</pipelineURI>
+      <xquery>expand.xml</xquery>
+      <pdf>false</pdf>
+    </transformationConfiguration>
+    <transformationConfiguration id="subLedgerDetails">
+      <schemaIDs>subLedgerDetails</schemaIDs>
+      <styleURI>dds://DOMAIN=resource/xslt/subLedgerDetails.xsl</styleURI>
+      <pipelineURI>dds://DOMAIN=resource/xproc/displayxqueryresult.xpl</pipelineURI>
+      <xquery>expand.xml</xquery>
+      <pdf>false</pdf>
+    </transformationConfiguration>
+    <transformationConfiguration id="recDetails">
+      <schemaIDs>recDetails</schemaIDs>
+      <styleURI>dds://DOMAIN=resource/xslt/recDetails.xsl</styleURI>
+      <pipelineURI>dds://DOMAIN=resource/xproc/displayxqueryresult.xpl</pipelineURI>
+      <xquery>expand.xml</xquery>
+      <pdf>false</pdf>
+    </transformationConfiguration>
+    <transformationConfiguration id="historyDetails">
+      <schemaIDs>historyDetails</schemaIDs>
+      <styleURI>dds://DOMAIN=resource/xslt/historyDetails.xsl</styleURI>
+      <pipelineURI>dds://DOMAIN=resource/xproc/displayxqueryresult.xpl</pipelineURI>
+      <xquery>expand.xml</xquery>
+      <pdf>false</pdf>
+    </transformationConfiguration>
+    <transformationConfiguration id="propertyRentStreamDetail">
+      <schemaIDs>propertyRentStreamDetail</schemaIDs>
+      <styleURI>dds://DOMAIN=resource/xslt/propertyRentStreamDetail.xsl</styleURI>
+      <pipelineURI>dds://DOMAIN=resource/xproc/displayxqueryresult.xpl</pipelineURI>
+      <xquery>expand.xml</xquery>
+      <pdf>false</pdf>
+    </transformationConfiguration>
+    <transformationConfiguration id="propertyRentOptionsDetail">
+      <schemaIDs>propertyRentOptionsDetail</schemaIDs>
+      <styleURI>dds://DOMAIN=resource/xslt/propertyRentOptionsDetail.xsl</styleURI>
+      <pipelineURI>dds://DOMAIN=resource/xproc/displayxqueryresult.xpl</pipelineURI>
+      <xquery>expand.xml</xquery>
+      <pdf>false</pdf>
+    </transformationConfiguration>
+    <transformationConfiguration id="accountDetails">
+      <schemaIDs>accountDetails</schemaIDs>
+      <styleURI>dds://DOMAIN=resource/xslt/accountDetails.xsl</styleURI>
+      <pipelineURI>dds://DOMAIN=resource/xproc/displayxqueryresult.xpl</pipelineURI>
+      <xquery>expand.xml</xquery>
+      <pdf>false</pdf>
+    </transformationConfiguration>
+    <transformationConfiguration id="displayChainOfCustodyInfo">
+      <schemaIDs>chainofcustody.xsd</schemaIDs>
+      <styleURI>dds://DOMAIN=resource/xslt/chainofcustody.xsl</styleURI>
+      <pipelineURI>dds://DOMAIN=resource/xproc/display.xpl</pipelineURI>
+      <xquery/>
+      <pdf>false</pdf>
+    </transformationConfiguration>
+    <transformationConfiguration id="auditLogDetails">
+      <schemaIDs>auditLogDetails</schemaIDs>
+      <styleURI>dds://DOMAIN=resource/xslt/auditLogDetails.xsl</styleURI>
+      <pipelineURI>dds://DOMAIN=resource/xproc/displayxqueryresult.xpl</pipelineURI>
+      <xquery>expand.xml</xquery>
+      <pdf>false</pdf>
+    </transformationConfiguration>
+    <transformationConfiguration id="sipCheckDetails">
+      <schemaIDs>sipCheckDetails</schemaIDs>
+      <styleURI>dds://DOMAIN=resource/xslt/sipCheckDetails.xsl</styleURI>
+      <pipelineURI>dds://DOMAIN=resource/xproc/displayxqueryresult.xpl</pipelineURI>
+      <!-- <exportSRCFromDatabase>BlobServlet?uri=dds://DOMAIN=data;DATASET=infoarchive_ad</exportSRCFromDatabase> -->
+      <xquery>expand.xml</xquery>
+      <pdf>false</pdf>
+    </transformationConfiguration>
+  </transformationConfigurations>
+  <searchConfigurations>
+    <searchConfiguration id="tele2_clients">
+      <xformName>tele2_clients</xformName>
+      <xquery><![CDATA[
+declare namespace dds = 'http://www.emc.com/documentum/xml/dds';
+declare variable $restrictions as xs:string external;
+declare variable $first as xs:string external;
+declare variable $last as xs:string external;
+declare variable $currentuser as xs:string external;
+ (: do not use external variables for parameters as empty values cannot be passed as variable :)
+let $main-query :=
+  for $elem in doc('/DATA/infoarchive_ad/Collection/TELE2_DEMO')/root/CLIENTREPORT/CLIENTSET/CLIENTROW
+(: xmlarchiving-insert-where-clause-parameter-values :)
+order by $elem/NAME
+return
+  $elem
+
+
+let $main-distinct :=
+for $cID in distinct-values($main-query/CLNT_ID),
+$cNAME in distinct-values($main-query[CLNT_ID=$cID]/NAME)
+return 
+		<RES><CLNT_ID>{$cID}</CLNT_ID><NAME>{$cNAME}</NAME></RES>
+
+
+let $count := count($main-distinct)
+
+return
+  <results total='{ $count }'>
+    {
+    let $listcount := if ($last = '-1')
+    then ($count + 1)
+    else ($last cast as xs:integer - $first cast as xs:integer) + 1
+    for $elem in subsequence($main-distinct, $first cast as xs:integer, $listcount)
+    return
+      <result
+      CLNT_ID='{ $elem/CLNT_ID }'
+      NAME='{ $elem/NAME }'
+      type='tele2_customer'
+      />
+    }
+  </results>
+]]></xquery>
+      <searchFields>
+        <searchFieldRow>
+          <searchField>
+            <name>NAME</name>
+            <label>Название</label>
+            <type>string</type>
+            <whereclauseparameter>$elem/NAME</whereclauseparameter>
+            <fullText>false</fullText>
+            <suggestionsindex>idx_customer_name</suggestionsindex>
+            <indexPath>/DATA/infoarchive_ad/Collection/TELE2_DEMO/</indexPath>
+          </searchField>
+          <!--searchField>
+            <name>title</name>
+            <label>Title</label>
+            <whereclauseparameter>$elem/title</whereclauseparameter>
+            <fullText>true</fullText>
+          </searchField>
+          <searchField>
+            <name>subject</name>
+            <label>Subject</label>
+            <whereclauseparameter>$elem/subject</whereclauseparameter>
+            <fullText>true</fullText>
+          </searchField>
+          <searchField>
+            <name>r_creation_date</name>
+            <label>Creation Date</label>
+            <type>date</type>
+            <whereclauseparameter>$elem/r_creation_date</whereclauseparameter>
+          </searchField-->
+        </searchFieldRow>
+      </searchFields>
+      <searchResultItems>
+        <!--searchResultItem>
+          <name>r_object_id</name>
+          <label>ID</label>
+        </searchResultItem-->
+        <searchResultItem>
+          <name>CLNT_ID</name>
+          <label>ID</label>
+        </searchResultItem>
+        <searchResultItem>
+          <name>NAME</name>
+          <label>Наименование</label>
+        </searchResultItem>
+        <!--searchResultItem>
+          <name>COMPANY_NAME</name>
+          <label>Компания</label>
+        </searchResultItem-->
+      </searchResultItems>
+      <nestedSearches>
+        <nestedSearch>
+          <name>tele2_client_documents</name>
+          <label>Документы</label>
+          <description>Документы по этому клиенту</description>
+          <configurationId>tele2_client_documents</configurationId>
+          <nodeId>tele2</nodeId>
+          <fields>
+            <field>
+              <targetSearchFieldName>CLNT_ID</targetSearchFieldName>
+              <sourceResultItemName>CLNT_ID</sourceResultItemName>
+            </field>
+          </fields>
+        </nestedSearch>
+      </nestedSearches>
+      <!--operations>
+        <operation refid="addHold"/>
+      </operations-->
+      <crpWidth>800</crpWidth>
+    </searchConfiguration>
+    <searchConfiguration id="tele2_client_documents">
+      <xformName>tele2_client_documents</xformName>
+      <xquery><![CDATA[
+declare namespace dds = 'http://www.emc.com/documentum/xml/dds';
+declare variable $restrictions as xs:string external;
+declare variable $first as xs:string external;
+declare variable $last as xs:string external;
+declare variable $currentuser as xs:string external;
+ (: do not use external variables for parameters as empty values cannot be passed as variable :)
+let $main-query :=
+  for $elem in doc('/DATA/infoarchive_ad/Collection/TELE2_DEMO')/ROOT/CLIENTREPORT/SERVOPTION
+(: xmlarchiving-insert-where-clause-parameter-values :)
+order by $elem/FILE_NAME
+return
+  $elem
+
+let $count := count($main-query)
+return
+  <results total='{ $count }'>
+    {
+    let $listcount := if ($last = '-1')
+    then ($count + 1)
+    else ($last cast as xs:integer - $first cast as xs:integer) + 1
+    for $elem in subsequence($main-query, $first cast as xs:integer, $listcount)
+    return
+      <result
+      FILE_NAME='{ $elem/FILE_NAME }'
+      FILE_NAME_TRANSLIT='{ $elem/FILE_NAME_TRANSLIT }'
+      ACCOUNT='{ $elem/../CLIENTROW/ACCOUNT }'
+      NAME='{ $elem/../CLIENTROW/NAME }'
+      V_TEMP_MONTH_NAME='{ $elem/../CLIENTROW/V_TEMP_MONTH_NAME }'
+      CONTRACT_INN='{ $elem/../CLIENTROW/CONTRACT_INN }'
+      BRANCH_NAME='{ $elem/../CLIENTROW/BRANCH_NAME }'
+      BDT_NAME='{ $elem/../CLIENTROW/BDT_NAME }'
+      DELIVERY_GROUP='{ $elem/../CLIENTROW/DELIVERY_GROUP }'
+      CLIENT_TYPE='{ $elem/../CLIENTROW/CLIENT_TYPE }'
+      type='tele2_document'
+	uri='{dds:generate-uri($elem)}'
+      />
+    }
+  </results>
+
+]]></xquery>
+      <searchFields>
+        <searchFieldRow>
+		  <searchField>
+            <name>MACRO_REGION_RUS</name>
+            <label>Макрорегион</label>
+            <type>string</type>
+            <whereclauseparameter>$elem/../CLIENTROW/MACRO_REGION_RUS</whereclauseparameter>
+            <fullText>false</fullText>
+            <suggestionsindex>idx_macro_region_rus</suggestionsindex>
+            <indexPath>/DATA/infoarchive_ad/Collection/TELE2_DEMO/</indexPath>
+          </searchField>
+		  <searchField>
+            <name>BRANCH_NAME</name>
+            <label>Регион</label>
+            <type>string</type>
+            <whereclauseparameter>$elem/../CLIENTROW/BRANCH_NAME</whereclauseparameter>
+            <fullText>false</fullText>
+            <suggestionsindex>idx_branch_name</suggestionsindex>
+            <indexPath>/DATA/infoarchive_ad/Collection/TELE2_DEMO/</indexPath>
+          </searchField>
+		  <searchField>
+            <name>CLIENT_TYPE</name>
+            <label>Тип клиента</label>
+            <type>string</type>
+            <whereclauseparameter>$elem/../CLIENTROW/CLIENT_TYPE</whereclauseparameter>
+            <fullText>false</fullText>            
+          </searchField>
+		  <searchField>
+            <name>BDT_NAME</name>
+            <label>Тип доставки</label>
+            <type>string</type>
+            <whereclauseparameter>$elem/../CLIENTROW/BDT_NAME</whereclauseparameter>
+            <fullText>false</fullText>
+            <suggestionsindex>idx_bdt_name</suggestionsindex>
+            <indexPath>/DATA/infoarchive_ad/Collection/TELE2_DEMO/</indexPath>
+          </searchField>
+		  <searchField>
+            <name>DELIVERY_GROUP</name>
+            <label>Группа доставки</label>
+            <type>string</type>
+            <whereclauseparameter>$elem/../CLIENTROW/DELIVERY_GROUP</whereclauseparameter>
+            <fullText>false</fullText>
+            <suggestionsindex>idx_delivery_group</suggestionsindex>
+            <indexPath>/DATA/infoarchive_ad/Collection/TELE2_DEMO/</indexPath>
+          </searchField>
+		  <searchField>
+            <name>YEAR_QUERY</name>
+            <label>Год расчетного периода</label>
+            <type>string</type>
+            <whereclauseparameter>$elem/../SERVOPTION/YEAR_QUERY</whereclauseparameter>
+            <fullText>false</fullText>
+            <suggestionsindex>idx_year_query</suggestionsindex>
+            <indexPath>/DATA/infoarchive_ad/Collection/TELE2_DEMO/</indexPath>
+          </searchField>
+		  <searchField>
+            <name>MONTH_REQUEST</name>
+            <label>Месяц / Расчетный период</label>
+            <type>string</type>
+            <whereclauseparameter>$elem/../SERVOPTION/MONTH_REQUEST</whereclauseparameter>
+            <fullText>false</fullText>
+            <suggestionsindex>idx_month_request</suggestionsindex>
+            <indexPath>/DATA/infoarchive_ad/Collection/TELE2_DEMO/</indexPath>
+          </searchField>
+		   <searchField>
+            <name>NAME</name>
+            <label>Наименование клиента</label>
+            <type>string</type>
+            <whereclauseparameter>$elem/../CLIENTROW/NAME</whereclauseparameter>
+            <fullText>true</fullText>
+            <suggestionsindex>idx_customer_name</suggestionsindex>
+            <indexPath>/DATA/infoarchive_ad/Collection/TELE2_DEMO/</indexPath>
+          </searchField>
+          <searchField>
+            <name>ACCOUNT</name>
+            <label>Лицевой счет</label>
+            <type>string</type>
+            <whereclauseparameter>$elem/../CLIENTROW/ACCOUNT</whereclauseparameter>
+            <fullText>false</fullText>
+          </searchField>
+          <searchField>
+            <name>CONTRACT_INN</name>
+            <label>ИНН</label>
+            <type>string</type>
+            <whereclauseparameter>$elem/../CLIENTROW/CONTRACT_INN</whereclauseparameter>
+            <fullText>false</fullText>
+          </searchField>
+		  <searchField>
+            <name>MSISDN</name>
+            <label>Номер телефона Абонента</label>
+            <type>string</type>
+            <whereclauseparameter>$elem/../DETAIL/MSISDNSET/MSISDN</whereclauseparameter>
+            <fullText>false</fullText>
+          </searchField>
+          <!--searchField>
+            <name>title</name>
+            <label>Title</label>
+            <whereclauseparameter>$elem/title</whereclauseparameter>
+            <fullText>true</fullText>
+          </searchField>
+          <searchField>
+            <name>subject</name>
+            <label>Subject</label>
+            <whereclauseparameter>$elem/subject</whereclauseparameter>
+            <fullText>true</fullText>
+          </searchField>
+          <searchField>
+            <name>r_creation_date</name>
+            <label>Creation Date</label>
+            <type>date</type>
+            <whereclauseparameter>$elem/r_creation_date</whereclauseparameter>
+          </searchField-->
+        </searchFieldRow>
+      </searchFields>
+      <searchResultItems>
+        <searchResultItem>
+          <name>NAME</name>
+          <label>Наименование клиента</label>
+        </searchResultItem>
+        <searchResultItem>
+          <name>ACCOUNT</name>
+          <label>Лицевой счет</label>
+        </searchResultItem>
+		<searchResultItem>
+          <name>CONTRACT_INN</name>
+          <label>ИНН</label>
+        </searchResultItem>
+        <searchResultItem>
+          <name>V_TEMP_MONTH_NAME</name>
+          <label>Расчетный период</label>
+        </searchResultItem>
+        <searchResultItem>
+          <name>BRANCH_NAME</name>
+          <label>Регион</label>
+        </searchResultItem>
+		<searchResultItem>
+          <name>BDT_NAME</name>
+          <label>Тип доставки</label>
+        </searchResultItem>
+		<searchResultItem>
+          <name>DELIVERY_GROUP</name>
+          <label>Группа доставки</label>
+        </searchResultItem>
+      </searchResultItems>
+      <!--nestedSearches>
+        <nestedSearch>
+          <name>salaries</name>
+          <label>Salaries</label>
+          <description>Salaries</description>
+          <configurationId>searchMyEmployeesSalaries</configurationId>
+          <nodeId>employees</nodeId>
+          <fields>
+            <field>
+              <targetSearchFieldName>emp_no</targetSearchFieldName>
+              <sourceResultItemName>emp_no</sourceResultItemName>
+            </field>
+          </fields>
+        </nestedSearch>
+      </nestedSearches-->
+      <!--operations>
+        <operation refid="addHold"/>
+      </operations-->
+      <crpWidth>800</crpWidth>
+    </searchConfiguration>
+    <searchConfiguration id="searchDCTM">
+      <xformName>SearchDCTM</xformName>
+      <xquery><![CDATA[
+declare namespace dds = 'http://www.emc.com/documentum/xml/dds';
+declare variable $restrictions as xs:string external;
+declare variable $first as xs:string external;
+declare variable $last as xs:string external;
+declare variable $currentuser as xs:string external;
+ (: do not use external variables for parameters as empty values cannot be passed as variable :)
+let $main-query :=
+  for $elem in doc('/DATA/infoarchive_ad/Collection/DCTM')/objects/object
+(: xmlarchiving-insert-where-clause-parameter-values :)
+order by $elem/last_name, $elem/first_name
+return
+  $elem
+let $count := count($main-query)
+return
+  <results total='{ $count }'>
+    {
+    let $listcount := if ($last = '-1')
+    then ($count + 1)
+    else ($last cast as xs:integer - $first cast as xs:integer) + 1
+    for $elem in subsequence($main-query, $first cast as xs:integer, $listcount)
+    return
+      <result
+      r_object_id='{ $elem/r_object_id }'
+      object_name='{ $elem/object_name }'
+      title='{ $elem/title }'
+      subject='{ $elem/subject }'
+      r_creation_date='{ $elem/r_creation_date }'
+      r_creator_name='{ $elem/r_creator_name }'
+      r_modification_date='{ $elem/r_modification_date }'
+      project_name='{ $elem/project_name }'
+      project_code='{ $elem/project_code }'
+      section='{ $elem/section }'
+      type='gplg_document'
+	uri='{dds:generate-uri($elem)}'
+      />
+    }
+  </results>
+
+]]></xquery>
+      <searchFields>
+        <searchFieldRow>
+          <searchField>
+            <name>object_name</name>
+            <label>Document Name</label>
+            <type>string</type>
+            <whereclauseparameter>$elem/object_name</whereclauseparameter>
+            <fullText>false</fullText>
+            <suggestionsindex>idx_object_name</suggestionsindex>
+            <indexPath>/DATA/infoarchive_ad/Collection/DCTM/</indexPath>
+          </searchField>
+          <searchField>
+            <name>title</name>
+            <label>Title</label>
+            <whereclauseparameter>$elem/title</whereclauseparameter>
+            <fullText>true</fullText>
+          </searchField>
+          <searchField>
+            <name>subject</name>
+            <label>Subject</label>
+            <whereclauseparameter>$elem/subject</whereclauseparameter>
+            <fullText>true</fullText>
+          </searchField>
+          <searchField>
+            <name>r_creation_date</name>
+            <label>Creation Date</label>
+            <type>date</type>
+            <whereclauseparameter>$elem/r_creation_date</whereclauseparameter>
+          </searchField>
+        </searchFieldRow>
+      </searchFields>
+      <searchResultItems>
+        <!--searchResultItem>
+          <name>r_object_id</name>
+          <label>ID</label>
+        </searchResultItem-->
+        <searchResultItem>
+          <name>object_name</name>
+          <label>Object Name</label>
+        </searchResultItem>
+        <searchResultItem>
+          <name>title</name>
+          <label>Title</label>
+        </searchResultItem>
+        <searchResultItem>
+          <name>r_creation_date</name>
+          <label>Creation Date</label>
+        </searchResultItem>
+        <searchResultItem>
+          <name>r_creator_name</name>
+          <label>Creator</label>
+        </searchResultItem>
+      </searchResultItems>
+      <!--nestedSearches>
+        <nestedSearch>
+          <name>salaries</name>
+          <label>Salaries</label>
+          <description>Salaries</description>
+          <configurationId>searchMyEmployeesSalaries</configurationId>
+          <nodeId>employees</nodeId>
+          <fields>
+            <field>
+              <targetSearchFieldName>emp_no</targetSearchFieldName>
+              <sourceResultItemName>emp_no</sourceResultItemName>
+            </field>
+          </fields>
+        </nestedSearch>
+      </nestedSearches-->
+      <!--operations>
+        <operation refid="addHold"/>
+      </operations-->
+      <crpWidth>800</crpWidth>
+    </searchConfiguration>
+    <searchConfiguration id="searchMyEmployees">
+      <xformName>SearchMyEmployees</xformName>
+      <xquery><![CDATA[
+declare namespace dds = 'http://www.emc.com/documentum/xml/dds';
+declare variable $restrictions as xs:string external;
+declare variable $first as xs:string external;
+declare variable $last as xs:string external;
+declare variable $currentuser as xs:string external;
+ (: do not use external variables for parameters as empty values cannot be passed as variable :)
+let $main-query :=
+  for $elem in doc('/DATA/infoarchive_ad/Collection/EMPLOYEES')/employees/employee
+(: xmlarchiving-insert-where-clause-parameter-values :)
+order by $elem/last_name, $elem/first_name
+return
+  $elem
+let $count := count($main-query)
+return
+  <results total='{ $count }'>
+    {
+    let $listcount := if ($last = '-1')
+    then ($count + 1)
+    else ($last cast as xs:integer - $first cast as xs:integer) + 1
+    for $elem in subsequence($main-query, $first cast as xs:integer, $listcount)
+    return
+      <result
+      emp_no='{ $elem/emp_no }'
+      first_name='{ $elem/first_name }'
+      last_name='{ $elem/last_name }'
+      type='employees'
+      birth_date='{ $elem/birth_date }'
+      hire_date='{ $elem/hire_date }'
+      />
+    }
+  </results>
+
+]]></xquery>
+      <searchFields>
+        <searchFieldRow>
+          <searchField>
+            <name>emp_no</name>
+            <label>Employee ID</label>
+            <type>int</type>
+            <whereclauseparameter>$elem/emp_no</whereclauseparameter>
+            <fullText>false</fullText>
+            <suggestionsindex>emp_no</suggestionsindex>
+            <indexPath>/DATA/infoarchive_ad/Collection/EMPLOYEES/</indexPath>
+          </searchField>
+          <searchField>
+            <name>first_name</name>
+            <label>First Name</label>
+            <whereclauseparameter>$elem/first_name</whereclauseparameter>
+            <fullText>true</fullText>
+          </searchField>
+          <searchField>
+            <name>last_name</name>
+            <label>Last Name</label>
+            <whereclauseparameter>$elem/last_name</whereclauseparameter>
+            <fullText>true</fullText>
+          </searchField>
+          <searchField>
+            <name>hire_date</name>
+            <label>Hire Date</label>
+            <type>date</type>
+            <whereclauseparameter>$elem/hire_date</whereclauseparameter>
+          </searchField>
+        </searchFieldRow>
+      </searchFields>
+      <searchResultItems>
+        <searchResultItem>
+          <name>emp_no</name>
+          <label>Employee ID</label>
+        </searchResultItem>
+        <searchResultItem>
+          <name>first_name</name>
+          <label>First Name</label>
+        </searchResultItem>
+        <searchResultItem>
+          <name>last_name</name>
+          <label>Last Name</label>
+        </searchResultItem>
+        <searchResultItem>
+          <name>birth_date</name>
+          <label>Birth Date</label>
+        </searchResultItem>
+      </searchResultItems>
+      <nestedSearches>
+        <nestedSearch>
+          <name>salaries</name>
+          <label>Salaries</label>
+          <description>Salaries</description>
+          <configurationId>searchMyEmployeesSalaries</configurationId>
+          <nodeId>employees</nodeId>
+          <fields>
+            <field>
+              <targetSearchFieldName>emp_no</targetSearchFieldName>
+              <sourceResultItemName>emp_no</sourceResultItemName>
+            </field>
+          </fields>
+        </nestedSearch>
+      </nestedSearches>
+      <operations>
+        <operation refid="addHold"/>
+      </operations>
+      <crpWidth>800</crpWidth>
+    </searchConfiguration>
+    <searchConfiguration id="searchMyEmployeesSalaries">
+      <xformName>SearchMyEmployeesSalaries</xformName>
+      <xquery><![CDATA[
+declare function local:dateTime2Date($dateTime as xs:string) as xs:string
+{
+	let $r := substring($dateTime, 1, 10)
+	return $r
+};
+declare option xhive:index-debug 'true';
+declare option xhive:queryplan-debug 'true';
+declare option xhive:pathexpr-debug 'true';
+(: declare option xhive:optimizer-debug 'true'; :)
+declare namespace dds = 'http://www.emc.com/documentum/xml/dds';
+declare variable $restrictions as xs:string external;
+declare variable $first as xs:string external;
+declare variable $last as xs:string external;
+declare variable $currentuser as xs:string external;
+(: unit test definitions  
+ : let $first := '1'
+ : let $last := '21'
+ : 
+ :)
+(: do not use external variables for parameters as empty values cannot be passed as variable :)
+let $main-query :=
+  for $elem in doc('/DATA/infoarchive_ad/Collection/EMPLOYEES')/salaries/salary
+(: xmlarchiving-insert-where-clause-parameter-values :)
+return
+  $elem
+let $count := count($main-query)
+return
+  <results total='{ $count }'>
+    {
+    let $listcount := if ($last = '-1')
+    then ($count + 1)
+    else ($last cast as xs:integer - $first cast as xs:integer) + 1
+    for $elem in subsequence($main-query, $first cast as xs:integer, $listcount)
+let $doc := $elem/../..
+    return
+      <result
+      emp_no='{ $elem/emp_no }'
+      salary='{ $elem/salary }'
+      type='salaries'
+
+      from_date='{ local:dateTime2Date($elem/from_date) }'
+      to_date='{ local:dateTime2Date($elem/to_date) }'
+	uri='{dds:generate-uri($elem)}'
+      />
+    }
+  </results>
+
+]]></xquery>
+      <searchFields>
+        <searchFieldRow>
+          <searchField>
+            <name>emp_no</name>
+            <label>Employee ID</label>
+            <type>int</type>
+            <whereclauseparameter>$elem/emp_no</whereclauseparameter>
+            <fullText>false</fullText>
+          </searchField>
+        </searchFieldRow>
+      </searchFields>
+      <searchResultItems>
+        <searchResultItem>
+          <name>emp_no</name>
+          <label>Employee ID</label>
+        </searchResultItem>
+        <searchResultItem>
+          <name>salary</name>
+          <label>Amount</label>
+        </searchResultItem>
+        <searchResultItem>
+          <name>from_date</name>
+          <label>From</label>
+        </searchResultItem>
+        <searchResultItem>
+          <name>to_date</name>
+          <label>To</label>
+        </searchResultItem>
+      </searchResultItems>
+      <crpWidth>800</crpWidth>
+    </searchConfiguration>
+    <searchConfiguration id="employeeHolds">
+      <xformName>SearchEmployeeHolds</xformName>
+      <xquery><![CDATA[
+declare function local:dateTime2Date($dateTime as xs:string) as xs:string
+{
+	let $r := substring($dateTime, 1, 10)
+	return $r
+};
+declare option xhive:index-debug 'true';
+declare option xhive:queryplan-debug 'true';
+declare option xhive:pathexpr-debug 'true';
+(: declare option xhive:optimizer-debug 'true'; :)
+declare namespace dds = 'http://www.emc.com/documentum/xml/dds';
+declare variable $restrictions as xs:string external;
+declare variable $first as xs:string external;
+declare variable $last as xs:string external;
+declare variable $currentuser as xs:string external;
+(: unit test definitions  
+ : let $first := '1'
+ : let $last := '21'
+ : 
+ :)
+(: do not use external variables for parameters as empty values cannot be passed as variable :)
+let $main-query :=
+  for $elem in doc('/DATA/infoarchive_ad/Collection/EMPLOYEE_HOLDS')/holds/hold
+(: xmlarchiving-insert-where-clause-parameter-values :)
+return
+  $elem
+let $count := count($main-query)
+return
+  <results total='{ $count }'>
+    {
+    let $listcount := if ($last = '-1')
+    then ($count + 1)
+    else ($last cast as xs:integer - $first cast as xs:integer) + 1
+    for $elem in subsequence($main-query, $first cast as xs:integer, $listcount)
+    return
+      <result
+      emp_no='{ $elem/emp_no }'
+      name='{ $elem/name }'
+      description='{ $elem/description }'
+      user='{ $elem/user }'
+      type='employee_hold'
+
+      startdate='{ local:dateTime2Date($elem/startdate) }'
+      enddate='{ local:dateTime2Date($elem/enddate) }'
+      />
+    }
+  </results>
+
+]]></xquery>
+      <searchFields>
+        <searchFieldRow>
+          <searchField>
+            <name>emp_no</name>
+            <label>Employee ID</label>
+            <type>int</type>
+            <whereclauseparameter>$elem/emp_no</whereclauseparameter>
+            <fullText>false</fullText>
+          </searchField>
+          <searchField>
+            <name>name</name>
+            <label>Hold Name</label>
+            <type>string</type>
+            <whereclauseparameter>$elem/name</whereclauseparameter>
+          </searchField>
+          <searchField>
+            <name>startdate</name>
+            <label>Start Date</label>
+            <type>date</type>
+            <whereclauseparameter>$elem/startdate</whereclauseparameter>
+          </searchField>
+          <searchField>
+            <name>enddate</name>
+            <label>End Date</label>
+            <type>date</type>
+            <whereclauseparameter>$elem/enddate</whereclauseparameter>
+          </searchField>
+        </searchFieldRow>
+      </searchFields>
+      <searchResultItems>
+        <searchResultItem>
+          <name>emp_no</name>
+          <label>Employee ID</label>
+        </searchResultItem>
+        <searchResultItem>
+          <name>name</name>
+          <label>Hold Name</label>
+        </searchResultItem>
+        <searchResultItem>
+          <name>description</name>
+          <label>Description</label>
+        </searchResultItem>
+        <searchResultItem>
+          <name>startdate</name>
+          <label>Start</label>
+        </searchResultItem>
+        <searchResultItem>
+          <name>enddate</name>
+          <label>End</label>
+        </searchResultItem>
+        <searchResultItem>
+          <name>user</name>
+          <label>User</label>
+        </searchResultItem>
+      </searchResultItems>
+      <operations>
+        <operation refid="deleteHold"/>
+      </operations>
+      <crpWidth>800</crpWidth>
+    </searchConfiguration>
+    <searchConfiguration id="srchAcmeHoldRecords">
+      <xformName>srchAcmeHoldRecords</xformName>
+      <xquery><![CDATA[
+declare option xhive:index-debug 'true';
+declare option xhive:queryplan-debug 'true';
+declare option xhive:pathexpr-debug 'true';
+(: declare option xhive:optimizer-debug 'true'; :)
+declare option xhive:index-debug 'true';
+declare option xhive:queryplan-debug 'true';
+declare option xhive:pathexpr-debug 'true';
+(: declare option xhive:optimizer-debug 'true'; :)
+declare namespace dds = 'http://www.emc.com/documentum/xml/dds';
+declare variable $restrictions as xs:string external;
+declare variable $first as xs:string external;
+declare variable $last as xs:string external;
+declare variable $currentuser as xs:string external;
+declare variable $holdName as xs:string external;
+(: unit test definitions  
+  	let $first := '1'
+  	let $last := '21'
+let $holdName:='Test Hold 1'
+ :)
+
+
+let $records := for $holdRecordID in doc('/DATA/infoarchive_ad/Collection/ACME/HOLDS')/AcmeHolds/AcmeHold
+	(: xmlarchiving-insert-where-clause-parameter-values :)
+	return <data>{
+		for $recordID in $holdRecordID/Records/RecordID
+			return 
+			<record>{
+				for $record in doc('/DATA/infoarchive_ad/Collection/ACME/SAMPLES')/AcmeRecord/AcmeRecord-Row
+						where $record/RecordID=data($recordID)
+					return $record
+				}</record>
+			
+		}</data>
+
+
+let $count := count($records//AcmeRecord-Row)
+return 
+  <results total='{ $count }'>
+    {
+    let $listcount := if ($last = '-1')
+    then ($count + 1)
+    else ($last cast as xs:integer - $first cast as xs:integer) + 1
+    for $elem in subsequence($records//AcmeRecord-Row, $first cast as xs:integer, $listcount)
+    return
+      <result
+	RecordID ='{$elem/RecordID}'
+	RecordClass='{$elem/RecordClass}' 
+	RecordType='{$elem/RecordType}'
+	SystemOfRecord='{$elem/SystemOfRecord}'
+	AccountCTL='{$elem/AccountCTL}'
+	EffectiveDate='{$elem/EffectiveDate}'
+	Market='{$elem/Market}'
+	docCount='{count($elem/document)}'
+	type='AcmeRecord'
+      />
+    }
+  </results>
+      ]]></xquery>
+      <searchFields>
+        <searchFieldRow>
+          <searchField>
+            <name>Name</name>
+            <label>Hold Name</label>
+            <type>string</type>
+            <whereclauseparameter>$holdRecordID/Name</whereclauseparameter>
+          </searchField>
+          <searchField>
+            <name>RecordClass</name>
+            <label>Record Class</label>
+            <whereclauseparameter>$record/RecordClass</whereclauseparameter>
+            <fullText>false</fullText>
+            <operator>=</operator>
+          </searchField>
+        </searchFieldRow>
+      </searchFields>
+      <searchResultItems>
+        <searchResultItem>
+          <name>RecordID</name>
+          <label>Record ID</label>
+        </searchResultItem>
+        <searchResultItem>
+          <name>RecordClass</name>
+          <label>Record Class</label>
+        </searchResultItem>
+        <searchResultItem>
+          <name>RecordType</name>
+          <label>RecordType</label>
+        </searchResultItem>
+        <searchResultItem>
+          <name>SystemOfRecord</name>
+          <label>System of Record</label>
+        </searchResultItem>
+        <searchResultItem>
+          <name>AccountCTL</name>
+          <label>Account / CTL</label>
+        </searchResultItem>
+        <searchResultItem>
+          <name>EffectiveDate</name>
+          <label>Effective Date</label>
+        </searchResultItem>
+        <searchResultItem>
+          <name>Market</name>
+          <label>Market</label>
+        </searchResultItem>
+        <searchResultItem>
+          <name>docCount</name>
+          <label>Documents</label>
+        </searchResultItem>
+      </searchResultItems>
+      <operations>
+        <operation refid="remove-hold-acme"/>
+      </operations>
+    </searchConfiguration>
+    <searchConfiguration id="srchAcmeRetentionPolicies">
+      <xformName>srchAcmeRetentionPolicies</xformName>
+      <xquery><![CDATA[
+declare option xhive:index-debug 'true';
+declare option xhive:queryplan-debug 'true';
+declare option xhive:pathexpr-debug 'true';
+(: declare option xhive:optimizer-debug 'true'; :)
+declare option xhive:index-debug 'true';
+declare option xhive:queryplan-debug 'true';
+declare option xhive:pathexpr-debug 'true';
+(: declare option xhive:optimizer-debug 'true'; :)
+declare namespace dds = 'http://www.emc.com/documentum/xml/dds';
+declare variable $restrictions as xs:string external;
+declare variable $first as xs:string external;
+declare variable $last as xs:string external;
+declare variable $currentuser as xs:string external;
+(: unit test definitions  
+ : 	let $first := '1'
+ : 	let $last := '21'
+ : 	:)
+(: do not use external variables for parameters as empty values cannot be passed as variable :)
+let $main-query :=
+  for $record in doc('/DATA/infoarchive_ad/Collection/ACME/POLICIES/')/AcmeRetention/AcmeRetention-Row
+(: xmlarchiving-insert-where-clause-parameter-values :)
+return
+  <result>
+    { $record }
+  </result>
+let $count := count($main-query)
+return
+  <results total='{ $count }'>
+    {
+    let $listcount := if ($last = '-1')
+    then ($count + 1)
+    else ($last cast as xs:integer - $first cast as xs:integer) + 1
+    for $elem in subsequence($main-query, $first cast as xs:integer, $listcount)
+    (: payRate and lastCheckDate in the following need to come from the latest detail record :)
+    return
+      <result
+      CustomerRecordClassCode='{ $elem/AcmeRetention-Row/CustomerRecordClassCode }'
+      RecordClassName='{ $elem/AcmeRetention-Row/RecordClassName }'
+      RecordActive='{ $elem/AcmeRetention-Row/RecordActive }'
+      CategoryCode='{ $elem/AcmeRetention-Row/CategoryCode }'
+      CountryName='{ $elem/AcmeRetention-Row/CountryName }'
+      RegionName='{ $elem/AcmeRetention-Row/RegionName }'
+      RetentionEventCode='{ $elem/AcmeRetention-Row/RetentionEventCode }'
+      RetentionEventDesc='{ $elem/AcmeRetention-Row/RetentionEventDesc }'
+      TotalRetentionPeriod='{ $elem/AcmeRetention-Row/TotalRetentionPeriod }'
+      RetentionPolicyGUID='{ $elem/AcmeRetention-Row/GUID }'
+      title='{ $elem/AcmeRetention-Row/RetentionEventDesc }'
+      type='AcmeRetentionPolicy'
+      />
+    }
+  </results>
+
+]]></xquery>
+      <searchFields>
+        <searchFieldRow>
+          <searchField>
+            <name>CustomerRecordClassCode</name>
+            <label>Class Code</label>
+            <whereclauseparameter>$record/CustomerRecordClassCode</whereclauseparameter>
+            <fullText>false</fullText>
+            <operator>=</operator>
+          </searchField>
+          <searchField>
+            <name>RecordClassName</name>
+            <label>Record Class</label>
+            <whereclauseparameter>$record/RecordClassName</whereclauseparameter>
+            <fullText>false</fullText>
+            <operator>=</operator>
+          </searchField>
+          <searchField>
+            <name>CategoryCode</name>
+            <label>Category Code</label>
+            <whereclauseparameter>$record/CategoryCode</whereclauseparameter>
+            <operator>=</operator>
+          </searchField>
+          <searchField>
+            <name>CountryName</name>
+            <label>Country</label>
+            <whereclauseparameter>$record/CountryName</whereclauseparameter>
+            <fullText>false</fullText>
+          </searchField>
+          <searchField>
+            <name>RegionName</name>
+            <label>Region</label>
+            <whereclauseparameter>$record/Region</whereclauseparameter>
+            <operator>=</operator>
+          </searchField>
+        </searchFieldRow>
+        <searchFieldRow>
+          <searchField>
+            <name>RetentionEventCode</name>
+            <label>Retention Event</label>
+            <whereclauseparameter>$record/RetentionEventCode</whereclauseparameter>
+            <fullText>false</fullText>
+            <operator>=</operator>
+          </searchField>
+          <searchField>
+            <name>TotalRetentionPeriod</name>
+            <label>Retention Period</label>
+            <whereclauseparameter>$record/TotalRetentionPeriod</whereclauseparameter>
+            <fullText>false</fullText>
+            <operator>=</operator>
+          </searchField>
+          <searchField>
+            <name>RecordActive</name>
+            <label>Status</label>
+            <whereclauseparameter>$record/RecordActive</whereclauseparameter>
+            <fullText>false</fullText>
+            <operator>=</operator>
+          </searchField>
+        </searchFieldRow>
+      </searchFields>
+      <searchResultItems>
+        <searchResultItem>
+          <name>RetentionPolicyGUID</name>
+          <label>GUID</label>
+        </searchResultItem>
+        <searchResultItem>
+          <name>CustomerRecordClassCode</name>
+          <label>Customer Record Class Cd</label>
+        </searchResultItem>
+        <searchResultItem>
+          <name>RecordClassName</name>
+          <label>Record Class</label>
+        </searchResultItem>
+        <searchResultItem>
+          <name>CategoryCode</name>
+          <label>Category</label>
+        </searchResultItem>
+        <searchResultItem>
+          <name>CountryName</name>
+          <label>Country</label>
+        </searchResultItem>
+        <searchResultItem>
+          <name>RegionName</name>
+          <label>Region</label>
+        </searchResultItem>
+        <searchResultItem>
+          <name>RetentionEventCode</name>
+          <label>Retention Event</label>
+        </searchResultItem>
+        <searchResultItem>
+          <name>RetentionEventDesc</name>
+          <label>Retention Description</label>
+        </searchResultItem>
+        <searchResultItem>
+          <name>TotalRetentionPeriod</name>
+          <label>Period</label>
+        </searchResultItem>
+        <searchResultItem>
+          <name>RecordActive</name>
+          <label>Active</label>
+        </searchResultItem>
+      </searchResultItems>
+      <operations>
+        <operation refid="genPurgeList"/>
+      </operations>
+      <crpWidth>800</crpWidth>
+    </searchConfiguration>
+    <searchConfiguration id="srchAcmeHolds">
+      <xformName>srchAcmeHolds</xformName>
+      <xquery><![CDATA[
+declare option xhive:index-debug 'true';
+declare option xhive:queryplan-debug 'true';
+declare option xhive:pathexpr-debug 'true';
+(: declare option xhive:optimizer-debug 'true'; :)
+declare option xhive:index-debug 'true';
+declare option xhive:queryplan-debug 'true';
+declare option xhive:pathexpr-debug 'true';
+(: declare option xhive:optimizer-debug 'true'; :)
+declare namespace dds = 'http://www.emc.com/documentum/xml/dds';
+declare variable $restrictions as xs:string external;
+declare variable $first as xs:string external;
+declare variable $last as xs:string external;
+declare variable $currentuser as xs:string external;
+(: unit test definitions  
+ : 	let $first := '1'
+ : 	let $last := '21'
+ : 	:)
+(: do not use external variables for parameters as empty values cannot be passed as variable :)
+let $main-query :=
+  for $hold in doc('/DATA/infoarchive_ad/Collection/ACME/HOLDS')/AcmeHolds/AcmeHold
+(: xmlarchiving-insert-where-clause-parameter-values :)
+return
+  <result>
+    { $hold }
+  </result>
+let $count := count($main-query)
+return
+  <results total='{ $count }'>
+    {
+    let $listcount := if ($last = '-1')
+    then ($count + 1)
+    else ($last cast as xs:integer - $first cast as xs:integer) + 1
+    for $elem in subsequence($main-query, $first cast as xs:integer, $listcount)
+    (: payRate and lastCheckDate in the following need to come from the latest detail record :)
+    return
+      <result
+      Name='{ $elem/AcmeHold/Name }'
+      Authority='{ $elem/AcmeHold/Authority }'
+      Description='{ $elem/AcmeHold/Description }'
+      Matters='{
+      for $matter in $elem/AcmeHold/Matters
+      return string-join($matter/Matter, ',')
+      }'
+      Date_Created='{ concat(
+      month-from-dateTime(xs:dateTime($elem/AcmeHold/Date_Created)), "/"
+      , day-from-dateTime(xs:dateTime($elem/AcmeHold/Date_Created)), "/"
+      , year-from-dateTime(xs:dateTime($elem/AcmeHold/Date_Created))
+      , " "
+      , hours-from-dateTime(xs:dateTime($elem/AcmeHold/Date_Created))
+      , ":"
+      , minutes-from-dateTime(xs:dateTime($elem/AcmeHold/Date_Created))
+      )
+      }'
+      Date_Start='{ concat(
+      month-from-dateTime(xs:dateTime($elem/AcmeHold/Date_Start)), "/"
+      , day-from-dateTime(xs:dateTime($elem/AcmeHold/Date_Start)), "/"
+      , year-from-dateTime(xs:dateTime($elem/AcmeHold/Date_Start))
+      )
+      }'
+      Date_End='{ if (empty($elem/AcmeHold/Date_End/text()))
+      then
+        (())
+      else
+        (concat(
+        month-from-dateTime(xs:dateTime($elem/AcmeHold/Date_End)), "/"
+        , day-from-dateTime(xs:dateTime($elem/AcmeHold/Date_End)), "/"
+        , year-from-dateTime(xs:dateTime($elem/AcmeHold/Date_End))
+        ))
+      }'
+      Status='{ $elem/AcmeHold/Status }'
+      RecordCount='{ $elem/AcmeHold/RecordCount }'
+      type='AcmeHold'
+      />
+    }
+  </results>
+
+                     ]]></xquery>
+      <searchFields>
+        <searchFieldRow>
+          <searchField>
+            <name>Name</name>
+            <label>Hold Name</label>
+            <whereclauseparameter>$hold/Name</whereclauseparameter>
+            <fullText>false</fullText>
+            <operator>=</operator>
+          </searchField>
+          <searchField>
+            <name>Date_Created_Start</name>
+            <label>Date Created</label>
+            <whereclauseparameter>$hold/Date_Created</whereclauseparameter>
+            <operator>>=</operator>
+          </searchField>
+          <searchField>
+            <name>Date_Start_Begin</name>
+            <label>Start Date (Begin)</label>
+            <whereclauseparameter>$hold/Date_Start</whereclauseparameter>
+            <operator>>=</operator>
+          </searchField>
+          <searchField>
+            <name>Date_End_Begin</name>
+            <label>End Date (Begin)</label>
+            <whereclauseparameter>$hold/Date_End</whereclauseparameter>
+            <operator>>=</operator>
+          </searchField>
+          <searchField>
+            <name>Status</name>
+            <label>Status</label>
+            <whereclauseparameter>$hold/Status</whereclauseparameter>
+            <fullText>false</fullText>
+          </searchField>
+        </searchFieldRow>
+        <searchFieldRow>
+          <searchField>
+            <name>Matter</name>
+            <label>Description</label>
+            <whereclauseparameter>$hold/Matters/Matter</whereclauseparameter>
+            <fullText>false</fullText>
+            <operator>=</operator>
+          </searchField>
+          <searchField>
+            <name>Date_Created_End</name>
+            <label>Date Created</label>
+            <whereclauseparameter>$hold/Date_Created</whereclauseparameter>
+            <operator>&lt;=</operator>
+          </searchField>
+          <searchField>
+            <name>Date_Start_End</name>
+            <label>Start Date (End)</label>
+            <whereclauseparameter>$hold/Date_Start</whereclauseparameter>
+            <operator>&lt;=</operator>
+          </searchField>
+          <searchField>
+            <name>Date_End_End</name>
+            <label>End Date (End)</label>
+            <whereclauseparameter>$hold/Date_End</whereclauseparameter>
+            <operator>&lt;=</operator>
+          </searchField>
+        </searchFieldRow>
+      </searchFields>
+      <searchResultItems>
+        <searchResultItem>
+          <name>Name</name>
+          <label>Name</label>
+        </searchResultItem>
+        <searchResultItem>
+          <name>RecordCount</name>
+          <label>Records</label>
+        </searchResultItem>
+        <searchResultItem>
+          <name>Authority</name>
+          <label>Authority</label>
+        </searchResultItem>
+        <searchResultItem>
+          <name>Matters</name>
+          <label>Description</label>
+        </searchResultItem>
+        <searchResultItem>
+          <name>Date_Created</name>
+          <label>Created</label>
+        </searchResultItem>
+        <searchResultItem>
+          <name>Date_Start</name>
+          <label>Starts</label>
+        </searchResultItem>
+        <searchResultItem>
+          <name>Date_End</name>
+          <label>Ends</label>
+        </searchResultItem>
+        <searchResultItem>
+          <name>Status</name>
+          <label>Status</label>
+        </searchResultItem>
+      </searchResultItems>
+      <nestedSearches>
+        <nestedSearch>
+          <name>srchAcmeHoldRecords</name>
+          <label>Hold Records</label>
+          <description>Records on Hold</description>
+          <configurationId>srchAcmeHoldRecords</configurationId>
+          <nodeId>acme</nodeId>
+          <fields>
+            <field>
+              <targetSearchFieldName>Name</targetSearchFieldName>
+              <sourceResultItemName>Name</sourceResultItemName>
+            </field>
+          </fields>
+        </nestedSearch>
+      </nestedSearches>
+      <operations>
+        <operation refid="create-hold-acme"/>
+        <operation refid="delete-hold-acme"/>
+      </operations>
+      <crpWidth>800</crpWidth>
+    </searchConfiguration>
+    <searchConfiguration id="srchAcmeRetentionEvents">
+      <xformName>srchAcmeRetentionEvents</xformName>
+      <xquery><![CDATA[
+declare option xhive:index-debug 'true';
+declare option xhive:queryplan-debug 'true';
+declare option xhive:pathexpr-debug 'true';
+(: declare option xhive:optimizer-debug 'true'; :)
+declare option xhive:index-debug 'true';
+declare option xhive:queryplan-debug 'true';
+declare option xhive:pathexpr-debug 'true';
+(: declare option xhive:optimizer-debug 'true'; :)
+declare namespace dds = 'http://www.emc.com/documentum/xml/dds';
+declare variable $restrictions as xs:string external;
+declare variable $first as xs:string external;
+declare variable $last as xs:string external;
+declare variable $currentuser as xs:string external;
+(: unit test definitions  
+ : 	let $first := '1'
+ : 	let $last := '21'
+ : 	
+ : 
+ : 		               and $event/GUID/@RetentionPolicyGUID ='00000001-73ff-4f49-8000-000c29f00007'
+ : 
+ : 	:)
+(: do not use external variables for parameters as empty values cannot be passed as variable :)
+let $main-query :=
+  for $event in doc('/DATA/infoarchive_ad/Collection/ACME/RETENTION_EVENTS')/AcmeRetentionEvent/
+                   AcmeRetentionEvent-Row
+  ,
+      $policy in doc('/DATA/infoarchive_ad/Collection/ACME/POLICIES')/AcmeRetention/AcmeRetention-Row
+where $event/GUID/@RetentionPolicyGUID = $policy/GUID
+(: xmlarchiving-insert-where-clause-parameter-values :)
+return
+  <result>
+    { $event }
+    { $policy }
+  </result>
+let $count := count($main-query)
+return
+  <results total='{ $count }'>
+    {
+    let $listcount := if ($last = '-1')
+    then ($count + 1)
+    else ($last cast as xs:integer - $first cast as xs:integer) + 1
+    for $elem in subsequence($main-query, $first cast as xs:integer, $listcount)
+    (: payRate and lastCheckDate in the following need to come from the latest detail record :)
+    return
+      <result
+      RecordClassName='{ $elem/AcmeRetention-Row/RecordClassName }'
+      CustomerRecordClassCode='{ $elem/AcmeRetention-Row/CustomerRecordClassCode }'
+      CategoryCode='{ $elem/AcmeRetention-Row/CategoryCode }'
+      CountryName='{ $elem/AcmeRetention-Row/CountryName }'
+      PurgeType='{ $elem/AcmeRetentionEvent-Row/PurgeType }'
+      EventRunDate='{ concat(month-from-dateTime(xs:dateTime($elem/AcmeRetentionEvent-Row/
+                                                            EventRunDate))
+      , "/"
+      , day-from-dateTime(xs:dateTime($elem/AcmeRetentionEvent-Row/EventRunDate))
+      , "/"
+      , year-from-dateTime(xs:dateTime($elem/AcmeRetentionEvent-Row/EventRunDate))
+      , " "
+      , hours-from-dateTime(xs:dateTime($elem/AcmeRetentionEvent-Row/EventRunDate))
+      , ":"
+      , minutes-from-dateTime(xs:dateTime($elem/AcmeRetentionEvent-Row/EventRunDate))
+      )
+      }'
+      RecordsAffected='{ $elem/AcmeRetentionEvent-Row/RecordsAffected }'
+      RetentionPolicyGUID='{ $elem/AcmeRetentionEvent-Row/GUID/@RetentionPolicyGUID }'
+      RetentionEventCode='{ $elem/AcmeRetention-Row/RetentionEventCode }'
+      TotalRetentionPeriod='{ $elem/AcmeRetention-Row/TotalRetentionPeriod }'
+      Description='{ $elem/AcmeRetentionEvent-Row/Description }'
+      type='AcmeRetentionEvent'
+      />
+    }
+  </results>
+    
+        ]]></xquery>
+      <searchFields>
+        <searchFieldRow>
+          <searchField>
+            <name>EventRunDateBegin</name>
+            <label>Run Date (Begin)</label>
+            <type>date</type>
+            <whereclauseparameter>$event/EventRunDate</whereclauseparameter>
+            <fullText>false</fullText>
+            <operator>>=</operator>
+          </searchField>
+          <searchField>
+            <name>RecordClassName</name>
+            <label>Record Class</label>
+            <whereclauseparameter>$policy/RecordClassName</whereclauseparameter>
+            <fullText>false</fullText>
+            <operator>=</operator>
+          </searchField>
+          <searchField>
+            <name>CustomerRecordClassCode</name>
+            <label>Record Class Code</label>
+            <whereclauseparameter>$policy/CustomerRecordClassCode</whereclauseparameter>
+            <fullText>false</fullText>
+            <operator>=</operator>
+          </searchField>
+          <searchField>
+            <name>CategoryCode</name>
+            <label>Category Code</label>
+            <whereclauseparameter>$policy/CategoryCode</whereclauseparameter>
+            <operator>=</operator>
+          </searchField>
+          <searchField>
+            <name>CountryName</name>
+            <label>Country</label>
+            <whereclauseparameter>$policy/CountryName</whereclauseparameter>
+            <fullText>false</fullText>
+          </searchField>
+          <searchField>
+            <name>PurgeType</name>
+            <label>Type</label>
+            <whereclauseparameter>$event/PurgeType</whereclauseparameter>
+            <operator>=</operator>
+          </searchField>
+        </searchFieldRow>
+        <searchFieldRow>
+          <searchField>
+            <name>EventRunDateEnd</name>
+            <label>Run Date (End)</label>
+            <type>date</type>
+            <whereclauseparameter>$event/EventRunDate</whereclauseparameter>
+            <fullText>false</fullText>
+            <operator>&lt;=</operator>
+          </searchField>
+          <searchField>
+            <name>RetentionEventCode</name>
+            <label>Retention Event</label>
+            <whereclauseparameter>$policy/RetentionEventCode</whereclauseparameter>
+            <fullText>false</fullText>
+            <operator>=</operator>
+          </searchField>
+          <searchField>
+            <name>Description</name>
+            <label>Description</label>
+            <whereclauseparameter>$event/Description</whereclauseparameter>
+            <fullText>false</fullText>
+            <operator>=</operator>
+          </searchField>
+        </searchFieldRow>
+      </searchFields>
+      <searchResultItems>
+        <searchResultItem>
+          <name>RetentionPolicyGUID</name>
+          <label>GUID</label>
+        </searchResultItem>
+        <searchResultItem>
+          <name>Description</name>
+          <label>Description</label>
+        </searchResultItem>
+        <searchResultItem>
+          <name>EventRunDate</name>
+          <label>Run Date</label>
+        </searchResultItem>
+        <searchResultItem>
+          <name>PurgeType</name>
+          <label>Type</label>
+        </searchResultItem>
+        <searchResultItem>
+          <name>RecordsAffected</name>
+          <label>Records Affected</label>
+        </searchResultItem>
+        <searchResultItem>
+          <name>CustomerRecordClassCode</name>
+          <label>Customer Record Class Cd</label>
+        </searchResultItem>
+        <searchResultItem>
+          <name>RecordClassName</name>
+          <label>Record Class</label>
+        </searchResultItem>
+        <searchResultItem>
+          <name>CategoryCode</name>
+          <label>Category</label>
+        </searchResultItem>
+        <searchResultItem>
+          <name>CountryName</name>
+          <label>Country</label>
+        </searchResultItem>
+        <searchResultItem>
+          <name>RetentionEventCode</name>
+          <label>Retention Event</label>
+        </searchResultItem>
+        <searchResultItem>
+          <name>TotalRetentionPeriod</name>
+          <label>Period</label>
+        </searchResultItem>
+      </searchResultItems>
+      <operations>
+        <operation refid="removeRetentionEvent"/>
+        <operation refid="executePurge"/>
+      </operations>
+      <crpWidth>800</crpWidth>
+    </searchConfiguration>
+    <searchConfiguration id="srchAcmeRecords">
+      <xformName>srchAcmeRecords</xformName>
+      <xquery><![CDATA[
+declare option xhive:index-debug 'true';
+declare option xhive:queryplan-debug 'true';
+declare option xhive:pathexpr-debug 'true';
+(: declare option xhive:optimizer-debug 'true'; :)
+declare option xhive:index-debug 'true';
+declare option xhive:queryplan-debug 'true';
+declare option xhive:pathexpr-debug 'true';
+(: declare option xhive:optimizer-debug 'true'; :)
+declare namespace dds = 'http://www.emc.com/documentum/xml/dds';
+declare variable $restrictions as xs:string external;
+declare variable $first as xs:string external;
+declare variable $last as xs:string external;
+declare variable $currentuser as xs:string external;
+(: unit test definitions  
+ : 	let $first := '1'
+ : 	let $last := '21'
+ : 	where $record/RecordID = '00000000-30d0-4ec9-8000-000c29f00001'
+ : 
+ :)
+(: do not use external variables for parameters as empty values cannot be passed as variable :)
+let $main-query :=
+  for $record in doc('/DATA/infoarchive_ad/Collection/ACME/SAMPLES')/AcmeRecord/AcmeRecord-Row
+(: xmlarchiving-insert-where-clause-parameter-values :)
+return
+  <result>
+    <RecordID>
+      { data($record/RecordID) }
+    </RecordID>
+    <RecordClass>
+      { data($record/RecordClass) }
+    </RecordClass>
+    <RecordType>
+      { data($record/RecordType) }
+    </RecordType>
+    <SystemOfRecord>
+      { data($record/SystemOfRecord) }
+    </SystemOfRecord>
+    <EffectiveDate>
+      { xs:dateTime(data($record/EffectiveDate)) }
+    </EffectiveDate>
+    <Market>
+      { data($record/Market) }
+    </Market>
+    <holds>
+      {
+      for $hold in doc('/DATA/infoarchive_ad/Collection/ACME/HOLDS')/AcmeHolds/AcmeHold
+      where $hold/Records/RecordID = $record/RecordID
+      return string-join($hold/Name, ',')
+      }
+    </holds>
+  </result>
+let $count := count($main-query)
+return
+  <results total='{ $count }'>
+    {
+    let $listcount := if ($last = '-1')
+    then ($count + 1)
+    else ($last cast as xs:integer - $first cast as xs:integer) + 1
+    for $elem in subsequence($main-query, $first cast as xs:integer, $listcount)
+    return
+      <result
+      RecordID='{ $elem/RecordID }'
+      RecordClass='{ $elem/RecordClass }'
+      RecordType='{ $elem/RecordType }'
+      SystemOfRecord='{ $elem/SystemOfRecord }'
+      EffectiveDate='{ concat(month-from-dateTime(xs:dateTime($elem/EffectiveDate)), "/"
+      , day-from-dateTime(xs:dateTime($elem/EffectiveDate)), "/"
+      , year-from-dateTime(xs:dateTime($elem/EffectiveDate))
+      ) }'
+      Market='{ $elem/Market }'
+      Holds='{ $elem/holds }'
+      type='AcmeRecord'
+      />
+    }
+  </results>
+
+        
+                     ]]></xquery>
+      <searchFields>
+        <searchFieldRow>
+          <searchField>
+            <name>EffectiveDateBegin</name>
+            <label>Effective Date (Begin)</label>
+            <type>date</type>
+            <whereclauseparameter>$record/EffectiveDate</whereclauseparameter>
+            <fullText>false</fullText>
+            <operator>>=</operator>
+          </searchField>
+          <searchField>
+            <name>RecordClass</name>
+            <label>Class</label>
+            <whereclauseparameter>$record/RecordClass</whereclauseparameter>
+            <fullText>false</fullText>
+            <operator>=</operator>
+          </searchField>
+          <searchField>
+            <name>RecordType</name>
+            <label>Type</label>
+            <whereclauseparameter>$record/RecordType</whereclauseparameter>
+            <operator>=</operator>
+          </searchField>
+          <searchField>
+            <name>Market</name>
+            <label>Market</label>
+            <whereclauseparameter>$record/Market</whereclauseparameter>
+            <operator>=</operator>
+          </searchField>
+        </searchFieldRow>
+        <searchFieldRow>
+          <searchField>
+            <name>EffectiveDateEnd</name>
+            <label>Effective Date (End)</label>
+            <type>date</type>
+            <whereclauseparameter>$record/EffectiveDate</whereclauseparameter>
+            <fullText>false</fullText>
+            <operator>&lt;=</operator>
+          </searchField>
+          <searchField>
+            <name>SystemOfRecord</name>
+            <label>System</label>
+            <whereclauseparameter>$record/SystemOfRecord</whereclauseparameter>
+            <operator>=</operator>
+          </searchField>
+        </searchFieldRow>
+      </searchFields>
+      <searchResultItems>
+        <searchResultItem>
+          <name>RecordID</name>
+          <label>Record ID</label>
+        </searchResultItem>
+        <searchResultItem>
+          <name>RecordClass</name>
+          <label>Class</label>
+        </searchResultItem>
+        <searchResultItem>
+          <name>RecordType</name>
+          <label>Type</label>
+        </searchResultItem>
+        <searchResultItem>
+          <name>SystemOfRecord</name>
+          <label>System</label>
+        </searchResultItem>
+        <searchResultItem>
+          <name>EffectiveDate</name>
+          <label>Effective Date</label>
+        </searchResultItem>
+        <searchResultItem>
+          <name>Market</name>
+          <label>Market</label>
+        </searchResultItem>
+        <searchResultItem>
+          <name>Holds</name>
+          <label>Holds</label>
+        </searchResultItem>
+      </searchResultItems>
+      <operations>
+        <operation refid="add-hold-acme"/>
+        <operation refid="remove-hold-acme"/>
+      </operations>
+      <crpWidth>800</crpWidth>
+    </searchConfiguration>
+    <searchConfiguration id="searchPlayers">
+      <xformName>SearchPlayers</xformName>
+      <xquery><![CDATA[
+import module namespace mask = 'mask' at
+    '/APPLICATIONS/infoarchive_ad/resources/xqueries/modules/utility.xquery';
+declare option xhive:index-debug 'true';
+declare option xhive:queryplan-debug 'true';
+declare option xhive:pathexpr-debug 'true';
+(: declare option xhive:optimizer-debug 'true'; :)
+declare namespace dds = 'http://www.emc.com/documentum/xml/dds';
+declare variable $restrictions as xs:string external;
+declare variable $first as xs:string external;
+declare variable $last as xs:string external;
+declare variable $currentuser as xs:string external;
+(: unit test definitions  
+ : let $first := '1'
+ : let $last := '21'
+ : 
+ :)
+(: do not use external variables for parameters as empty values cannot be passed as variable :)
+let $main-query :=
+  for $elem in doc('/DATA/infoarchive_ad/Collection/BASEBALL/BASEBALL_MASTER')/BASEBALL_MASTER/
+                  BASEBALL_MASTER-ROW
+(: xmlarchiving-insert-where-clause-parameter-values :)
+order by $elem/NAMELAST, $elem/NAMEFIRST
+return
+  $elem
+let $count := count($main-query)
+return
+  <results total='{ $count }'>
+    {
+    let $listcount := if ($last = '-1')
+    then ($count + 1)
+    else ($last cast as xs:integer - $first cast as xs:integer) + 1
+    for $elem in subsequence($main-query, $first cast as xs:integer, $listcount)
+    return
+      <result
+      hofId='{ $elem/HOFID }'
+      nameGiven='{ $elem/NAMEGIVEN }'
+      nameLast='{ $elem/NAMELAST }'
+      birthYear='{ $elem/BIRTHYEAR }'
+      birthMonth='{ $elem/BIRTHMONTH }'
+      birthDay='{ $elem/BIRTHDAY }'
+      throws='{ $elem/THROWS }'
+      bats='{ $elem/BATS }'
+      title='Player'
+      type='playerDetails'
+      />
+    }
+  </results>
+
+]]></xquery>
+      <searchFields>
+        <searchFieldRow>
+          <searchField>
+            <name>nameFirst</name>
+            <label>First Name</label>
+            <whereclauseparameter>$elem/NAMEFIRST</whereclauseparameter>
+            <fullText>true</fullText>
+          </searchField>
+          <searchField>
+            <name>nameLast</name>
+            <label>Last Name</label>
+            <whereclauseparameter>$elem/NAMELAST</whereclauseparameter>
+            <fullText>true</fullText>
+          </searchField>
+        </searchFieldRow>
+      </searchFields>
+      <searchResultItems>
+        <searchResultItem>
+          <name>hofId</name>
+          <label>Player ID</label>
+        </searchResultItem>
+        <searchResultItem>
+          <name>nameGiven</name>
+          <label>Given Name</label>
+        </searchResultItem>
+        <searchResultItem>
+          <name>nameLast</name>
+          <label>Last Name</label>
+        </searchResultItem>
+        <searchResultItem>
+          <name>birthDay</name>
+          <label>Birth Day</label>
+        </searchResultItem>
+        <searchResultItem>
+          <name>birthMonth</name>
+          <label>Birth Month</label>
+        </searchResultItem>
+        <searchResultItem>
+          <name>birthYear</name>
+          <label>Birth Year</label>
+        </searchResultItem>
+        <searchResultItem>
+          <name>throws</name>
+          <label>Throws</label>
+        </searchResultItem>
+        <searchResultItem>
+          <name>bats</name>
+          <label>Bats</label>
+        </searchResultItem>
+      </searchResultItems>
+      <crpWidth>800</crpWidth>
+    </searchConfiguration>
+    <searchConfiguration id="searchLeaseRentStream">
+      <xformName>SearchLease</xformName>
+      <xquery><![CDATA[
+declare option xhive:index-debug 'true';
+declare option xhive:queryplan-debug 'true';
+declare option xhive:pathexpr-debug 'true';
+(: declare option xhive:optimizer-debug 'true'; :)
+declare namespace dds = 'http://www.emc.com/documentum/xml/dds';
+declare variable $currentuser as xs:string external;
+declare variable $first as xs:string external;
+declare variable $last as xs:string external;
+(: do not use external variables for parameters as empty values cannot be passed as variable :)
+let $main-query :=
+  for $elem in doc('/DATA/infoarchive_ad/Collection/PROPERTY_SEARCH')/PROPERTY_SEARCH/PROPERTY_SEARCH-ROW[
+                  index-of( /PROPERTY_SEARCH/PROPERTY_SEARCH-ROW/p_id, p_id)[1]]
+(: xmlarchiving-insert-where-clause-parameter-values :)
+return
+  $elem
+let $count := count($main-query)
+return
+  <results total='{ $count }'>
+    {
+    let $listcount := if ($last = '-1')
+    then ($count + 1)
+    else ($last cast as xs:integer - $first cast as xs:integer) + 1
+    for $elem in subsequence($main-query, $first cast as xs:integer, $listcount)
+    return
+      <result id='{ $elem/p_id }' name='{ $elem/p_name }' type='propertyRentStreamDetail'
+      address='{ $elem/b_address }' city='{ $elem/b_city }'
+      state='{ $elem/b_state }' zip='{ $elem/b_zip }'
+      title='{ concat("Property ", $elem/p_id, " ", $elem/p_name) }'
+      />
+    }
+  </results>
+
+                     ]]></xquery>
+      <searchFields>
+        <searchFieldRow>
+          <searchField>
+            <name>propertyName</name>
+            <label>Lease Property Name</label>
+            <whereclauseparameter>$elem/p_name</whereclauseparameter>
+            <fullText>true</fullText>
+          </searchField>
+          <searchField>
+            <name>propertyID</name>
+            <label>Property ID</label>
+            <whereclauseparameter>$elem/p_id</whereclauseparameter>
+          </searchField>
+        </searchFieldRow>
+      </searchFields>
+      <searchResultItems>
+        <searchResultItem>
+          <name>id</name>
+          <label>ID</label>
+        </searchResultItem>
+        <searchResultItem>
+          <name>name</name>
+          <label>Property Name</label>
+        </searchResultItem>
+        <searchResultItem>
+          <name>address</name>
+          <label>Street Address</label>
+        </searchResultItem>
+        <searchResultItem>
+          <name>city</name>
+          <label>City</label>
+        </searchResultItem>
+        <searchResultItem>
+          <name>state</name>
+          <label>State</label>
+        </searchResultItem>
+        <searchResultItem>
+          <name>zip</name>
+          <label>Zip Code</label>
+        </searchResultItem>
+      </searchResultItems>
+      <crpWidth>800</crpWidth>
+    </searchConfiguration>
+    <searchConfiguration id="searchLeaseOptions">
+      <xformName>SearchLeaseOptions</xformName>
+      <xquery><![CDATA[
+declare option xhive:index-debug 'true';
+declare option xhive:queryplan-debug 'true';
+declare option xhive:pathexpr-debug 'true';
+(: declare option xhive:optimizer-debug 'true'; :)
+declare namespace dds = 'http://www.emc.com/documentum/xml/dds';
+declare variable $currentuser as xs:string external;
+declare variable $first as xs:string external;
+declare variable $last as xs:string external;
+(: do not use external variables for parameters as empty values cannot be passed as variable :)
+let $main-query :=
+  for $elem in doc('/DATA/infoarchive_ad/Collection/PROPERTY_SEARCH')/PROPERTY_SEARCH/PROPERTY_SEARCH-ROW[
+                  index-of( /PROPERTY_SEARCH/PROPERTY_SEARCH-ROW/p_id, p_id)[1]]
+(: xmlarchiving-insert-where-clause-parameter-values :)
+return
+  $elem
+let $count := count($main-query)
+return
+  <results total='{ $count }'>
+    {
+    let $listcount := if ($last = '-1')
+    then ($count + 1)
+    else ($last cast as xs:integer - $first cast as xs:integer) + 1
+    for $elem in subsequence($main-query, $first cast as xs:integer, $listcount)
+    return
+      <result id='{ $elem/p_id }' name='{ $elem/p_name }' type='propertyRentOptionsDetail'
+      address='{ $elem/b_address }' city='{ $elem/b_city }'
+      state='{ $elem/b_state }' zip='{ $elem/b_zip }'
+      title='{ concat("Property ", $elem/p_id, " ", $elem/p_name) }'
+      />
+    }
+  </results>
+
+                     ]]></xquery>
+      <searchFields>
+        <searchFieldRow>
+          <searchField>
+            <name>propertyName</name>
+            <label>Property Name</label>
+            <whereclauseparameter>$elem/p_name</whereclauseparameter>
+            <fullText>true</fullText>
+          </searchField>
+          <searchField>
+            <name>propertyID</name>
+            <label>Property ID</label>
+            <whereclauseparameter>$elem/p_id</whereclauseparameter>
+          </searchField>
+        </searchFieldRow>
+      </searchFields>
+      <searchResultItems>
+        <searchResultItem>
+          <name>id</name>
+          <label>ID</label>
+        </searchResultItem>
+        <searchResultItem>
+          <name>name</name>
+          <label>Property Name</label>
+        </searchResultItem>
+        <searchResultItem>
+          <name>address</name>
+          <label>Street Address</label>
+        </searchResultItem>
+        <searchResultItem>
+          <name>city</name>
+          <label>City</label>
+        </searchResultItem>
+        <searchResultItem>
+          <name>state</name>
+          <label>State</label>
+        </searchResultItem>
+        <searchResultItem>
+          <name>zip</name>
+          <label>Zip Code</label>
+        </searchResultItem>
+      </searchResultItems>
+      <crpWidth>800</crpWidth>
+    </searchConfiguration>
+    <searchConfiguration id="searchLeaseDynamicColumns">
+      <xformName>SearchLeaseDynamicColumns</xformName>
+      <xquery><![CDATA[
+declare option xhive:index-debug 'true';
+declare option xhive:queryplan-debug 'true';
+declare option xhive:pathexpr-debug 'true';
+(: declare option xhive:optimizer-debug 'true'; :)
+declare namespace dds = 'http://www.emc.com/documentum/xml/dds';
+declare variable $currentuser as xs:string external;
+declare variable $first as xs:string external;
+declare variable $last as xs:string external;
+let $columnset := '(: ColumnSet :)'
+(: do not use external variables for parameters as empty values cannot be passed as variable :)
+let $main-query :=
+  for $elem in doc('/DATA/infoarchive_ad/Collection/PROPERTY_SEARCH')/PROPERTY_SEARCH/PROPERTY_SEARCH-ROW[
+                  index-of( /PROPERTY_SEARCH/PROPERTY_SEARCH-ROW/p_id, p_id)[1]]
+(: xmlarchiving-insert-where-clause-parameter-values :)
+return
+  $elem
+let $count := count($main-query)
+return
+  <results total='{ $count }' searchResultItems='{ $columnset }'>
+    {
+    let $listcount := if ($last = '-1')
+    then ($count + 1)
+    else ($last cast as xs:integer - $first cast as xs:integer) + 1
+    for $elem in subsequence($main-query, $first cast as xs:integer, $listcount)
+    return
+      <result id='{ $elem/p_id }' name='{ $elem/p_name }' type='propertyRentStreamDetail'
+      address='{ $elem/b_address }' city='{ $elem/b_city }'
+      state='{ $elem/b_state }' zip='{ $elem/b_zip }'
+      title='{ concat("Property ", $elem/p_id, " ", $elem/p_name) }'
+      />
+    }
+  </results>
+
+                     ]]></xquery>
+      <searchFields>
+        <searchFieldRow>
+          <searchField>
+            <name>propertyName</name>
+            <label>Property Name</label>
+            <whereclauseparameter>$elem/p_name</whereclauseparameter>
+            <fullText>true</fullText>
+          </searchField>
+          <searchField>
+            <name>propertyID</name>
+            <label>Property ID</label>
+            <whereclauseparameter>$elem/p_id</whereclauseparameter>
+          </searchField>
+          <searchField>
+            <name>ColumnSet</name>
+            <label>Column Set</label>
+            <flexiblecode>%ARG%</flexiblecode>
+            <options type="select">
+              <option>
+                <name>all</name>
+                <label>All</label>
+              </option>
+              <option>
+                <name>id name</name>
+                <label>Minimum</label>
+              </option>
+            </options>
+          </searchField>
+        </searchFieldRow>
+      </searchFields>
+      <searchResultItems>
+        <searchResultItem>
+          <name>id</name>
+          <label>ID</label>
+        </searchResultItem>
+        <searchResultItem>
+          <name>name</name>
+          <label>Property Name</label>
+        </searchResultItem>
+        <searchResultItem>
+          <name>address</name>
+          <label>Street Address</label>
+        </searchResultItem>
+        <searchResultItem>
+          <name>city</name>
+          <label>City</label>
+        </searchResultItem>
+        <searchResultItem>
+          <name>state</name>
+          <label>State</label>
+        </searchResultItem>
+        <searchResultItem>
+          <name>zip</name>
+          <label>Zip Code</label>
+        </searchResultItem>
+      </searchResultItems>
+      <crpWidth>800</crpWidth>
+    </searchConfiguration>
+    <searchConfiguration id="employeeSearch">
+      <xformName>employeeSearch</xformName>
+      <xquery><![CDATA[
+import module namespace mask = 'mask' at
+    '/APPLICATIONS/infoarchive_ad/resources/xqueries/modules/utility.xquery';
+declare option xhive:index-debug 'true';
+declare option xhive:queryplan-debug 'true';
+declare option xhive:pathexpr-debug 'true';
+(: declare option xhive:optimizer-debug 'true'; :)
+declare namespace dds = 'http://www.emc.com/documentum/xml/dds';
+declare variable $restrictions as xs:string external;
+declare variable $first as xs:string external;
+declare variable $last as xs:string external;
+declare variable $currentuser as xs:string external;
+(: unit test definitions  
+ : 	  let $first := '1'
+ : 	  let $last := '21'
+ : 	  :)
+(: do not use external variables for parameters as empty values cannot be passed as variable :)
+let $main-query :=
+  for $elem in doc('/DATA/infoarchive_ad/Collection/PAY_HISTHDR')/PAY_HISTHDR/PAY_HISTHDR-ROW
+(: xmlarchiving-insert-where-clause-parameter-values :)
+return
+  $elem
+let $count := count($main-query)
+return
+  <results total='{ $count }'>
+    {
+    let $listcount := if ($last = '-1')
+    then ($count + 1)
+    else ($last cast as xs:integer - $first cast as xs:integer) + 1
+    for $elem in subsequence($main-query, $first cast as xs:integer, $listcount)
+    let $ssNumber := mask:maskLeadingNumerals($restrictions, 'ssNumber', $elem/SOC_SEC_NUM, 4)
+    (: payRate and lastCheckDate in the following need to come from the latest detail record :)
+    return
+      <result personID='{ $elem/PERSON_ID }' empNumber='{ $elem/EMPNO }'
+      lastName='{ $elem/LAST_NAME }' type='employeeDetail'
+      firstName='{ $elem/FIRST_NAME }' middleName='{ $elem/MIDDLE_NAME }'
+      ssNumber='{ $ssNumber }' location='{ $elem/LOCATION_CODE }'
+      birthDate='{ if ($elem/BIRTH_DATE != "")
+      then substring($elem/BIRTHDATE, 1, 10)
+      else ""
+      }'
+      maritalStatus='{ $elem/MARITAL_STATUS }' gender='{ $elem/SEX }'
+      title='{ $elem/DESCR }' payRate='{ $elem/RATE }' position='{ $elem/POS_GROUP }'
+      lastCheckDate='{ if ($elem/CHECK_DATE != "")
+      then substring($elem/CHECK_DATE, 1, 10)
+      else ""
+      }'
+      />
+    }
+  </results>
+
+  
+      ]]></xquery>
+      <searchFields>
+        <searchFieldRow>
+          <searchField>
+            <name>empNumber</name>
+            <label>Employee Number</label>
+            <type>int</type>
+            <whereclauseparameter>$elem/EMPNO</whereclauseparameter>
+          </searchField>
+          <searchField>
+            <name>name</name>
+            <label>Last Name</label>
+            <whereclauseparameter>$elem/LAST_NAME</whereclauseparameter>
+            <fullText>true</fullText>
+          </searchField>
+          <searchField>
+            <name>position</name>
+            <label>Position</label>
+            <whereclauseparameter>$elem/POS_GROUP</whereclauseparameter>
+          </searchField>
+          <searchField>
+            <name>location</name>
+            <label>Location</label>
+            <whereclauseparameter>$elem/LOCATION_CODE</whereclauseparameter>
+          </searchField>
+        </searchFieldRow>
+      </searchFields>
+      <searchResultItems>
+        <searchResultItem>
+          <name>empNumber</name>
+          <label>Employee&lt;br>Number</label>
+        </searchResultItem>
+        <searchResultItem>
+          <name>firstName</name>
+          <label>First &lt;Name</label>
+        </searchResultItem>
+        <searchResultItem>
+          <name>lastName</name>
+          <label>Last &lt;Name</label>
+        </searchResultItem>
+        <searchResultItem>
+          <name>middleName</name>
+          <label>Middle &lt;Name</label>
+        </searchResultItem>
+        <searchResultItem>
+          <name>ssNumber</name>
+          <label>SSN</label>
+        </searchResultItem>
+      </searchResultItems>
+      <nestedSearches>
+        <nestedSearch>
+          <name>payrollDate</name>
+          <label>Pay History</label>
+          <description>Pay History</description>
+          <configurationId>employeePayrollDateSearch</configurationId>
+          <nodeId>employee</nodeId>
+          <fields>
+            <field>
+              <targetSearchFieldName>empNumber</targetSearchFieldName>
+              <sourceResultItemName>empNumber</sourceResultItemName>
+            </field>
+          </fields>
+        </nestedSearch>
+      </nestedSearches>
+      <operations/>
+      <crpWidth>800</crpWidth>
+    </searchConfiguration>
+    <searchConfiguration id="employeePayrollDateSearch">
+      <xformName>employeePayrollDateSearch</xformName>
+      <xquery><![CDATA[
+declare option xhive:index-debug 'true';
+declare option xhive:queryplan-debug 'true';
+declare option xhive:pathexpr-debug 'true';
+(: declare option xhive:optimizer-debug 'true'; :)
+declare namespace dds = 'http://www.emc.com/documentum/xml/dds';
+declare variable $currentuser as xs:string external;
+declare variable $first as xs:string external;
+declare variable $last as xs:string external;
+(: unit test definitions  
+ : 	  let $first := '1'
+ : 	  let $last := '21'
+ : 	  :)
+(: do not use external variables for parameters as empty values cannot be passed as variable :)
+let $main-query :=
+  for $elem in doc('/DATA/infoarchive_ad/Collection/PAY_HISTDTL')/PAY_HISTDTL/PAY_HISTDTL-ROW
+(: xmlarchiving-insert-where-clause-parameter-values :)
+return
+  $elem
+let $count := count($main-query)
+return
+  <results total='{ $count }'>
+    {
+    let $listcount := if ($last = '-1')
+    then ($count + 1)
+    else ($last cast as xs:integer - $first cast as xs:integer) + 1
+    for $elem in subsequence($main-query, $first cast as xs:integer, $listcount),
+        $header in doc('/DATA/infoarchive_ad/Collection/PAY_HISTHDR')/PAY_HISTHDR/PAY_HISTHDR-ROW[ ./
+                      PERSON_ID = xs:int($elem/PERSON_ID)]
+    return
+      <result personID='{ $elem/PERSON_ID }' empNumber='{ $elem/EMPNO }'
+      type='employeePayHistoryDetail' lastName='{ $header/LAST_NAME }'
+      firstName='{ $header/FIRST_NAME }' checkDate='{ if ($elem/CHECK_DATE != "")
+      then substring($elem/CHECK_DATE, 1, 10)
+      else ""
+      }'
+      checkNbr='{ $elem/CHECK_NO }' payPeriodEnd='{ if ($elem/PAY_PERIOD_END != "")
+      then substring($elem/PAY_PERIOD_END, 1, 10)
+      else ""
+      }'
+      code='{ $elem/CODE }' descr='TODO' hours='{ $elem/HOURS }'
+      amount='{ $elem/CHARGE_AMOUNT }' date='{ if ($elem/CHARGE_DATE != "")
+      then substring($elem/CHARGE_DATE, 1, 10)
+      else ""
+      }'
+      rate='{ $elem/RATE }' locCode='{ $header/LOCATION_CODE }'
+      posGroup='{ $elem/POS_GROUP }' floorLoc='TODO' city='{ $elem/CITY }'
+      state='{ $elem/STATE }' groupTitle='{ $header/DESCR }'
+      title='{ concat("Check Number ", $elem/CHECK_NO) }'
+      />
+    }
+  </results>
+ 
+
+      ]]></xquery>
+      <searchFields>
+        <searchFieldRow>
+          <searchField>
+            <name>empNumber</name>
+            <label>Employee Number</label>
+            <type>int</type>
+            <whereclauseparameter>$elem/EMPNO</whereclauseparameter>
+          </searchField>
+          <searchField>
+            <name>payHistoryStart</name>
+            <label>Pay History Start</label>
+            <type>date</type>
+            <whereclauseparameter>$elem/CHECK_DATE</whereclauseparameter>
+            <operator>>=</operator>
+          </searchField>
+          <searchField>
+            <name>payHistoryEnd</name>
+            <label>Pay History End</label>
+            <type>date</type>
+            <whereclauseparameter>$elem/CHECK_DATE</whereclauseparameter>
+            <operator>&lt;=</operator>
+          </searchField>
+        </searchFieldRow>
+      </searchFields>
+      <searchResultItems>
+        <searchResultItem>
+          <name>empNumber</name>
+          <label>Employee&lt;br>Number</label>
+        </searchResultItem>
+        <searchResultItem>
+          <name>firstName</name>
+          <label>First &lt;Name</label>
+        </searchResultItem>
+        <searchResultItem>
+          <name>lastName</name>
+          <label>Last &lt;Name</label>
+        </searchResultItem>
+        <searchResultItem>
+          <name>checkDate</name>
+          <label>Check Date</label>
+        </searchResultItem>
+        <searchResultItem>
+          <name>checkNbr</name>
+          <label>Check Nbr</label>
+        </searchResultItem>
+        <searchResultItem>
+          <name>payPeriodEnd</name>
+          <label>Pay Period End</label>
+        </searchResultItem>
+      </searchResultItems>
+      <crpWidth>800</crpWidth>
+    </searchConfiguration>
+    <searchConfiguration id="searchSVHarbor">
+      <xformName>SearchReconciliation</xformName>
+      <xquery><![CDATA[
+             declare option xhive:index-debug 'true';
+            declare option xhive:queryplan-debug 'true';
+            declare option xhive:pathexpr-debug 'true';
+              (: declare option xhive:optimizer-debug 'true'; :)
+            declare namespace dds = 'http://www.emc.com/documentum/xml/dds';
+
+	
+			(: do not use external variables for parameters as empty values cannot be passed as variable :) 
+            declare function local:addClause($whereClause as xs:string, $var as xs:string*, $expr as xs:string) as xs:string {
+            	if (empty($var) or $var = '')
+            	then $whereClause
+            	else if ($whereClause = "") then $expr 
+            	else concat($whereClause, " and ", $expr)
+            };
+
+            declare variable $input as xs:string external;
+            declare variable $first as xs:string external;
+            declare variable $last as xs:string external;
+            declare variable $currentuser as xs:string external;	
+             
+	 	 (: unit test definitions  
+	  		let $first := '1'
+	  		let $last := '21'
+	  	:)
+			let $inputDoc := xhive:parse($input)
+			let $compName := $inputDoc/data/company
+			let $fromPeriod := $inputDoc/data/fromPeriod
+			let $toPeriod := $inputDoc/data/toPeriod
+			let $recStatus := $inputDoc/data/reconciliatonStatus
+			let $idFrom := $inputDoc/data/idFrom
+			let $idTo := $inputDoc/data/idTo
+			let $dept := $inputDoc/data/department
+			let $reconciler := $inputDoc/data/reconciler
+			let $businessUnit := $inputDoc/data/businessUnit
+			let $deptOwner := $inputDoc/data/departmentOwner
+			let $rolledOver := $inputDoc/data/rolledOver
+			
+            
+            let $whereClause := local:addClause("", $idFrom, concat("number($elem/REC_ID) <= ", $idFrom))
+            let $whereClause := local:addClause($whereClause, $compName, concat("$elem/company = '", $compName, "'"))
+            let $whereClause := local:addClause($whereClause, $fromPeriod, concat("$yearperiod >= ", $fromPeriod))
+            let $whereClause := local:addClause($whereClause, $toPeriod, concat("$yearperiod <= ", $toPeriod))
+            let $whereClause := local:addClause($whereClause, $businessUnit, concat("$elem/businessUnit = '", $businessUnit, "'"))
+            let $whereClause := local:addClause($whereClause, $recStatus, concat("($elem/STATUS contains text '", $recStatus, "' using wildcards)"))
+            let $whereClause := local:addClause($whereClause, $idTo, concat("number($elem/REC_ID) >= ", $idTo))
+            let $whereClause := local:addClause($whereClause, $reconciler, concat("($elem/RECONCILER contains text '", $reconciler, "' using wildcards)"))
+            let $whereClause := local:addClause($whereClause, $dept, concat("$elem/DEPARTMENT_ID = ", $dept))
+            (:let $whereClause := local:addClause($whereClause, $deptOwner, concat("$elem/departmentOwner = '", $deptOwner, "'")):)
+            let $whereClause := local:addClause($whereClause, $rolledOver, concat("$elem/ROLLED = '", $rolledOver, "'"))
+            let $whereClause := if (not(empty($whereClause)) and $whereClause != "")
+            					then concat(" where ", $whereClause)
+            					else ""
+            					
+         	let $depts :=  if (empty($deptOwner) or $deptOwner = '')
+			   	  	       then ()
+	  	    			   else doc('/DATA/infoarchive_ad/Collection/DEPARTMENT/DEPARTMENT.xml')/DEPARTMENT/DEPARTMENT-ROW[OWNER_1_USER_ID = $deptOwner]/DEPARTMENT_ID
+	  	    let $nl := "&#10;"
+			let $queryString := concat("for $elem in doc('/DATA/infoarchive_ad/Collection/RECONCILIATION/RECONCILIATION.xml')/RECONCILIATION/RECONCILIATION-ROW",
+			if (empty($depts)) then " " else concat("[DEPARTMENT_ID = ", $depts, "] "), 
+			$nl,
+			" let $period := if (string-length($elem/FPERIOD) = 1) then concat('0', $elem/FPERIOD) else $elem/FPERIOD ",
+			$nl,
+		 	" let $year := $elem/FYEAR ",
+			$nl,
+		 	" let $yearperiod := number(concat($year,$period)) ", 
+			$nl,
+		 	$whereClause,
+			$nl,
+		 	" order by number($elem/REC_ID) return $elem")
+			 
+  	 		let $main-query := xhive:evaluate($queryString)
+            let $count := count($main-query)
+                  return
+                     <results total='{$count}'>
+                      {
+                         let $listcount := if ($last = '-1') then ($count + 1) else ($last cast as xs:integer - $first cast as xs:integer) + 1
+                         for $elem in subsequence($main-query, $first cast as xs:integer, $listcount)
+              		     (:for $dept in doc('/DATA/infoarchive_ad/Collection/DEPARTMENT/DEPARTMENT.xml')/DEPARTMENT/DEPARTMENT-ROW
+	                     where $dept/DEPARTMENT_ID = $elem/DEPARTMENT_ID:)
+                           return
+			<result recID='{$elem/REC_ID}' reconciler='{$elem/RECONCILER}' recDescription='{$elem/RECDESC}' status='{$elem/STATUS}' rolledOver='{$elem/ROLLED}' type='recDetails' 
+						title='{$elem/RECDESC}' reconcilerDept='{$elem/RECONCILINGDEPT}' gaapCheckTotal='{$elem/GAAP_BALANCE_CHECK}' fyear='{$elem/FYEAR}' fperiod='{$elem/FPERIOD}'/>
+                      }
+                     </results> 
+]]></xquery>
+      <searchFields>
+        <searchFieldRow>
+          <searchField>
+            <name>company</name>
+            <label>Company</label>
+            <!-- <whereclauseparameter>$elem/company</whereclauseparameter> -->
+            <fullText>false</fullText>
+            <options type="select">
+              <option>
+                <name>SV</name>
+                <label>SV</label>
+              </option>
+            </options>
+          </searchField>
+          <searchField>
+            <name>fromPeriod</name>
+            <label>From Period</label>
+            <!-- <whereclauseparameter>$yearperiod</whereclauseparameter> -->
+            <type>int</type>
+            <operator>>=</operator>
+          </searchField>
+          <searchField>
+            <name>toPeriod</name>
+            <label>To Period</label>
+            <!-- <whereclauseparameter>$yearperiod</whereclauseparameter> -->
+            <type>int</type>
+            <operator>&lt;=</operator>
+          </searchField>
+        </searchFieldRow>
+        <searchFieldRow>
+          <searchField>
+            <name>idFrom</name>
+            <label>ID From</label>
+            <!-- <whereclauseparameter>$elem/REC_ID</whereclauseparameter> -->
+            <type>int</type>
+            <operator>>=</operator>
+          </searchField>
+          <searchField>
+            <name>idTo</name>
+            <label>ID To</label>
+            <!-- <whereclauseparameter>$elem/REC_ID</whereclauseparameter> -->
+            <type>int</type>
+            <operator>&lt;=</operator>
+          </searchField>
+          <searchField>
+            <name>department</name>
+            <label>Department</label>
+            <type>int</type>
+            <!-- <whereclauseparameter>$elem/DEPARTMENT_ID</whereclauseparameter> -->
+            <options type="select">
+              <option>
+                <name>all</name>
+                <label>All departments</label>
+              </option>
+              <option>
+                <name>mine</name>
+                <label>My department(s)</label>
+              </option>
+              <option>
+                <name>HO CD Assurance Audit</name>
+                <label>HO CD Assurance Audit</label>
+              </option>
+            </options>
+          </searchField>
+          <searchField>
+            <name>reconciler</name>
+            <label>Reconciler</label>
+            <!-- <whereclauseparameter>$elem/RECONCILER</whereclauseparameter> -->
+            <fullText>true</fullText>
+            <options type="select">
+              <option>
+                <name>all</name>
+                <label>All reconcilers</label>
+              </option>
+              <option>
+                <name>Craig Stark</name>
+                <label>Craig Stark</label>
+              </option>
+              <option>
+                <name>Jim Palmer</name>
+                <label>Jim Palmer</label>
+              </option>
+            </options>
+          </searchField>
+        </searchFieldRow>
+        <searchFieldRow>
+          <searchField>
+            <name>businessUnit</name>
+            <label>Business Unit</label>
+            <!-- <whereclauseparameter>$elem/businessUnit</whereclauseparameter> -->
+            <options type="select">
+              <option>
+                <name>all</name>
+                <label>All business units</label>
+              </option>
+            </options>
+          </searchField>
+          <searchField>
+            <name>departmentOwner</name>
+            <label>Department Owner</label>
+            <!-- <whereclauseparameter>$elem/departmentOwner</whereclauseparameter> -->
+            <options type="select">
+              <option>
+                <name>all</name>
+                <label>All department owners</label>
+              </option>
+              <option>
+                <name>MICHELLE A EIKAM</name>
+                <label>MICHELLE A EIKAM</label>
+              </option>
+              <option>
+                <name>JON GERHART</name>
+                <label>JON GERHART</label>
+              </option>
+            </options>
+          </searchField>
+          <searchField>
+            <name>rolledOver</name>
+            <label>Rolled Over</label>
+            <!-- <whereclauseparameter>$elem/ROLLED</whereclauseparameter> -->
+            <type>int</type>
+            <options type="radio">
+              <option>
+                <name>all</name>
+                <label>All</label>
+              </option>
+              <option>
+                <name>1</name>
+                <label>Yes</label>
+              </option>
+              <option>
+                <name>0</name>
+                <label>No</label>
+              </option>
+            </options>
+          </searchField>
+          <searchField>
+            <name>reconciliatonStatus</name>
+            <label>Reconciliation Status</label>
+            <!-- <whereclauseparameter>$elem/STATUS</whereclauseparameter> -->
+            <fullText>true</fullText>
+            <options type="select">
+              <option>
+                <name>all</name>
+                <label>All statuses</label>
+              </option>
+              <option>
+                <name>Started</name>
+                <label>Started</label>
+              </option>
+              <option>
+                <name>Completed</name>
+                <label>Completed</label>
+              </option>
+              <option>
+                <name>Posting Acct Bal Changed</name>
+                <label>Posting Acct Bal Changed</label>
+              </option>
+              <option>
+                <name>Reviewed by Supervisor</name>
+                <label>Reviewed by Supervisor</label>
+              </option>
+              <option>
+                <name>Reviewed by Manager</name>
+                <label>Reviewed by Manager</label>
+              </option>
+              <option>
+                <name>Returned to Preparer</name>
+                <label>Returned to Preparer</label>
+              </option>
+            </options>
+          </searchField>
+        </searchFieldRow>
+      </searchFields>
+      <searchResultItems>
+        <searchResultItem>
+          <name>recID</name>
+          <label>Rec ID</label>
+        </searchResultItem>
+        <searchResultItem>
+          <name>reconciler</name>
+          <label>Reconciler</label>
+        </searchResultItem>
+        <searchResultItem>
+          <name>recDescription</name>
+          <label>Rec&lt;br>Description</label>
+        </searchResultItem>
+        <searchResultItem>
+          <name>status</name>
+          <label>Status</label>
+        </searchResultItem>
+      </searchResultItems>
+      <nestedSearches>
+        <nestedSearch>
+          <name>generalLedgerDetails</name>
+          <label>General Ledger</label>
+          <description>General Ledger Details</description>
+          <configurationId>dummy</configurationId>
+          <transformationConfiguration>generalLedgerDetails</transformationConfiguration>
+        </nestedSearch>
+        <nestedSearch>
+          <name>subLedgerDetails</name>
+          <label>Sub-Ledger</label>
+          <description>Sub-Ledger Details</description>
+          <configurationId>dummy</configurationId>
+          <transformationConfiguration>subLedgerDetails</transformationConfiguration>
+        </nestedSearch>
+        <nestedSearch>
+          <name>recDetails</name>
+          <label>Details</label>
+          <description>Details</description>
+          <configurationId>dummy</configurationId>
+          <transformationConfiguration>recDetails</transformationConfiguration>
+        </nestedSearch>
+        <nestedSearch>
+          <name>historyDetails</name>
+          <label>History</label>
+          <description>History</description>
+          <configurationId>dummy</configurationId>
+          <transformationConfiguration>historyDetails</transformationConfiguration>
+        </nestedSearch>
+      </nestedSearches>
+      <crpWidth>800</crpWidth>
+    </searchConfiguration>
+    <searchConfiguration id="searchSVHarborAccount">
+      <xformName>SearchAccountReconciliation</xformName>
+      <xquery><![CDATA[
+declare option xhive:index-debug 'true';
+declare option xhive:queryplan-debug 'true';
+declare option xhive:pathexpr-debug 'true';
+(: declare option xhive:optimizer-debug 'true'; :)
+declare namespace dds = 'http://www.emc.com/documentum/xml/dds';
+declare variable $currentuser as xs:string external;
+declare variable $first as xs:string external;
+declare variable $last as xs:string external;
+(: Unit tests
+ : let first := '1'
+ : let last := '21'
+ :)
+(: do not use external variables for parameters as empty values cannot be passed as variable :)
+let $main-query :=
+  for $elem in doc('/DATA/infoarchive_ad/Collection/ACCOUNT')/ACCOUNT/ACCOUNT-ROW
+(: xmlarchiving-insert-where-clause-parameter-values :)
+return
+  $elem
+let $count := count($main-query)
+return
+  <results total='{ $count }'>
+    {
+    let $listcount := if ($last = '-1')
+    then ($count + 1)
+    else ($last cast as xs:integer - $first cast as xs:integer) + 1
+    for $elem in subsequence($main-query, $first cast as xs:integer, $listcount)
+    let $username := doc('/DATA/infoarchive_ad/Collection/ARS_USERS')/ARS_USERS/ARS_USERS-ROW[USER_ID = $
+                        elem/PREPARER_USER_ID]/USERNAME
+    return
+      <result fyear='{ $elem/FISCAL_YEAR }' fperiod='{ $elem/FISCAL_PERIOD }'
+      type='accountDetails' postID='{ $elem/POSTING_ACCT_ID }'
+      desc='{ $elem/ACCT_DESCRIPTION }' status='{ $elem/ACCT_STATUS }'
+      preparer='{ $username }' rec_dept_risk='{ $elem/REC_DEPT_RISK }'
+      horisk='{ $elem/HO_RISK }' pftc='{ $elem/PFTC }'
+      freq='{ $elem/REVIEW_FREQUENCY }' centerDesc='{ $elem/CENTER_DESCRIPTION }'
+      />
+    }
+  </results>
+
+                     
+]]></xquery>
+      <searchFields>
+        <searchFieldRow>
+          <searchField>
+            <name>company</name>
+            <label>Company</label>
+            <whereclauseparameter>$elem/company</whereclauseparameter>
+            <fullText>false</fullText>
+            <options type="select">
+              <option>
+                <name>SV</name>
+                <label>SV</label>
+              </option>
+            </options>
+          </searchField>
+          <searchField>
+            <name>fromPostingAcct</name>
+            <label>From Posting Acct #</label>
+            <whereclauseparameter>$elem/POSTING_ACCT_ID</whereclauseparameter>
+            <operator>>=</operator>
+          </searchField>
+          <searchField>
+            <name>toPostingAcct</name>
+            <label>To Posting Acct #</label>
+            <whereclauseparameter>$elem/POSTING_ACCT_ID</whereclauseparameter>
+            <operator>&lt;=</operator>
+          </searchField>
+          <searchField>
+            <name>fiscalPeriod</name>
+            <label>Period</label>
+            <type>int</type>
+            <whereclauseparameter>$elem/FISCAL_PERIOD</whereclauseparameter>
+            <operator>=</operator>
+          </searchField>
+          <searchField>
+            <name>fiscalYear</name>
+            <label>Fiscal Year</label>
+            <type>int</type>
+            <whereclauseparameter>$elem/FISCAL_YEAR</whereclauseparameter>
+            <operator>=</operator>
+          </searchField>
+          <searchField>
+            <name>reconciliatonStatus</name>
+            <label>Reconciliation Status</label>
+            <whereclauseparameter>$elem/STATUS</whereclauseparameter>
+            <fullText>true</fullText>
+            <options type="select">
+              <option>
+                <name>all</name>
+                <label>All statuses</label>
+              </option>
+              <option>
+                <name>Started</name>
+                <label>Started</label>
+              </option>
+              <option>
+                <name>Completed</name>
+                <label>Completed</label>
+              </option>
+              <option>
+                <name>Posting Acct Bal Changed</name>
+                <label>Posting Acct Bal Changed</label>
+              </option>
+              <option>
+                <name>Reviewed by Supervisor</name>
+                <label>Reviewed by Supervisor</label>
+              </option>
+              <option>
+                <name>Reviewed by Manager</name>
+                <label>Reviewed by Manager</label>
+              </option>
+              <option>
+                <name>Returned to Preparer</name>
+                <label>Returned to Preparer</label>
+              </option>
+            </options>
+          </searchField>
+          <searchField>
+            <name>certStatus</name>
+            <label>Certification Status</label>
+            <whereclauseparameter>$elem/ACCT_STATUS</whereclauseparameter>
+            <fullText>true</fullText>
+            <options type="select">
+              <option>
+                <name>all</name>
+                <label>All statuses</label>
+              </option>
+              <option>
+                <name>Not Selected</name>
+                <label>Not Selected</label>
+              </option>
+              <option>
+                <name>Selected</name>
+                <label>Selected</label>
+              </option>
+              <option>
+                <name>Started</name>
+                <label>Started</label>
+              </option>
+              <option>
+                <name>Certified</name>
+                <label>Certified</label>
+              </option>
+              <option>
+                <name>Certified with Issues</name>
+                <label>Certified with Issues</label>
+              </option>
+              <option>
+                <name>Returned to Preparer</name>
+                <label>Returned to Preparer</label>
+              </option>
+            </options>
+          </searchField>
+        </searchFieldRow>
+        <searchFieldRow>
+          <searchField>
+            <name>assignedPreparer</name>
+            <label>Assigned Preparer</label>
+            <whereclauseparameter>$elem/PREPARER_USER_ID</whereclauseparameter>
+          </searchField>
+          <searchField>
+            <name>profitCenter</name>
+            <label>Profit Center</label>
+            <whereclauseparameter>$elem/CENTER_DESCRIPTION</whereclauseparameter>
+            <fullText>true</fullText>
+          </searchField>
+          <searchField>
+            <name>businessUnit</name>
+            <label>Business Unit</label>
+            <whereclauseparameter>$elem/CLASS_GROUP</whereclauseparameter>
+            <options type="select">
+              <option>
+                <name>all</name>
+                <label>All business units</label>
+              </option>
+            </options>
+          </searchField>
+          <searchField>
+            <name>department</name>
+            <label>Department</label>
+            <whereclauseparameter>$elem/DEPARTMENT_ID</whereclauseparameter>
+            <options type="select">
+              <option>
+                <name>all</name>
+                <label>All departments</label>
+              </option>
+            </options>
+          </searchField>
+          <searchField>
+            <name>hoRisk</name>
+            <label>HO Risk</label>
+            <whereclauseparameter>$elem/HO_RISK</whereclauseparameter>
+            <options type="select">
+              <option>
+                <name>all</name>
+                <label>All</label>
+              </option>
+            </options>
+          </searchField>
+          <searchField>
+            <name>recDeptRisk</name>
+            <label>Rec Department Risk</label>
+            <whereclauseparameter>$elem/REC_DEPT_RISK</whereclauseparameter>
+            <options type="select">
+              <option>
+                <name>all</name>
+                <label>All</label>
+              </option>
+              <option>
+                <name>M</name>
+                <label>M</label>
+              </option>
+            </options>
+          </searchField>
+        </searchFieldRow>
+      </searchFields>
+      <searchResultItems>
+        <searchResultItem>
+          <name>fyear</name>
+          <label>Fiscal&lt;br>Year</label>
+        </searchResultItem>
+        <searchResultItem>
+          <name>fperiod</name>
+          <label>Fiscal&lt;br>Period</label>
+        </searchResultItem>
+        <searchResultItem>
+          <name>postID</name>
+          <label>Posting Acct #</label>
+        </searchResultItem>
+        <searchResultItem>
+          <name>desc</name>
+          <label>Account&lt;br>Description</label>
+        </searchResultItem>
+        <searchResultItem>
+          <name>preparer</name>
+          <label>Assigned&lt;br>Preparer</label>
+        </searchResultItem>
+        <searchResultItem>
+          <name>rec_dept_risk</name>
+          <label>Rec Dept&lt;br>Risk</label>
+        </searchResultItem>
+      </searchResultItems>
+      <nestedSearches>
+        <nestedSearch>
+          <name>accountDetails</name>
+          <label>Details</label>
+          <description>Account Details</description>
+          <configurationId>dummy</configurationId>
+          <transformationConfiguration>accountDetails</transformationConfiguration>
+        </nestedSearch>
+      </nestedSearches>
+      <crpWidth>800</crpWidth>
+    </searchConfiguration>
+    <searchConfiguration id="searchAuditLogs">
+      <xformName>SearchAuditLogs</xformName>
+      <xquery><![CDATA[
+import module namespace auditlog = 'auditlog' at
+    '/APPLICATIONS/infoarchive_ad/resources/xqueries/commonModules/auditlog.xqy';
+(: uncomment these next 3 lines to turn on xquery debug :)
+(:
+ : declare option xhive:index-debug 'true';
+ : declare option xhive:queryplan-debug 'true';
+ : declare option xhive:pathexpr-debug 'true';
+ :)
+(:
+ : declare option xhive:optimizer-debug 'true';
+ :)
+declare variable $currentuser as xs:string external;
+declare variable $first as xs:string external;
+declare variable $last as xs:string external;
+declare variable $input as xs:string external;
+let $results := auditlog:getAuditLogSearchResults($currentuser, $first, $last, $input)
+return $results
+
+                ]]></xquery>
+      <searchFields>
+        <searchFieldRow>
+          <searchField>
+            <name>userId</name>
+            <label>User ID</label>
+            <whereclauseparameter>$elem/user</whereclauseparameter>
+            <fullText>true</fullText>
+          </searchField>
+          <searchField>
+            <name>fromDate</name>
+            <label>From Date</label>
+            <type>date</type>
+            <whereclauseparameter>$elem/time</whereclauseparameter>
+            <operator><![CDATA[>=]]></operator>
+          </searchField>
+          <searchField>
+            <name>toDate</name>
+            <label>To Date</label>
+            <type>date</type>
+            <whereclauseparameter>$elem/time</whereclauseparameter>
+            <operator><![CDATA[<=]]></operator>
+          </searchField>
+          <searchField>
+            <name>filterAudits</name>
+            <label>Filter Audit Lookups</label>
+            <flexiblecode>%ARG%</flexiblecode>
+            <options type="select">
+              <option>
+                <name>all</name>
+                <label>All</label>
+              </option>
+              <option>
+                <name>archive</name>
+                <label>Archive</label>
+              </option>
+              <option>
+                <name>login</name>
+                <label>Login</label>
+              </option>
+              <option>
+                <name>audit</name>
+                <label>Audit</label>
+              </option>
+            </options>
+          </searchField>
+        </searchFieldRow>
+      </searchFields>
+      <searchResultItems>
+        <searchResultItem>
+          <name>user</name>
+          <label>User</label>
+        </searchResultItem>
+        <searchResultItem>
+          <name>searchConfiguration</name>
+          <label>Search Configuration</label>
+        </searchResultItem>
+        <searchResultItem>
+          <label>Time</label>
+          <name>eventTime</name>
+        </searchResultItem>
+      </searchResultItems>
+      <nestedSearches/>
+      <crpWidth>800</crpWidth>
+    </searchConfiguration>
+    <searchConfiguration id="searchSipCheck">
+      <xformName>SearchSipCheck</xformName>
+      <xquery><![CDATA[
+(: uncomment out these next 3 lines to turn on xquery debug :)
+declare option xhive:index-debug 'true';
+declare option xhive:queryplan-debug 'true';
+declare option xhive:pathexpr-debug 'true';
+(: declare option xhive:optimizer-debug 'true'; :)
+declare namespace dds = 'http://www.emc.com/documentum/xml/dds';
+declare variable $first as xs:string external;
+declare variable $last as xs:string external;
+(: do not use external variables for parameters as empty values cannot be passed as variable :)
+(:
+ : let $first := '1'
+ : 			let $last := '21'
+ : 	 		:)
+let $main-query :=
+  for $elem in doc('/DATA/infoarchive_ad/Collection/CHECKS')/CHECKS/CHECK-ROW
+(: xmlarchiving-insert-where-clause-parameter-values :)
+return $elem
+let $count := count($main-query)
+return
+  <results total='{ $count }'>
+    {
+    let $listcount := if ($last = '-1')
+    then ($count + 1)
+    else ($last cast as xs:integer - $first cast as xs:integer) + 1
+    for $elem in subsequence($main-query, $first cast as xs:integer, $listcount)
+    return
+      <result id='{ $elem/@id }' filename='{ $elem/FILE_NAME/@sip_file_name }' filelocation='{ $elem
+                 /FILE_NAME }' card_acct_number='{ $elem/CARD_ACCT_NUMBER }'
+      acct_number='{ $elem/ACCT_NUMBER }'
+      check_amount='{ $elem/CHECK_AMOUNT }' site='{ $elem/SITE }' transaction_date='{ $elem/
+                 TRANSACTION_DATE }'
+      relativePath='{ $elem/RELATIVE_PATH }' srcFileName='{ $elem/FILE_NAME }'
+      type='sipCheckDetails'
+      title='SIP Check Details'/>
+    }
+  </results>
+           
+
+        ]]></xquery>
+      <searchFields>
+        <searchFieldRow>
+          <searchField>
+            <name>site</name>
+            <label>Site</label>
+            <whereclauseparameter>$elem/SITE</whereclauseparameter>
+            <fullText>false</fullText>
+          </searchField>
+          <searchField>
+            <name>cardAcctNumber</name>
+            <label>Card Acct Number</label>
+            <whereclauseparameter>$elem/CARD_ACCT_NUMBER</whereclauseparameter>
+            <fullText>false</fullText>
+          </searchField>
+          <searchField>
+            <name>transactionFromDate</name>
+            <label>Transaction From Date</label>
+            <type>date</type>
+            <whereclauseparameter>$elem/TRANSACTION_DATE</whereclauseparameter>
+            <operator><![CDATA[>=]]></operator>
+          </searchField>
+          <searchField>
+            <name>transactionToDate</name>
+            <label>Transaction To Date</label>
+            <type>date</type>
+            <whereclauseparameter>$elem/TRANSACTION_DATE</whereclauseparameter>
+            <operator><![CDATA[<=]]></operator>
+          </searchField>
+        </searchFieldRow>
+      </searchFields>
+      <searchResultItems>
+        <searchResultItem>
+          <name>filename</name>
+          <label>File Name</label>
+        </searchResultItem>
+        <searchResultItem>
+          <name>card_acct_number</name>
+          <label>Card Acct Number</label>
+        </searchResultItem>
+        <searchResultItem>
+          <name>acct_number</name>
+          <label>Acct Number</label>
+        </searchResultItem>
+        <searchResultItem>
+          <name>check_amount</name>
+          <label>Check Amount</label>
+        </searchResultItem>
+        <searchResultItem>
+          <name>site</name>
+          <label>Site</label>
+        </searchResultItem>
+        <searchResultItem>
+          <name>transaction_date</name>
+          <label>Transaction Date</label>
+        </searchResultItem>
+      </searchResultItems>
+      <nestedSearches/>
+      <crpWidth>800</crpWidth>
+    </searchConfiguration>
+  </searchConfigurations>
+  <operationConfigurations>
+    <operationConfiguration id="addHold">
+      <xqueries>
+        <xquery>addHold.xml</xquery>
+      </xqueries>
+      <buttonLabel>Add Empl Hold</buttonLabel>
+      <dialogTitle>Add Empl hold to $count item(s)</dialogTitle>
+      <xformName>EmployeeAddHoldForm</xformName>
+      <operationFields>
+        <operationField>
+          <name>Name</name>
+          <label>Name</label>
+          <required>true</required>
+        </operationField>
+        <operationField>
+          <name>Description</name>
+          <label>Description</label>
+        </operationField>
+        <operationField>
+          <name>End_Date</name>
+          <label>End Date</label>
+          <type>date</type>
+          <required>false</required>
+        </operationField>
+      </operationFields>
+    </operationConfiguration>
+    <operationConfiguration id="deleteHold">
+      <xqueries>
+        <xquery>deleteHold.xml</xquery>
+      </xqueries>
+      <buttonLabel>Delete Hold</buttonLabel>
+      <dialogTitle>Delete a hold</dialogTitle>
+      <message>Are you sure you want to delete the selected hold(s)?</message>
+    </operationConfiguration>
+    <operationConfiguration id="add-hold-acme">
+      <xqueries>
+        <xquery>add-hold-acme.xml</xquery>
+        <xquery>update-hold-record-count.xml</xquery>
+      </xqueries>
+      <buttonLabel>Add Hold</buttonLabel>
+      <dialogTitle>Add hold to $count item(s)</dialogTitle>
+      <xformName>AcmeAddHoldForm</xformName>
+      <operationFields>
+        <operationField>
+          <name>Name</name>
+          <label>Name</label>
+        </operationField>
+      </operationFields>
+    </operationConfiguration>
+    <operationConfiguration id="remove-hold-acme">
+      <xqueries>
+        <xquery>remove-hold-acme.xml</xquery>
+        <xquery>update-hold-record-count.xml</xquery>
+      </xqueries>
+      <buttonLabel>Remove Hold</buttonLabel>
+      <dialogTitle>Remove hold from $count item(s)</dialogTitle>
+      <xformName>AcmeRemoveHoldsForm</xformName>
+      <operationFields>
+        <operationField>
+          <name>Name</name>
+          <label>Hold Name</label>
+        </operationField>
+      </operationFields>
+    </operationConfiguration>
+    <operationConfiguration id="create-hold-acme">
+      <xqueries>
+        <xquery>create-hold-acme.xml</xquery>
+      </xqueries>
+      <buttonLabel>Create Hold</buttonLabel>
+      <dialogTitle>Create a hold</dialogTitle>
+      <xformName>AcmeCreateHoldForm</xformName>
+      <operationFields>
+        <operationField>
+          <name>Name</name>
+          <label>Name</label>
+        </operationField>
+        <operationField>
+          <name>Description</name>
+          <label>Description</label>
+        </operationField>
+        <operationField>
+          <name>Start_Date</name>
+          <label>Start Date</label>
+          <type>date</type>
+          <required>true</required>
+        </operationField>
+        <operationField>
+          <name>End_Date</name>
+          <label>End Date</label>
+          <type>date</type>
+          <required>false</required>
+        </operationField>
+        <operationField>
+          <name>Matter</name>
+          <label>Matter</label>
+          <required>true</required>
+        </operationField>
+        <operationField>
+          <name>Authority</name>
+          <label>Authority</label>
+          <required>true</required>
+        </operationField>
+      </operationFields>
+    </operationConfiguration>
+    <operationConfiguration id="delete-hold-acme">
+      <xqueries>
+        <xquery>delete-hold-acme.xml</xquery>
+      </xqueries>
+      <buttonLabel>Delete Hold</buttonLabel>
+      <dialogTitle>Delete a hold</dialogTitle>
+      <message>Are you sure you want to delete the selected hold(s)?</message>
+    </operationConfiguration>
+    <operationConfiguration id="genPurgeList">
+      <xqueries>
+        <xquery>AcmeDeleteRetentionEvent.xml</xquery>
+        <xquery>genPurgeList.xml</xquery>
+      </xqueries>
+      <buttonLabel>Purge Preview</buttonLabel>
+      <dialogTitle>Retention Operation</dialogTitle>
+      <xformName>AcmePurge</xformName>
+      <operationFields>
+        <operationField>
+          <label>Description</label>
+          <name>description</name>
+          <required>true</required>
+        </operationField>
+      </operationFields>
+    </operationConfiguration>
+    <operationConfiguration id="removeRetentionEvent">
+      <xqueries>
+        <xquery>AcmeDeleteRetentionEvent.xml</xquery>
+      </xqueries>
+      <buttonLabel>Remove Event</buttonLabel>
+      <dialogTitle>Remove Purge List</dialogTitle>
+      <message>Are you sure you want to remove the purge list?</message>
+    </operationConfiguration>
+    <operationConfiguration id="executePurge">
+      <xqueries>
+        <xquery>executePurge.xml</xquery>
+        <xquery>AcmeUpdateRetentionEvent.xml</xquery>
+      </xqueries>
+      <buttonLabel>Purge Records</buttonLabel>
+      <dialogTitle>Purge Records Operation</dialogTitle>
+      <message>Are you sure you want to purge the records?</message>
+    </operationConfiguration>
+  </operationConfigurations>
+</content>
