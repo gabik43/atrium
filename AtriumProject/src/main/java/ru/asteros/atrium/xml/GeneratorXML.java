@@ -182,7 +182,7 @@ public class GeneratorXML {
                 + PAYMENT_TABLE_NAME + " ON " + REPORT_TABLE_NAME + ".P_ITG_CLNT_ID = " + PAYMENT_TABLE_NAME + ".P_ITG_CLNT_ID WHERE " + REPORT_TABLE_NAME +
                 ".BRANCH_ID = '" + regionInfo.id + "'");
         queryString.append(" AND ");
-        queryString.append(FormatDeliveryQualification(REPORT_TABLE_NAME+ ".BDT_ID", REPORT_TABLE_NAME+ ".DG_ID", regionInfoInput ));
+        queryString.append(FormatDeliveryQualification(REPORT_TABLE_NAME+ ".BDT_NAME", REPORT_TABLE_NAME+ ".DELIVERY_GROUP", regionInfoInput ));
 
         return queryString;
     }
