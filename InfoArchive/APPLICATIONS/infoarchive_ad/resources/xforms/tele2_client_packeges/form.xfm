@@ -16,12 +16,6 @@
           <YEAR_QUERY/>
           <MONTH_REQUEST/>
           <MSISDN/>
-          <DOCTYPE_BILL>true</DOCTYPE_BILL>
-          <DOCTYPE_DETAIL>true</DOCTYPE_DETAIL>
-          <DOCTYPE_ACT>true</DOCTYPE_ACT>
-          <DOCTYPE_INVOICE>true</DOCTYPE_INVOICE>
-          <DOCTYPE_INVOICE_AVANS>true</DOCTYPE_INVOICE_AVANS>
-          <DOCTYPE_NOTICE>true</DOCTYPE_NOTICE>
         </data>
       </xforms:instance>
 	  <xforms:instance id="temp-values">
@@ -36,10 +30,10 @@
           <choice valueDIsp="B2B CDMA">B2B CDMA</choice>         
           <choice valueDIsp="B2C">B2C</choice>         
           <choice valueDIsp="B2C CDMA">B2C CDMA</choice>         
-          <choice valueDIsp="Неизвестный юр.тип">Неизвестный юр.тип</choice>         
+          <choice valueDIsp="Неизвестный юр.тип">Неизвестный юр.тип</choice>           
         </data>
       </xforms:instance>
-	   <xforms:instance id="MONTH_REQUESTValues" xmlns="">
+	  <xforms:instance id="MONTH_REQUESTValues" xmlns="">
         <data>
           <choice valueDIsp="All"></choice>         
           <choice valueDIsp="Январь">01</choice>         
@@ -68,12 +62,6 @@
       <xforms:bind id="YEAR_QUERYBind" nodeset="YEAR_QUERY"/>
       <xforms:bind id="MONTH_REQUESTBind" nodeset="MONTH_REQUEST"/>
       <xforms:bind id="MSISDNBind" nodeset="MSISDN"/>
-      <xforms:bind id="DOCTYPE_BILLBind" nodeset="DOCTYPE_BILL" type="xs:boolean"/>
-      <xforms:bind id="DOCTYPE_DETAILBind" nodeset="DOCTYPE_DETAIL" type="xs:boolean"/>
-      <xforms:bind id="DOCTYPE_ACTBind" nodeset="DOCTYPE_ACT" type="xs:boolean"/>
-      <xforms:bind id="DOCTYPE_INVOICEBind" nodeset="DOCTYPE_INVOICE" type="xs:boolean"/>
-      <xforms:bind id="DOCTYPE_INVOICE_AVANSBind" nodeset="DOCTYPE_INVOICE_AVANS" type="xs:boolean"/>
-      <xforms:bind id="DOCTYPE_NOTICEBind" nodeset="DOCTYPE_NOTICE" type="xs:boolean"/>
       <xforms:submission replace="none" id="tele2_client_documentsModelSubmission" action="" method="post"/>
     </xforms:model>
   </xhtml:head>
@@ -82,35 +70,35 @@
       <table xmlns="http://www.w3.org/1999/xhtml">
 	    <tr>
 		  <td rowspan="1" colspan="1">Макрорегион:</td>
-		  <td rowspan="1" colspan="1">
+          <td rowspan="1" colspan="1">
             <xforms:input id="MACRO_REGION_RUS" class="suggestions-idx_macro_region_rus---/DATA/infoarchive_ad/Collection/TELE2_DEMO/" bind="MACRO_REGION_RUSBind">
-              <xforms:label></xforms:label>
+              <xforms:label/>
             </xforms:input>
           </td>
           <td rowspan="1" colspan="1">Регион:</td>
-		  <td rowspan="1" colspan="1">
+          <td rowspan="1" colspan="1">
             <xforms:input id="BRANCH_NAME" class="suggestions-idx_branch_name---/DATA/infoarchive_ad/Collection/TELE2_DEMO/" bind="BRANCH_NAMEBind">
-              <xforms:label></xforms:label>
+              <xforms:label/>
             </xforms:input>
           </td>
 		  <td rowspan="1" colspan="1">Тип доставки:</td>
-		  <td rowspan="1" colspan="1">
+          <td rowspan="1" colspan="1">
             <xforms:input id="BDT_NAME" class="suggestions-idx_bdt_name---/DATA/infoarchive_ad/Collection/TELE2_DEMO/" bind="BDT_NAMEBind">
-              <xforms:label></xforms:label>
+              <xforms:label/>
             </xforms:input>
           </td>
 		  <td rowspan="1" colspan="1">Группа доставки:</td>
-		  <td rowspan="1" colspan="1">
+          <td rowspan="1" colspan="1">
             <xforms:input id="DELIVERY_GROUP" class="suggestions-idx_delivery_group---/DATA/infoarchive_ad/Collection/TELE2_DEMO/" bind="DELIVERY_GROUPBind">
-              <xforms:label></xforms:label>
+              <xforms:label/>
             </xforms:input>
           </td>	  
 		</tr>
         <tr>
 		  <td rowspan="1" colspan="1">Категория клиента:</td>
-		  <td rowspan="1" colspan="1">
+          <td rowspan="1" colspan="1">
             <xforms:select1 appearance="minimal" selection="closed" id="CLIENT_TYPE" bind="CLIENT_TYPEBind">
-              <xforms:label></xforms:label>
+              <xforms:label/>
 			  <xforms:itemset nodeset="instance('ClientTypeValues')/choice">
                   <xforms:label ref="@valueDIsp"/>
                   <xforms:value ref="."/>
@@ -118,101 +106,53 @@
             </xforms:select1>
           </td>			  
 		  <td rowspan="1" colspan="1">Год расчетного периода:</td>
-		  <td rowspan="1" colspan="1">
+          <td rowspan="1" colspan="1">
             <xforms:input id="YEAR_QUERY" class="suggestions-idx_year_query---/DATA/infoarchive_ad/Collection/TELE2_DEMO/" bind="YEAR_QUERYBind">
-              <xforms:label></xforms:label>
+              <xforms:label/>
             </xforms:input>
           </td>
 		  <td rowspan="1" colspan="1">Расчетный период:</td>
-		  <td rowspan="1" colspan="1">
-            <xforms:select1 appearance="minimal" selection="closed" id="MONTH_REQUEST" bind="MONTH_REQUESTBind">
+          <td rowspan="1" colspan="1">
+           <xforms:select1 appearance="minimal" selection="closed" id="MONTH_REQUEST" bind="MONTH_REQUESTBind">
               <xforms:label/>
 			  <xforms:itemset nodeset="instance('MONTH_REQUESTValues')/choice">
                   <xforms:label ref="@valueDIsp"/>
                   <xforms:value ref="."/>
                 </xforms:itemset>
             </xforms:select1>
-          </td>		  		  
+          </td>		  
 		</tr>
 		<tr>
 		  <td rowspan="1" colspan="1">Наименование клиента:</td>
-		  <td rowspan="1" colspan="1">
+          <td rowspan="1" colspan="1">
             <xforms:input id="tempNAME" class="suggestions-idx_customer_name---/DATA/infoarchive_ad/Collection/TELE2_DEMO/" bind="tempNAMEBind">
-              <xforms:label></xforms:label>
+              <xforms:label/>
             </xforms:input>
           </td>
           <td rowspan="1" colspan="1">Лицевой счет:</td>
-		  <td rowspan="1" colspan="1">
+          <td rowspan="1" colspan="1">
             <xforms:input id="ACCOUNT" bind="ACCOUNTBind">
-              <xforms:label></xforms:label>
+              <xforms:label/>
             </xforms:input>
           </td>
           <td rowspan="1" colspan="1">ИНН:</td>
-		  <td rowspan="1" colspan="1">
+          <td rowspan="1" colspan="1">
             <xforms:input id="CONTRACT_INN" bind="CONTRACT_INNBind">
-              <xforms:label></xforms:label>
+              <xforms:label/>
             </xforms:input>
           </td>
 		  <td rowspan="1" colspan="1">Номер телефона Абонента:</td>
-		  <td rowspan="1" colspan="1">
+          <td rowspan="1" colspan="1">
             <xforms:input id="MSISDN" bind="MSISDNBind">
-              <xforms:label></xforms:label>
+              <xforms:label/>
             </xforms:input>
           </td>
         </tr>
-</table>		
-<table xmlns="http://www.w3.org/1999/xhtml">
-		<tr>	
-          <td>
-		      <xforms:trigger id="input2-0">
-				<xforms:label>Найти</xforms:label>
-				<xforms:send submission="tele2_client_documentsModelSubmission"/>
-			  </xforms:trigger>	   
-		  </td>	
-		  <td></td>			  
-		  <td>
-		  <xforms:select ref="DOCTYPE_BILL" appearance="full" selection="closed" id="DOCTYPE_BILL" >
-			  <xforms:item>
-                <xforms:label>Счет</xforms:label>
-                <xforms:value>true</xforms:value> 
-              </xforms:item>			
-		  </xforms:select>	
-		  <xforms:select ref="DOCTYPE_DETAIL" appearance="full" selection="closed" id="DOCTYPE_DETAIL" >
-			  <xforms:item>
-                <xforms:label>Детализация</xforms:label>
-                <xforms:value>true</xforms:value> 
-              </xforms:item>			
-		  </xforms:select>	
-		  <xforms:select ref="DOCTYPE_ACT" appearance="full" selection="closed" id="DOCTYPE_ACT" >
-			  <xforms:item>
-                <xforms:label>Акт</xforms:label>
-                <xforms:value>true</xforms:value> 
-              </xforms:item>			
-		  </xforms:select>		  
-		  <xforms:select ref="DOCTYPE_INVOICE" appearance="full" selection="closed" id="DOCTYPE_INVOICE" >
-			 <xforms:item>
-                <xforms:label>Счет-Фактура</xforms:label>
-                <xforms:value>true</xforms:value> 
-              </xforms:item>			
-		  </xforms:select>	
-		  <xforms:select ref="DOCTYPE_INVOICE_AVANS" appearance="full" selection="closed" id="DOCTYPE_INVOICE_AVANS" >
-			  <xforms:item>
-                <xforms:label>Счет-Фактура Авансовая</xforms:label>
-                <xforms:value>true</xforms:value> 
-              </xforms:item>
-		  </xforms:select>		  
-		  <xforms:select ref="DOCTYPE_NOTICE" appearance="full" selection="closed" id="DOCTYPE_NOTICE" >
-			  <xforms:item>
-                <xforms:label>Извещение</xforms:label>
-                <xforms:value>true</xforms:value> 
-              </xforms:item>			
-		  </xforms:select>	
-		  </td>	
-	  
-		</tr>
-		
       </table>
-     
+      <xforms:trigger id="input2-0">
+        <xforms:label>Найти</xforms:label>
+        <xforms:send submission="tele2_client_documentsModelSubmission"/>
+      </xforms:trigger>
     </xforms:group>
   </xhtml:body>
 </xhtml:html>

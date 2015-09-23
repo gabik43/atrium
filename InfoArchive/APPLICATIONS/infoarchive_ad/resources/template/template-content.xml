@@ -18,16 +18,16 @@
         <icon>businessobject16</icon>
         <chainOfCustody>false</chainOfCustody>
         <contentViewSettings>
-          <!--<contentViewSetting refid="tele2_customer"/>-->
+          <contentViewSetting refid="tele2_customer"/>
           <contentViewSetting refid="tele2_document"/>
-          <!--<contentViewSetting refid="displayChainOfCustodyInfo"/>-->
         </contentViewSettings>
         <searchSettings>
-          <!--<searchSetting name="Клиенты" refid="tele2_clients"/>-->
+          <searchSetting name="Пакеты" refid="tele2_client_packeges"/>
           <searchSetting name="Документы" refid="tele2_client_documents"/>
         </searchSettings>
       </node>
-     <!-- <node>
+      <!--
+      <node>
         <id>dctm</id>
         <label>Documentum</label>
         <icon>businessobject16</icon>
@@ -163,14 +163,14 @@
         </searchSettings>
       </node>
     -->
-	</node>
+    </node>
   </hierarchy>
   <transformationConfigurations>
     <transformationConfiguration id="tele2_customer">
       <schemaIDs>tele2_customer</schemaIDs>
-      <!--styleURI>dds://DOMAIN=resource/xslt/gplg_document.xsl</styleURI-->
-      <styleURI>dds://DOMAIN=resource/xslt/xml-verbatim.xsl</styleURI>
-      <pipelineURI>dds://DOMAIN=resource/xproc/displayxqueryresult.xpl</pipelineURI>
+      <styleURI>dds://DOMAIN=resource/xslt/tele2_customer.xsl</styleURI>
+      <!--styleURI>dds://DOMAIN=resource/xslt/xml-verbatim.xsl</styleURI-->
+      <pipelineURI>dds://DOMAIN=resource/xproc/displayxqueryresult_zzz.xpl</pipelineURI>
       <xquery>expand.xml</xquery>
       <pdf>false</pdf>
     </transformationConfiguration>
@@ -372,7 +372,7 @@ declare variable $last as xs:string external;
 declare variable $currentuser as xs:string external;
  (: do not use external variables for parameters as empty values cannot be passed as variable :)
 let $main-query :=
-  for $elem in doc('/DATA/infoarchive_ad/Collection/TELE2_DEMO')/root/CLIENTREPORT/CLIENTSET/CLIENTROW
+  for $elem in doc('/DATA/infoarchive_ad/Collection/TELE2_DEMO')/ROOT/CLIENTREPORT/CLIENTROW
 (: xmlarchiving-insert-where-clause-parameter-values :)
 order by $elem/NAME
 return
@@ -411,7 +411,7 @@ return
             <label>Название</label>
             <type>string</type>
             <whereclauseparameter>$elem/NAME</whereclauseparameter>
-            <fullText>false</fullText>
+            <fullText>true</fullText>
             <suggestionsindex>idx_customer_name</suggestionsindex>
             <indexPath>/DATA/infoarchive_ad/Collection/TELE2_DEMO/</indexPath>
           </searchField>
@@ -453,7 +453,7 @@ return
           <label>Компания</label>
         </searchResultItem-->
       </searchResultItems>
-      <nestedSearches>
+      <!-- <nestedSearches>
         <nestedSearch>
           <name>tele2_client_documents</name>
           <label>Документы</label>
@@ -468,13 +468,13 @@ return
           </fields>
         </nestedSearch>
       </nestedSearches>
-      <!--operations>
+      operations>
         <operation refid="addHold"/>
       </operations-->
       <crpWidth>800</crpWidth>
     </searchConfiguration>
-    <searchConfiguration id="tele2_client_documents">
-      <xformName>tele2_client_documents</xformName>
+    <searchConfiguration id="tele2_client_packeges">
+      <xformName>tele2_client_packeges</xformName>
       <xquery><![CDATA[
 declare namespace dds = 'http://www.emc.com/documentum/xml/dds';
 declare variable $restrictions as xs:string external;
@@ -483,9 +483,8 @@ declare variable $last as xs:string external;
 declare variable $currentuser as xs:string external;
  (: do not use external variables for parameters as empty values cannot be passed as variable :)
 let $main-query :=
-  for $elem in doc('/DATA/infoarchive_ad/Collection/TELE2_DEMO')/ROOT/CLIENTREPORT/SERVOPTION
+  for $elem in doc('/DATA/infoarchive_ad/Collection/TELE2_DEMO')/ROOT/CLIENTREPORT
 (: xmlarchiving-insert-where-clause-parameter-values :)
-order by $elem/FILE_NAME
 return
   $elem
 
@@ -499,18 +498,21 @@ return
     for $elem in subsequence($main-query, $first cast as xs:integer, $listcount)
     return
       <result
-      FILE_NAME='{ $elem/FILE_NAME }'
-      FILE_NAME_TRANSLIT='{ $elem/FILE_NAME_TRANSLIT }'
-      ACCOUNT='{ $elem/../CLIENTROW/ACCOUNT }'
-      NAME='{ $elem/../CLIENTROW/NAME }'
-      V_TEMP_MONTH_NAME='{ $elem/../CLIENTROW/V_TEMP_MONTH_NAME }'
-      CONTRACT_INN='{ $elem/../CLIENTROW/CONTRACT_INN }'
-      BRANCH_NAME='{ $elem/../CLIENTROW/BRANCH_NAME }'
-      BDT_NAME='{ $elem/../CLIENTROW/BDT_NAME }'
-      DELIVERY_GROUP='{ $elem/../CLIENTROW/DELIVERY_GROUP }'
-      CLIENT_TYPE='{ $elem/../CLIENTROW/CLIENT_TYPE }'
-      type='tele2_document'
-	uri='{dds:generate-uri($elem)}'
+      ACCOUNT='{ $elem/CLIENTROW/ACCOUNT }'
+      P_ITG_CLNT_ID='{ $elem/CLIENTROW/P_ITG_CLNT_ID }'
+      NAME='{ $elem/CLIENTROW/NAME }'
+      V_TEMP_MONTH_NAME='{ $elem/CLIENTROW/V_TEMP_MONTH_NAME }'
+      CONTRACT_INN='{ $elem/CLIENTROW/CONTRACT_INN }'
+      BRANCH_NAME='{ $elem/CLIENTROW/BRANCH_NAME }'
+      BRANCH_ID='{ $elem/CLIENTROW/BRANCH_ID }'
+      BDT_NAME='{ $elem/CLIENTROW/BDT_NAME }'
+      DELIVERY_GROUP='{ $elem/CLIENTROW/DELIVERY_GROUP }'
+      CLIENT_TYPE='{ $elem/CLIENTROW/CLIENT_TYPE }'
+      YEAR_QUERY='{ $elem/SERVOPTION/YEAR_QUERY }'
+      MONTH_REQUEST='{ $elem/SERVOPTION/MONTH_REQUEST }'
+      DATE_CREATE='{ $elem/SERVOPTION/DATE_CREATE }'
+	  Template_Name ='{ $elem/../TEMPLATE_SET }'
+      type='tele2_customer'	
       />
     }
   </results>
@@ -518,72 +520,72 @@ return
 ]]></xquery>
       <searchFields>
         <searchFieldRow>
-		  <searchField>
+          <searchField>
             <name>MACRO_REGION_RUS</name>
             <label>Макрорегион</label>
             <type>string</type>
-            <whereclauseparameter>$elem/../CLIENTROW/MACRO_REGION_RUS</whereclauseparameter>
+            <whereclauseparameter>$elem/CLIENTROW/MACRO_REGION_RUS</whereclauseparameter>
             <fullText>false</fullText>
             <suggestionsindex>idx_macro_region_rus</suggestionsindex>
             <indexPath>/DATA/infoarchive_ad/Collection/TELE2_DEMO/</indexPath>
           </searchField>
-		  <searchField>
+          <searchField>
             <name>BRANCH_NAME</name>
             <label>Регион</label>
             <type>string</type>
-            <whereclauseparameter>$elem/../CLIENTROW/BRANCH_NAME</whereclauseparameter>
+            <whereclauseparameter>$elem/CLIENTROW/BRANCH_NAME</whereclauseparameter>
             <fullText>false</fullText>
             <suggestionsindex>idx_branch_name</suggestionsindex>
             <indexPath>/DATA/infoarchive_ad/Collection/TELE2_DEMO/</indexPath>
           </searchField>
-		  <searchField>
+          <searchField>
             <name>CLIENT_TYPE</name>
             <label>Тип клиента</label>
             <type>string</type>
-            <whereclauseparameter>$elem/../CLIENTROW/CLIENT_TYPE</whereclauseparameter>
-            <fullText>false</fullText>            
+            <whereclauseparameter>$elem/CLIENTROW/CLIENT_TYPE</whereclauseparameter>
+            <fullText>false</fullText>
           </searchField>
-		  <searchField>
+          <searchField>
             <name>BDT_NAME</name>
             <label>Тип доставки</label>
             <type>string</type>
-            <whereclauseparameter>$elem/../CLIENTROW/BDT_NAME</whereclauseparameter>
+            <whereclauseparameter>$elem/CLIENTROW/BDT_NAME</whereclauseparameter>
             <fullText>false</fullText>
             <suggestionsindex>idx_bdt_name</suggestionsindex>
             <indexPath>/DATA/infoarchive_ad/Collection/TELE2_DEMO/</indexPath>
           </searchField>
-		  <searchField>
+          <searchField>
             <name>DELIVERY_GROUP</name>
             <label>Группа доставки</label>
             <type>string</type>
-            <whereclauseparameter>$elem/../CLIENTROW/DELIVERY_GROUP</whereclauseparameter>
+            <whereclauseparameter>$elem/CLIENTROW/DELIVERY_GROUP</whereclauseparameter>
             <fullText>false</fullText>
             <suggestionsindex>idx_delivery_group</suggestionsindex>
             <indexPath>/DATA/infoarchive_ad/Collection/TELE2_DEMO/</indexPath>
           </searchField>
-		  <searchField>
+          <searchField>
             <name>YEAR_QUERY</name>
             <label>Год расчетного периода</label>
             <type>string</type>
-            <whereclauseparameter>$elem/../SERVOPTION/YEAR_QUERY</whereclauseparameter>
+            <whereclauseparameter>$elem/SERVOPTION/YEAR_QUERY</whereclauseparameter>
             <fullText>false</fullText>
             <suggestionsindex>idx_year_query</suggestionsindex>
             <indexPath>/DATA/infoarchive_ad/Collection/TELE2_DEMO/</indexPath>
           </searchField>
-		  <searchField>
+          <searchField>
             <name>MONTH_REQUEST</name>
             <label>Месяц / Расчетный период</label>
             <type>string</type>
-            <whereclauseparameter>$elem/../SERVOPTION/MONTH_REQUEST</whereclauseparameter>
+            <whereclauseparameter>$elem/SERVOPTION/MONTH_REQUEST</whereclauseparameter>
             <fullText>false</fullText>
             <suggestionsindex>idx_month_request</suggestionsindex>
             <indexPath>/DATA/infoarchive_ad/Collection/TELE2_DEMO/</indexPath>
           </searchField>
-		   <searchField>
+          <searchField>
             <name>NAME</name>
             <label>Наименование клиента</label>
             <type>string</type>
-            <whereclauseparameter>$elem/../CLIENTROW/NAME</whereclauseparameter>
+            <whereclauseparameter>$elem/CLIENTROW/NAME</whereclauseparameter>
             <fullText>true</fullText>
             <suggestionsindex>idx_customer_name</suggestionsindex>
             <indexPath>/DATA/infoarchive_ad/Collection/TELE2_DEMO/</indexPath>
@@ -592,21 +594,21 @@ return
             <name>ACCOUNT</name>
             <label>Лицевой счет</label>
             <type>string</type>
-            <whereclauseparameter>$elem/../CLIENTROW/ACCOUNT</whereclauseparameter>
+            <whereclauseparameter>$elem/CLIENTROW/ACCOUNT</whereclauseparameter>
             <fullText>false</fullText>
           </searchField>
           <searchField>
             <name>CONTRACT_INN</name>
             <label>ИНН</label>
             <type>string</type>
-            <whereclauseparameter>$elem/../CLIENTROW/CONTRACT_INN</whereclauseparameter>
+            <whereclauseparameter>$elem/CLIENTROW/CONTRACT_INN</whereclauseparameter>
             <fullText>false</fullText>
           </searchField>
-		  <searchField>
+          <searchField>
             <name>MSISDN</name>
             <label>Номер телефона Абонента</label>
             <type>string</type>
-            <whereclauseparameter>$elem/../DETAIL/MSISDNSET/MSISDN</whereclauseparameter>
+            <whereclauseparameter>$elem/DETAIL/MSISDNSET/MSISDN</whereclauseparameter>
             <fullText>false</fullText>
           </searchField>
           <!--searchField>
@@ -638,7 +640,7 @@ return
           <name>ACCOUNT</name>
           <label>Лицевой счет</label>
         </searchResultItem>
-		<searchResultItem>
+        <searchResultItem>
           <name>CONTRACT_INN</name>
           <label>ИНН</label>
         </searchResultItem>
@@ -650,13 +652,376 @@ return
           <name>BRANCH_NAME</name>
           <label>Регион</label>
         </searchResultItem>
-		<searchResultItem>
+        <searchResultItem>
           <name>BDT_NAME</name>
           <label>Тип доставки</label>
         </searchResultItem>
-		<searchResultItem>
+        <searchResultItem>
           <name>DELIVERY_GROUP</name>
           <label>Группа доставки</label>
+        </searchResultItem>
+        <searchResultItem>
+          <name>DATE_CREATE</name>
+          <label>Документ сформирован</label>
+        </searchResultItem>
+      </searchResultItems>
+      <!--nestedSearches>
+        <nestedSearch>
+          <name>salaries</name>
+          <label>Salaries</label>
+          <description>Salaries</description>
+          <configurationId>searchMyEmployeesSalaries</configurationId>
+          <nodeId>employees</nodeId>
+          <fields>
+            <field>
+              <targetSearchFieldName>emp_no</targetSearchFieldName>
+              <sourceResultItemName>emp_no</sourceResultItemName>
+            </field>
+          </fields>
+        </nestedSearch>
+      </nestedSearches-->
+      <!--operations>
+        <operation refid="addHold"/>
+      </operations-->
+      <crpWidth>800</crpWidth>
+    </searchConfiguration>
+    <searchConfiguration id="tele2_client_documents">
+      <xformName>tele2_client_documents</xformName>
+      <xquery><![CDATA[
+declare namespace dds = 'http://www.emc.com/documentum/xml/dds';
+declare variable $input as xs:string external;            
+declare variable $restrictions as xs:string external;
+declare variable $first as xs:string external;
+declare variable $last as xs:string external;
+declare variable $currentuser as xs:string external;
+ (: do not use external variables for parameters as empty values cannot be passed as variable :)
+let $main-query :=
+  for $elem in doc('/DATA/infoarchive_ad/Collection/TELE2_DEMO')/ROOT/CLIENTREPORT
+(: xmlarchiving-insert-where-clause-parameter-values :)
+return
+  $elem
+
+let $count := count($main-query)
+
+
+let $inputDoc := xhive:parse($input)
+let $docType_Bill := $inputDoc/data/DOCTYPE_BILL
+let $docType_Detail := $inputDoc/data/DOCTYPE_DETAIL
+let $docType_Act := $inputDoc/data/DOCTYPE_ACT
+let $docType_Invoice := $inputDoc/data/DOCTYPE_INVOICE
+let $docType_Invoice_Avans := $inputDoc/data/DOCTYPE_INVOICE_AVANS
+let $docType_Notice := $inputDoc/data/DOCTYPE_NOTICE
+(:						
+let $count_1 := count($main-query)
+for $elem in $main-query
+
+let $count_1 := if (count($elem/DETAIL/MSISDNSET/MSISDNROW[P_ITG_CLNT_ID!=''])>0 and $docType_Detail='true')
+then ($count_1 + 1)
+else($count_1)
+
+let $count_1 := if (count($elem/ACTPSROW[P_ITG_CLNT_ID!=''])>0 and $elem/CLIENTROW/CJT_ID!='1' and $elem/CLIENTROW/CJT_ID!='5' and $docType_Act='true')
+then ($count_1 + 1)
+else($count_1)
+
+let $count_1 := if (count($elem/FACTURASET/FACTURAROW_1[P_ITG_CLNT_ID!=''])>0 and $elem/CLIENTROW/CJT_ID!='1' and $elem/CLIENTROW/CJT_ID!='5' and $docType_Invoice='true')
+then ($count_1 + 1)
+else($count_1)
+
+let $count_1 := if (count($elem/FACTURASET/FACTURAROW_2[P_ITG_CLNT_ID!=''])>0 and $elem/CLIENTROW/CJT_ID!='1' and $elem/CLIENTROW/CJT_ID!='5' and $docType_Invoice_Avans='true') 
+then ($count_1 + 1)
+else($count_1)
+
+let $count_1 := if (($elem/CLIENTROW/CJT_ID='1' or  and $elem/CLIENTROW/CJT_ID='5') and $elem/PAYROW/END_BAL<0 and $docType_Notice='true') 
+then ($count_1 + 1)
+else($count_1)
+:)
+
+
+return
+  <results total='{ $count }'>
+    {
+    let $listcount := if ($last = '-1')
+    then ($count + 1)
+    else ($last cast as xs:integer - $first cast as xs:integer) + 1
+    for $elem in subsequence($main-query, $first cast as xs:integer, $listcount)
+    return
+      (	
+      if($docType_Bill='true')	
+      then (<result
+      ACCOUNT='{ $elem/CLIENTROW/ACCOUNT }'
+      P_ITG_CLNT_ID='{ $elem/CLIENTROW/P_ITG_CLNT_ID }'
+      NAME='{ $elem/CLIENTROW/NAME }'
+      V_TEMP_MONTH_NAME='{ $elem/CLIENTROW/V_TEMP_MONTH_NAME }'
+      CONTRACT_INN='{ $elem/CLIENTROW/CONTRACT_INN }'
+      BRANCH_NAME='{ $elem/CLIENTROW/BRANCH_NAME }'
+      BRANCH_ID='{ $elem/CLIENTROW/BRANCH_ID }'
+      BDT_NAME='{ $elem/CLIENTROW/BDT_NAME }'
+      DELIVERY_GROUP='{ $elem/CLIENTROW/DELIVERY_GROUP }'
+      CLIENT_TYPE='{ $elem/CLIENTROW/CLIENT_TYPE }'
+      YEAR_QUERY='{ $elem/SERVOPTION/YEAR_QUERY }'
+      MONTH_REQUEST='{ $elem/SERVOPTION/MONTH_REQUEST }'
+      DATE_CREATE='{ $elem/SERVOPTION/DATE_CREATE }'
+	  DOC_TYPE = 'Счет'
+	  Template_Name ='{ $elem/../TEMPLATE_BILL }'
+	  type='tele2_customer'
+      />)
+	  else (),
+	  if ((count($elem/DETAIL/MSISDNSET/MSISDNROW[P_ITG_CLNT_ID!=''])>0 or count($elem/DETAIL/PAYMENT[P_ITG_CLNT_ID!=''])>0) and $docType_Detail='true') 
+	  then (<result
+      ACCOUNT='{ $elem/CLIENTROW/ACCOUNT }'
+      P_ITG_CLNT_ID='{ $elem/CLIENTROW/P_ITG_CLNT_ID }'
+      NAME='{ $elem/CLIENTROW/NAME }'
+      V_TEMP_MONTH_NAME='{ $elem/CLIENTROW/V_TEMP_MONTH_NAME }'
+      CONTRACT_INN='{ $elem/CLIENTROW/CONTRACT_INN }'
+      BRANCH_NAME='{ $elem/CLIENTROW/BRANCH_NAME }'
+      BRANCH_ID='{ $elem/CLIENTROW/BRANCH_ID }'
+      BDT_NAME='{ $elem/CLIENTROW/BDT_NAME }'
+      DELIVERY_GROUP='{ $elem/CLIENTROW/DELIVERY_GROUP }'
+      CLIENT_TYPE='{ $elem/CLIENTROW/CLIENT_TYPE }'
+      YEAR_QUERY='{ $elem/SERVOPTION/YEAR_QUERY }'
+      MONTH_REQUEST='{ $elem/SERVOPTION/MONTH_REQUEST }'
+      DATE_CREATE='{ $elem/SERVOPTION/DATE_CREATE }'
+	  DOC_TYPE = 'Детализация'
+      Template_Name ='{ $elem/../TEMPLATE_DETAIL }'
+	  type='tele2_customer'
+      />)
+	  else (),
+	  if (count($elem/ACTPSROW[P_ITG_CLNT_ID!=''])>0 and $elem/CLIENTROW/CJT_ID!='1' and $elem/CLIENTROW/CJT_ID!='5' and $docType_Act='true') 
+	  then (<result
+      ACCOUNT='{ $elem/CLIENTROW/ACCOUNT }'
+      P_ITG_CLNT_ID='{ $elem/CLIENTROW/P_ITG_CLNT_ID }'
+      NAME='{ $elem/CLIENTROW/NAME }'
+      V_TEMP_MONTH_NAME='{ $elem/CLIENTROW/V_TEMP_MONTH_NAME }'
+      CONTRACT_INN='{ $elem/CLIENTROW/CONTRACT_INN }'
+      BRANCH_NAME='{ $elem/CLIENTROW/BRANCH_NAME }'
+      BRANCH_ID='{ $elem/CLIENTROW/BRANCH_ID }'
+      BDT_NAME='{ $elem/CLIENTROW/BDT_NAME }'
+      DELIVERY_GROUP='{ $elem/CLIENTROW/DELIVERY_GROUP }'
+      CLIENT_TYPE='{ $elem/CLIENTROW/CLIENT_TYPE }'
+      YEAR_QUERY='{ $elem/SERVOPTION/YEAR_QUERY }'
+      MONTH_REQUEST='{ $elem/SERVOPTION/MONTH_REQUEST }'
+      DATE_CREATE='{ $elem/SERVOPTION/DATE_CREATE }'
+	  DOC_TYPE = 'Акт'
+      Template_Name ='{ $elem/../TEMPLATE_ACT }'
+	  type='tele2_customer'
+      />)
+	  else (),
+	  if (count($elem/FACTURASET/FACTURAROW_1[P_ITG_CLNT_ID!=''])>0 and $elem/CLIENTROW/CJT_ID!='1' and $elem/CLIENTROW/CJT_ID!='5' and $docType_Invoice='true') 
+	  then (<result
+      ACCOUNT='{ $elem/CLIENTROW/ACCOUNT }'
+      P_ITG_CLNT_ID='{ $elem/CLIENTROW/P_ITG_CLNT_ID }'
+      NAME='{ $elem/CLIENTROW/NAME }'
+      V_TEMP_MONTH_NAME='{ $elem/CLIENTROW/V_TEMP_MONTH_NAME }'
+      CONTRACT_INN='{ $elem/CLIENTROW/CONTRACT_INN }'
+      BRANCH_NAME='{ $elem/CLIENTROW/BRANCH_NAME }'
+      BRANCH_ID='{ $elem/CLIENTROW/BRANCH_ID }'
+      BDT_NAME='{ $elem/CLIENTROW/BDT_NAME }'
+      DELIVERY_GROUP='{ $elem/CLIENTROW/DELIVERY_GROUP }'
+      CLIENT_TYPE='{ $elem/CLIENTROW/CLIENT_TYPE }'
+      YEAR_QUERY='{ $elem/SERVOPTION/YEAR_QUERY }'
+      MONTH_REQUEST='{ $elem/SERVOPTION/MONTH_REQUEST }'
+      DATE_CREATE='{ $elem/SERVOPTION/DATE_CREATE }'
+	  DOC_TYPE = 'Счет-фактура'
+      Template_Name ='{ $elem/../TEMPLATE_INVOICE }'
+	  type='tele2_customer'
+      />)
+	  else (),
+	  
+	  if (count($elem/FACTURASET/FACTURAROW_2[P_ITG_CLNT_ID!=''])>0 and $elem/CLIENTROW/CJT_ID!='1' and $elem/CLIENTROW/CJT_ID!='5' and $docType_Invoice_Avans='true') 
+	  then (<result
+      ACCOUNT='{ $elem/CLIENTROW/ACCOUNT }'
+      P_ITG_CLNT_ID='{ $elem/CLIENTROW/P_ITG_CLNT_ID }'
+      NAME='{ $elem/CLIENTROW/NAME }'
+      V_TEMP_MONTH_NAME='{ $elem/CLIENTROW/V_TEMP_MONTH_NAME }'
+      CONTRACT_INN='{ $elem/CLIENTROW/CONTRACT_INN }'
+      BRANCH_NAME='{ $elem/CLIENTROW/BRANCH_NAME }'
+      BRANCH_ID='{ $elem/CLIENTROW/BRANCH_ID }'
+      BDT_NAME='{ $elem/CLIENTROW/BDT_NAME }'
+      DELIVERY_GROUP='{ $elem/CLIENTROW/DELIVERY_GROUP }'
+      CLIENT_TYPE='{ $elem/CLIENTROW/CLIENT_TYPE }'
+      YEAR_QUERY='{ $elem/SERVOPTION/YEAR_QUERY }'
+      MONTH_REQUEST='{ $elem/SERVOPTION/MONTH_REQUEST }'
+      DATE_CREATE='{ $elem/SERVOPTION/DATE_CREATE }'
+	  DOC_TYPE = 'Счет-фактура Авансовая'
+      Template_Name ='{ $elem/../TEMPLATE_INVOICE_AVANS }'
+	  type='tele2_customer'
+      />)
+	  else (),
+      	  
+	  if (($elem/CLIENTROW/CJT_ID='1' or $elem/CLIENTROW/CJT_ID='5') and $elem/PAYROW/END_BAL<0 and $docType_Notice='true') 
+	  then (<result
+      ACCOUNT='{ $elem/CLIENTROW/ACCOUNT }'
+      P_ITG_CLNT_ID='{ $elem/CLIENTROW/P_ITG_CLNT_ID }'
+      NAME='{ $elem/CLIENTROW/NAME }'
+      V_TEMP_MONTH_NAME='{ $elem/CLIENTROW/V_TEMP_MONTH_NAME }'
+      CONTRACT_INN='{ $elem/CLIENTROW/CONTRACT_INN }'
+      BRANCH_NAME='{ $elem/CLIENTROW/BRANCH_NAME }'
+      BRANCH_ID='{ $elem/CLIENTROW/BRANCH_ID }'
+      BDT_NAME='{ $elem/CLIENTROW/BDT_NAME }'
+      DELIVERY_GROUP='{ $elem/CLIENTROW/DELIVERY_GROUP }'
+      CLIENT_TYPE='{ $elem/CLIENTROW/CLIENT_TYPE }'
+      YEAR_QUERY='{ $elem/SERVOPTION/YEAR_QUERY }'
+      MONTH_REQUEST='{ $elem/SERVOPTION/MONTH_REQUEST }'
+      DATE_CREATE='{ $elem/SERVOPTION/DATE_CREATE }'
+	  DOC_TYPE = 'Извещение'
+      Template_Name ='{ $elem/../TEMPLATE_NOTICE }'
+	  type='tele2_customer'
+      />)
+	  else ()
+	  )
+    }
+  </results>
+
+]]></xquery>
+      <searchFields>
+        <searchFieldRow>
+          <searchField>
+            <name>MACRO_REGION_RUS</name>
+            <label>Макрорегион</label>
+            <type>string</type>
+            <whereclauseparameter>$elem/CLIENTROW/MACRO_REGION_RUS</whereclauseparameter>
+            <fullText>false</fullText>
+            <suggestionsindex>idx_macro_region_rus</suggestionsindex>
+            <indexPath>/DATA/infoarchive_ad/Collection/TELE2_DEMO/</indexPath>
+          </searchField>
+          <searchField>
+            <name>BRANCH_NAME</name>
+            <label>Регион</label>
+            <type>string</type>
+            <whereclauseparameter>$elem/CLIENTROW/BRANCH_NAME</whereclauseparameter>
+            <fullText>false</fullText>
+            <suggestionsindex>idx_branch_name</suggestionsindex>
+            <indexPath>/DATA/infoarchive_ad/Collection/TELE2_DEMO/</indexPath>
+          </searchField>
+          <searchField>
+            <name>CLIENT_TYPE</name>
+            <label>Тип клиента</label>
+            <type>string</type>
+            <whereclauseparameter>$elem/CLIENTROW/CLIENT_TYPE</whereclauseparameter>
+            <fullText>false</fullText>
+          </searchField>
+          <searchField>
+            <name>BDT_NAME</name>
+            <label>Тип доставки</label>
+            <type>string</type>
+            <whereclauseparameter>$elem/CLIENTROW/BDT_NAME</whereclauseparameter>
+            <fullText>false</fullText>
+            <suggestionsindex>idx_bdt_name</suggestionsindex>
+            <indexPath>/DATA/infoarchive_ad/Collection/TELE2_DEMO/</indexPath>
+          </searchField>
+          <searchField>
+            <name>DELIVERY_GROUP</name>
+            <label>Группа доставки</label>
+            <type>string</type>
+            <whereclauseparameter>$elem/CLIENTROW/DELIVERY_GROUP</whereclauseparameter>
+            <fullText>false</fullText>
+            <suggestionsindex>idx_delivery_group</suggestionsindex>
+            <indexPath>/DATA/infoarchive_ad/Collection/TELE2_DEMO/</indexPath>
+          </searchField>
+          <searchField>
+            <name>YEAR_QUERY</name>
+            <label>Год расчетного периода</label>
+            <type>string</type>
+            <whereclauseparameter>$elem/SERVOPTION/YEAR_QUERY</whereclauseparameter>
+            <fullText>false</fullText>
+            <suggestionsindex>idx_year_query</suggestionsindex>
+            <indexPath>/DATA/infoarchive_ad/Collection/TELE2_DEMO/</indexPath>
+          </searchField>
+          <searchField>
+            <name>MONTH_REQUEST</name>
+            <label>Месяц / Расчетный период</label>
+            <type>string</type>
+            <whereclauseparameter>$elem/SERVOPTION/MONTH_REQUEST</whereclauseparameter>
+            <fullText>false</fullText>
+            <suggestionsindex>idx_month_request</suggestionsindex>
+            <indexPath>/DATA/infoarchive_ad/Collection/TELE2_DEMO/</indexPath>
+          </searchField>
+          <searchField>
+            <name>NAME</name>
+            <label>Наименование клиента</label>
+            <type>string</type>
+            <whereclauseparameter>$elem/CLIENTROW/NAME</whereclauseparameter>
+            <fullText>true</fullText>
+            <suggestionsindex>idx_customer_name</suggestionsindex>
+            <indexPath>/DATA/infoarchive_ad/Collection/TELE2_DEMO/</indexPath>
+          </searchField>
+          <searchField>
+            <name>ACCOUNT</name>
+            <label>Лицевой счет</label>
+            <type>string</type>
+            <whereclauseparameter>$elem/CLIENTROW/ACCOUNT</whereclauseparameter>
+            <fullText>false</fullText>
+          </searchField>
+          <searchField>
+            <name>CONTRACT_INN</name>
+            <label>ИНН</label>
+            <type>string</type>
+            <whereclauseparameter>$elem/CLIENTROW/CONTRACT_INN</whereclauseparameter>
+            <fullText>false</fullText>
+          </searchField>
+          <searchField>
+            <name>MSISDN</name>
+            <label>Номер телефона Абонента</label>
+            <type>string</type>
+            <whereclauseparameter>$elem/DETAIL/MSISDNSET/MSISDN</whereclauseparameter>
+            <fullText>false</fullText>
+          </searchField>
+          <!--searchField>
+            <name>title</name>
+            <label>Title</label>
+            <whereclauseparameter>$elem/title</whereclauseparameter>
+            <fullText>true</fullText>
+          </searchField>
+          <searchField>
+            <name>subject</name>
+            <label>Subject</label>
+            <whereclauseparameter>$elem/subject</whereclauseparameter>
+            <fullText>true</fullText>
+          </searchField>
+          <searchField>
+            <name>r_creation_date</name>
+            <label>Creation Date</label>
+            <type>date</type>
+            <whereclauseparameter>$elem/r_creation_date</whereclauseparameter>
+          </searchField-->
+        </searchFieldRow>
+      </searchFields>
+      <searchResultItems>
+        <searchResultItem>
+          <name>NAME</name>
+          <label>Наименование клиента</label>
+        </searchResultItem>
+        <searchResultItem>
+          <name>DOC_TYPE</name>
+          <label>Тип документа</label>
+        </searchResultItem>
+        <searchResultItem>
+          <name>ACCOUNT</name>
+          <label>Лицевой счет</label>
+        </searchResultItem>
+        <searchResultItem>
+          <name>CONTRACT_INN</name>
+          <label>ИНН</label>
+        </searchResultItem>
+        <searchResultItem>
+          <name>V_TEMP_MONTH_NAME</name>
+          <label>Расчетный период</label>
+        </searchResultItem>
+        <searchResultItem>
+          <name>BRANCH_NAME</name>
+          <label>Регион</label>
+        </searchResultItem>
+        <searchResultItem>
+          <name>BDT_NAME</name>
+          <label>Тип доставки</label>
+        </searchResultItem>
+        <searchResultItem>
+          <name>DELIVERY_GROUP</name>
+          <label>Группа доставки</label>
+        </searchResultItem>
+        <searchResultItem>
+          <name>DATE_CREATE</name>
+          <label>Документ сформирован</label>
         </searchResultItem>
       </searchResultItems>
       <!--nestedSearches>
