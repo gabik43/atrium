@@ -90,6 +90,7 @@
 				<xsd:element name="MACRO_REGION_ENG" type="xsd:string"/>
 				<xsd:element name="E-MAIL" type="xsd:string" minOccurs="0"/>
 				<xsd:element name="CLIENT_TYPE" type="xsd:string"/>
+				<xsd:element name="PHONE_SHORT" type="xsd:string"/>
 			</xsd:sequence>
 		</xsd:complexType>
 	</xsd:element>
