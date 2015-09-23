@@ -3,6 +3,9 @@ mvn install:install-file -Dfile=C:\Users\DOLB\Desktop\Tele2\lib\ojdbc6.jar -Dgro
 mvn install:install-file -Dfile=C:\Users\DOLB\Desktop\Tele2\lib\xhive.jar -DgroupId=com.xhive -DartifactId=xhive -Dversion=9.0 -Dpackaging=jar
 
 mvn install:install-file -Dfile=sqljdbc4.jar -DgroupId=com.microsoft.sqlserver -DartifactId=sqljdbc4 -Dversion=4.0 -Dpackaging=jar
+
+mvn install:install-file -Dfile=C:\atriumGIT\AtriumProject\lib\apache-commons-lang.jar -DgroupId=org.apache -DartifactId=apachecommons -Dversion=1 -Dpackaging=jar
+
 <dependency>
   <groupId>com.microsoft.sqlserver</groupId>
   <artifactId>sqljdbc4</artifactId>
