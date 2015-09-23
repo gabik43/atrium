@@ -38,7 +38,6 @@
                 <div id = "clean-button" class = "material_shadow">ОЧИСТИТЬ</div>
             </a>
         </div>
-        <div id = "version-text">0.1 alpha</div>
     </div>
 
     <table id="order-table">
