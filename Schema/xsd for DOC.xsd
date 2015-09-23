@@ -86,6 +86,8 @@
 				<xsd:element name="V_TEMP_MONTH_NAME" type="xsd:string"/>
 				<xsd:element name="BRANCH_NAME" type="xsd:string"/>
 				<xsd:element name="MACRO_REGION_RUS" type="xsd:string"/>
+				<xsd:element name="BRANCH_NAME_ENG" type="xsd:string"/>
+				<xsd:element name="MACRO_REGION_ENG" type="xsd:string"/>
 				<xsd:element name="E-MAIL" type="xsd:string" minOccurs="0"/>
 				<xsd:element name="CLIENT_TYPE" type="xsd:string"/>
 			</xsd:sequence>
