@@ -34,6 +34,7 @@ import ru.asteros.atrium.DB.OrderDB;
 import ru.asteros.atrium.DB.RegionInfo;
 import ru.asteros.atrium.DB.RegionInfoUtility;
 import ru.asteros.atrium.DB.SubOrderDB;
+import ru.asteros.atrium.NewBase64;
 import ru.asteros.atrium.soap.SOAPHandler;
 
 import javax.persistence.NoResultException;
@@ -41,7 +42,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.nio.charset.StandardCharsets;
-import java.util.Base64;
 
 @Controller
 @RequestMapping(value = "/")
@@ -98,8 +98,8 @@ public class MemberController {
         inputData = inputData.replace(",","/");
         inputData = inputData.replace("-", "=");
 
-        Base64.Decoder decoder = Base64.getDecoder();
-        byte[] decodedByteArray = decoder.decode(inputData);
+        //Base64.Decoder decoder = Base64.getDecoder();
+        byte[] decodedByteArray = NewBase64.decode(inputData);
         String dataSourceXML = new String(decodedByteArray, StandardCharsets.UTF_8);
 
         String format = "pdf";
@@ -113,7 +113,7 @@ public class MemberController {
             return;
         }
 
-        byte[] file = decoder.decode(recvMessage);
+        byte[] file = NewBase64.decode(recvMessage);
 
         response.reset();
         response.setContentType("application/pdf");
@@ -153,8 +153,8 @@ public class MemberController {
         inputData = inputData.replace(",","/");
         inputData = inputData.replace("-","=");
 
-        Base64.Decoder decoder = Base64.getDecoder();
-        byte[] decodedByteArray = decoder.decode(inputData);
+        //Base64.Decoder decoder = Base64.getDecoder();
+        byte[] decodedByteArray = NewBase64.decode(inputData);
         String dataSourceXML = new String(decodedByteArray, StandardCharsets.UTF_8);
 
         String format = "pdf";

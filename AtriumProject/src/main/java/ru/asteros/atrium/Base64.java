@@ -23,7 +23,7 @@
  *
  */
 
-package java.util;
+package ru.asteros.atrium;
 
 import java.io.FilterOutputStream;
 import java.io.InputStream;
@@ -31,6 +31,8 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
+import java.util.Objects;
 
 /**
  * This class consists exclusively of static methods for obtaining
@@ -79,7 +81,7 @@ public class Base64 {
     private Base64() {}
 
     /**
-     * Returns a {@link java.util.Base64.Encoder} that encodes using the
+     * Returns a {@link Base64.Encoder} that encodes using the
      * <a href="#basic">Basic</a> type base64 encoding scheme.
      *
      * @return  A Base64 encoder.
@@ -89,7 +91,7 @@ public class Base64 {
     }
 
     /**
-     * Returns a {@link java.util.Base64.Encoder} that encodes using the
+     * Returns a {@link Base64.Encoder} that encodes using the
      * <a href="#url">URL and Filename safe</a> type base64
      * encoding scheme.
      *
@@ -100,7 +102,7 @@ public class Base64 {
     }
 
     /**
-     * Returns a {@link java.util.Base64.Encoder} that encodes using the
+     * Returns a {@link Base64.Encoder} that encodes using the
      * <a href="#mime">MIME</a> type base64 encoding scheme.
      *
      * @return  A Base64 encoder.
@@ -110,7 +112,7 @@ public class Base64 {
     }
 
     /**
-     * Returns a {@link java.util.Base64.Encoder} that encodes using the
+     * Returns a {@link Base64.Encoder} that encodes using the
      * <a href="#mime">MIME</a> type base64 encoding scheme
      * with specified line length and line separators.
      *
@@ -142,7 +144,7 @@ public class Base64 {
     }
 
     /**
-     * Returns a {@link java.util.Base64.Decoder} that decodes using the
+     * Returns a {@link Base64.Decoder} that decodes using the
      * <a href="#basic">Basic</a> type base64 encoding scheme.
      *
      * @return  A Base64 decoder.
@@ -152,7 +154,7 @@ public class Base64 {
     }
 
     /**
-     * Returns a {@link java.util.Base64.Decoder} that decodes using the
+     * Returns a {@link Base64.Decoder} that decodes using the
      * <a href="#url">URL and Filename safe</a> type base64
      * encoding scheme.
      *
@@ -163,7 +165,7 @@ public class Base64 {
     }
 
     /**
-     * Returns a {@link java.util.Base64.Decoder} that decodes using the
+     * Returns a {@link Base64.Decoder} that decodes using the
      * <a href="#mime">MIME</a> type base64 decoding scheme.
      *
      * @return  A Base64 decoder.
@@ -176,7 +178,7 @@ public class Base64 {
      * This class implements an encoder for encoding byte data using
      * the Base64 encoding scheme as specified in RFC 4648 and RFC 2045.
      *
-     * <p> Instances of {@link java.util.Base64.Encoder} class are safe for use by
+     * <p> Instances of {@link Base64.Encoder} class are safe for use by
      * multiple concurrent threads.
      *
      * <p> Unless otherwise noted, passing a {@code null} argument to
@@ -184,7 +186,7 @@ public class Base64 {
      * {@link NullPointerException NullPointerException} to
      * be thrown.
      *
-     * @see     java.util.Base64.Decoder
+     * @see     Base64.Decoder
      * @since   1.8
      */
     public static class Encoder {
@@ -249,7 +251,7 @@ public class Base64 {
 
         /**
          * Encodes all bytes from the specified byte array into a newly-allocated
-         * byte array using the {@link java.util.Base64} encoding scheme. The returned byte
+         * byte array using the {@link Base64} encoding scheme. The returned byte
          * array is of the length of the resulting bytes.
          *
          * @param   src
@@ -268,7 +270,7 @@ public class Base64 {
 
         /**
          * Encodes all bytes from the specified byte array using the
-         * {@link java.util.Base64} encoding scheme, writing the resulting bytes to the
+         * {@link Base64} encoding scheme, writing the resulting bytes to the
          * given output byte array, starting at offset 0.
          *
          * <p> It is the responsibility of the invoker of this method to make
@@ -294,7 +296,7 @@ public class Base64 {
         }
 
         /**
-         * Encodes the specified byte array into a String using the {@link java.util.Base64}
+         * Encodes the specified byte array into a String using the {@link Base64}
          * encoding scheme.
          *
          * <p> This method first encodes all input bytes into a base64 encoded
@@ -318,7 +320,7 @@ public class Base64 {
 
         /**
          * Encodes all remaining bytes from the specified byte buffer into
-         * a newly-allocated ByteBuffer using the {@link java.util.Base64} encoding
+         * a newly-allocated ByteBuffer using the {@link Base64} encoding
          * scheme.
          *
          * Upon return, the source buffer's position will be updated to
@@ -351,7 +353,7 @@ public class Base64 {
         }
 
         /**
-         * Wraps an output stream for encoding byte data using the {@link java.util.Base64}
+         * Wraps an output stream for encoding byte data using the {@link Base64}
          * encoding scheme.
          *
          * <p> It is recommended to promptly close the returned output stream after
@@ -453,7 +455,7 @@ public class Base64 {
      * {@code IOException} when reading from a Base64 stream) is thrown
      * during decoding.
      *
-     * <p> Instances of {@link java.util.Base64.Decoder} class are safe for use by
+     * <p> Instances of {@link Base64.Decoder} class are safe for use by
      * multiple concurrent threads.
      *
      * <p> Unless otherwise noted, passing a {@code null} argument to
@@ -461,7 +463,7 @@ public class Base64 {
      * {@link NullPointerException NullPointerException} to
      * be thrown.
      *
-     * @see     java.util.Base64.Encoder
+     * @see     Base64.Encoder
      * @since   1.8
      */
     public static class Decoder {
@@ -508,7 +510,7 @@ public class Base64 {
         static final Decoder RFC2045         = new Decoder(false, true);
 
         /**
-         * Decodes all bytes from the input byte array using the {@link java.util.Base64}
+         * Decodes all bytes from the input byte array using the {@link Base64}
          * encoding scheme, writing the results into a newly-allocated output
          * byte array. The returned byte array is of the length of the resulting
          * bytes.
@@ -532,7 +534,7 @@ public class Base64 {
 
         /**
          * Decodes a Base64 encoded String into a newly-allocated byte array
-         * using the {@link java.util.Base64} encoding scheme.
+         * using the {@link Base64} encoding scheme.
          *
          * <p> An invocation of this method has exactly the same effect as invoking
          * {@code decode(src.getBytes(StandardCharsets.ISO_8859_1))}
@@ -550,7 +552,7 @@ public class Base64 {
         }
 
         /**
-         * Decodes all bytes from the input byte array using the {@link java.util.Base64}
+         * Decodes all bytes from the input byte array using the {@link Base64}
          * encoding scheme, writing the results into the given output byte array,
          * starting at offset 0.
          *
@@ -583,7 +585,7 @@ public class Base64 {
         }
 
         /**
-         * Decodes all bytes from the input byte buffer using the {@link java.util.Base64}
+         * Decodes all bytes from the input byte buffer using the {@link Base64}
          * encoding scheme, writing the results into a newly-allocated ByteBuffer.
          *
          * <p> Upon return, the source buffer's position will be updated to
@@ -628,7 +630,7 @@ public class Base64 {
         }
 
         /**
-         * Returns an input stream for decoding {@link java.util.Base64} encoded byte stream.
+         * Returns an input stream for decoding {@link Base64} encoded byte stream.
          *
          * <p> The {@code read}  methods of the returned {@code InputStream} will
          * throw {@code IOException} when reading bytes that cannot be decoded.
