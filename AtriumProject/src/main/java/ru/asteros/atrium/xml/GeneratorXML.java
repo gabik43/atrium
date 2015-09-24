@@ -181,8 +181,8 @@ public class GeneratorXML {
         queryString.append(" FROM " + REPORT_TABLE_NAME + " LEFT JOIN " + ACT_TABLE_NAME + " ON " + REPORT_TABLE_NAME + ".P_ITG_CLNT_ID = " + ACT_TABLE_NAME + ".P_ITG_CLNT_ID LEFT JOIN "
                 + PAYMENT_TABLE_NAME + " ON " + REPORT_TABLE_NAME + ".P_ITG_CLNT_ID = " + PAYMENT_TABLE_NAME + ".P_ITG_CLNT_ID WHERE " + REPORT_TABLE_NAME +
                 ".BRANCH_ID = '" + regionInfo.id + "'");
-        queryString.append(" AND ");
-        queryString.append(FormatDeliveryQualification(REPORT_TABLE_NAME+ ".BDT_NAME", REPORT_TABLE_NAME+ ".DELIVERY_GROUP", regionInfoInput ));
+        //queryString.append(" AND ");
+        //queryString.append(FormatDeliveryQualification(REPORT_TABLE_NAME+ ".BDT_ID", REPORT_TABLE_NAME+ ".DG_ID", regionInfoInput ));
 
         return queryString;
     }
@@ -468,8 +468,10 @@ public class GeneratorXML {
                 addElement(prefix, ALL_FIELD[i][FIELD_NAME_IN_XML], clientElement);
             }
         }
-        addElementDirect("BRANCH_NAME", regionInfo.regionEng);
-        addElementDirect("MACRO_REGION_RUS", regionInfo.macroRegionEng);
+        addElementDirect("BRANCH_NAME", regionInfo.regionRus);
+        addElementDirect("MACRO_REGION_RUS", regionInfo.macroRegionRus);
+        addElementDirect("BRANCH_NAME_ENG", regionInfo.regionEng);
+        addElementDirect("MACRO_REGION_ENG", regionInfo.macroRegionEng);
         addElementDirect("E-MAIL", regionInfo.email);
 
         if (serverOption.clientType.equals(B2B) || serverOption.clientType.equals(B2B_CDMA)) {

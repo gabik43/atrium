@@ -10,8 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.lang3.StringEscapeUtils;
-
 /**
  * Created by Timofey on 02.09.2015.
  */
@@ -235,7 +233,7 @@ public class RegionInfoUtility {
 
             for(int i = 0; i < pairArr.length; i++){
                 pairArr[i] = pairArr[i].trim();
-                pairArr[i] = StringEscapeUtils.escapeJava(pairArr[i]);;
+                //pairArr[i] = StringEscapeUtils.escapeJava(pairArr[i]);
 
                 if(pairArr[i].contains("null") && pairArr[i].length() < 6)
                     pairArr[i] = "null";
