@@ -102,6 +102,8 @@ public class MemberController {
         byte[] decodedByteArray = NewBase64.decode(inputData);
         String dataSourceXML = new String(decodedByteArray, StandardCharsets.UTF_8);
 
+        log.trace("input xml: " + dataSourceXML);
+
         String format = "pdf";
         String recvMessage = "";
 
