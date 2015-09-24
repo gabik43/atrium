@@ -1,7 +1,7 @@
 package atrium.fx.ru.controller;
 
 import atrium.fx.ru.LogDB;
-import atrium.fx.ru.PrinterTask;
+import atrium.fx.ru.print.PrinterTask;
 import atrium.fx.ru.arhive.ZIPArchive;
 import atrium.fx.ru.core.ClientApplication;
 import atrium.fx.ru.file.FileHandler;
@@ -47,9 +47,9 @@ public class Controller{
 //        } catch (Exception e) {
 //            e.printStackTrace();
 //        }
-//        new PrinterTask(files).printWithQueue();
+//        new PrinterTask(files).print();
 
-        new PrinterTask(ClientApplication.getSelectedFiles()).printWithQueue();
+        new PrinterTask(ClientApplication.getSelectedFiles()).print();
     }
 
     /* Клик по папке в дереве (открытие содержимого папки)*/
