@@ -58,8 +58,8 @@ public class FileHandler extends Thread {
             infoarhiveManager = new InfoarhiveManager();
             infoarhiveManager.UploadXMLFile(filesXml[0]);
             removeProcessedFile(new File(path + "/" + AppConfiguration.get("XML_DIRECTORY_OUTPUT") + " / tele2_base.xml"));
-                    log.info("Thread completed. Folder: " + path + ". Job status: " + treatedRegion.get(regionInfo.regionRus));
-            treatedRegion.remove(regionInfo.regionRus);
+                    log.info("Thread completed. Folder: " + path + ". Job status: " + treatedRegion.get(regionInfo.regionEng));
+            treatedRegion.remove(regionInfo.regionEng);
             subOrderDB.setStDone(AppConfiguration.DONE_FILE_UPLOAD, subOrderDB.MODE_FILE_MANAGER);
         } catch (Exception ex){
             subOrderDB.setStError(AtriumError.MOVING_FILES_TO_FOLDER, subOrderDB.MODE_FILE_MANAGER);
