@@ -41,15 +41,15 @@ public class Controller{
     @FXML
     private void start_print(ActionEvent actionEvent) {
 
-        List<File> files = new LinkedList();
-        try {
-            files.add(new File("C:/ForPrint/50kb.pdf"));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        new PrinterTask(files).print();
+//        List<File> files = new LinkedList();
+//        try {
+//            files.add(new File("C:/ForPrint/50kb.pdf"));
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        new PrinterTask(files).print();
 
-//        new PrinterTask(ClientApplication.getSelectedFiles()).print();
+        new PrinterTask(ClientApplication.getSelectedFiles()).print();
     }
 
     /* Клик по папке в дереве (открытие содержимого папки)*/

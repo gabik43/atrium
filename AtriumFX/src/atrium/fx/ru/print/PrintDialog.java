@@ -24,7 +24,7 @@ public class PrintDialog extends JDialog {
 
     private void create() {
 
-        setTitle("Print");
+        setTitle("Печать");
         setResizable(false);
 
         String[] listToComboBox = new String[ps.length];
@@ -34,7 +34,7 @@ public class PrintDialog extends JDialog {
 
         final JComboBox comboBox = new JComboBox(listToComboBox);
         JButton[] button = new JButton[2];
-        button[0] = new JButton("������");
+        button[0] = new JButton("Отмена");
         button[0].addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
