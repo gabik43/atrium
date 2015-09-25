@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="JavaFXApp.jnlp">
+<jnlp spec="6.0+" xmlns:jfx="http://javafx.com" href="JavaFXApp.jnlp">
   <information>
     <title>DOC</title>
     <vendor>Atrinity</vendor>
@@ -14,9 +14,9 @@
     <jar href="JavaFXApp.jar" size="18718" download="eager" main="true"/>
 
   </resources>
-  <applet-desc  width="600" height="400" main-class="com.javafx.main.NoJavaFXFallback"  name="JavaFXApp" >
+  <applet-desc  width="1024" height="768" main-class="com.javafx.main.NoJavaFXFallback"  name="JavaFXApp" >
     <param name="requiredFXVersion" value="2.2+"/>
   </applet-desc>
-  <jfx:javafx-desc  width="600" height="400" main-class="atrium.fx.ru.Main"  name="JavaFXApp" />
+  <jfx:javafx-desc  width="1024" height="768" main-class="atrium.fx.ru.Main"  name="JavaFXApp" />
   <update check="background"/>
 </jnlp>
