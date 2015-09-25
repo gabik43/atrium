@@ -47,8 +47,8 @@ hr {
     padding: 0;
 }
 
-td {
-    border: 1px solid rgba(255, 255, 255, 0.1);
+td, th {
+    border: 1px solid rgba(20, 20, 20, 0.1);
 }
 
 
@@ -71,12 +71,12 @@ td {
     horiz-align: center;
     text-align: center;
     padding: 10px;
-    font-size: 1.0em;
+    font-size: small;
     font-weight: 500;
     margin: auto auto auto auto;
+    width: 60px;
     background-color: #171111;
     border-radius: 3pt;
-    width: 50pt;
     opacity: 0.9;
     color: #f1f1f1;
 }
@@ -91,20 +91,23 @@ td {
 | |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| */
 #order-table {
     background-color: rgba(220, 221, 213, 0.24);
-    border: 2px solid rgba(20, 20, 20, 0.11);
+    border: 2px solid rgba(20, 20, 20, 0.15);
     border-radius: 3pt;
-    width: 90%;
+    width: 100%;
+    align: center;
     margin: 20pt auto;
     text-align: center;
 }
 
 .tr-head {
     background-color: rgba(255, 255, 255, 0.42);
+    font-size: small;
 }
 
 .tr-order {
     background-color: rgba(255, 255, 255, 0.22);
     text-align: left;
+    font-size: small;
 }
 
 .tr-order:hover {

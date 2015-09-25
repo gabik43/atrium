@@ -32,7 +32,8 @@
 
     <script>
         function onClickDeleteButton(obj){
-            document.location.href = "./delete?id_in_db=" + obj.id;
+            if(confirm("Вы действительно хотите удалить запись " + document.getElementById("region_rus_" + obj.id).innerHTML + "?"))
+                document.location.href = "./delete?id_in_db=" + obj.id;
         }
         function onClickUpdateButton(obj){
             document.location.href = "./update?id_in_db=" + obj.id +
@@ -69,65 +70,83 @@
     <table id="order-table">
         <thead>
         <tr class = "tr-head">
-            <th align="left">&nbsp;№&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
-            <th align="left">&nbsp;ID&nbsp;региона&nbsp;&nbsp;</th>
+            <th align="left">&nbsp;№&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+            <th align="left">&nbsp;ID<br>&nbsp;региона&nbsp;</th>
             <th align="left">&nbsp;Регион</th>
             <th align="left">&nbsp;Регион(рус)</th>
-            <th align="left">&nbsp;Макрорегион&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
-            <th align="left">&nbsp;Макрорегион(рус)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
-            <th align="left">&nbsp;Приоритет&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+            <th align="left">&nbsp;Макрорегион&nbsp;&nbsp;</th>
+            <th align="left">&nbsp;Макрорегион(рус)&nbsp;&nbsp;</th>
+            <th align="left">&nbsp;Приоритет&nbsp;&nbsp;</th>
             <th align="left">&nbsp;E-mail</th>
-            <th align="left">&nbsp;Логотип&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
-            <th align="left">&nbsp;Активность<br>&nbsp;региона</th>
-            <th align="left"><nobr>&nbsp;Короткий номер</nobr><br><nobr>&nbsp;для клиентов B2C&nbsp;</nobr></th>
-            <th align="left"><nobr>&nbsp;Короткий номер</nobr><br><nobr>&nbsp;для клиентов B2B&nbsp;</nobr></th>
-            <th align="left">&nbsp;Активность<br><nobr>&nbsp;групп доставки&nbsp;</nobr></th>
+            <th align="left">&nbsp;ID<br>&nbsp;логотипа&nbsp;</th>
+            <th align="left">&nbsp;Активность&nbsp;<br>&nbsp;региона&nbsp;</th>
+            <th align="left">&nbsp;Короткий&nbsp;<br>&nbsp;номер<br>&nbsp;B2C</th>
+            <th align="left">&nbsp;Короткий&nbsp;<br>&nbsp;номер<br>&nbsp;B2B</th>
+            <th align="left">&nbsp;Актив-<br>&nbsp;ность&nbsp;<br>&nbsp;групп<br>&nbsp;доставки&nbsp;</th>
             <th align="left"></th>
             <th align="left"></th>
         </tr>
         </thead>
         <tbody>
 
+        <tr class = "tr-order">
+            <td align="left"></td>
+            <td class="number_field" id="new_id" align="left">0</td>
+            <td class="changed_field" id="new_region_eng" align="left">-</td>
+            <td class="changed_field" id="new_region_rus" align="left">-</td>
+            <td class="changed_field" id="new_macro_region_eng" align="left">-</td>
+            <td class="changed_field" id="new_macro_region_rus" align="left">-</td>
+            <td class="number_field" id="new_priority" align="left">0</td>
+            <td class="changed_field" id="new_email" align="left">-</td>
+            <td class="number_field" id="new_logo_id" align="left">0</td>
+            <td class="number_field" id="new_status" align="left">0</td>
+            <td class="changed_field" id="new_phone_b2c" align="left">-</td>
+            <td class="changed_field" id="new_phone_b2b" align="left">-</td>
+            <td class="changed_field" id="new_delivery_group_status" align="left">-</td>
+            <td> <button onClick="onClickAddButton()">
+                <div id="delete-button">Добавить</div></button></td>
+        </tr>
+
             <%
         List<RegionInfo> records = RegionInfoUtility.getAllRecords();
         int n=0;
         for (RegionInfo record : records){
-          out.println("<tr class = \"tr-order\">" +
-          "<td align=\"left\">" + ++n + "</td>" +
-          "<td class=\"number_field\" id=\"id_" + record.idInDB + "\" align=\"left\">" + record.id + "</td>" +
-          "<td class=\"changed_field\" id=\"region_eng_" + record.idInDB + "\" align=\"left\">" + record.regionEng + "</td>" +
-          "<td class=\"changed_field\" id=\"region_rus_" + record.idInDB + "\" align=\"left\">" + record.regionRus + "</td>" +
-          "<td class=\"changed_field\" id=\"macro_region_eng_" + record.idInDB + "\" align=\"left\">" + record.macroRegionEng + "</td>" +
-          "<td class=\"changed_field\" id=\"macro_region_rus_" + record.idInDB + "\" align=\"left\">" + record.macroRegionRus + "</td>" +
-          "<td class=\"number_field\" id=\"priority_" + record.idInDB + "\" align=\"left\">" + record.priority + "</td>" +
-          "<td class=\"changed_field\" id=\"email_" + record.idInDB + "\" align=\"left\">" + record.email + "</td>" +
-          "<td class=\"number_field\" id=\"logo_id_" + record.idInDB + "\" align=\"left\">" + record.logoId + "</td>" +
-          "<td class=\"number_field\" id=\"status_" + record.idInDB + "\" align=\"left\">" + record.status + "</td>" +
-          "<td class=\"changed_field\" id=\"phone_b2c_" + record.idInDB + "\" align=\"left\">" + record.phoneB2C + "</td>" +
-          "<td class=\"changed_field\" id=\"phone_b2b_" + record.idInDB + "\" align=\"left\">" + record.phoneB2B + "</td>" +
-          "<td class=\"changed_field\" id=\"delivery_group_status_" + record.idInDB + "\" align=\"left\">" + record.deliveryGroupStatus + "</td>" +
-          "<td> <button id=\"" + record.idInDB + "\" onClick=\"onClickDeleteButton(this)\">" +
-          "<div id=\"delete-button\" >Удалить</div>" + "</button> </td>" +
-          "<td> <button id=\"" + record.idInDB + "\" onClick=\"onClickUpdateButton(this)\">" +
-          "<div id=\"delete-button\" >Изменить</div>" + "</button>" + "</td>" +
-          "</tr>");
+              out.println("<tr class = \"tr-order\">" +
+              "<td align=\"left\">" + ++n + "</td>" +
+              "<td class=\"number_field\" id=\"id_" + record.idInDB + "\" align=\"left\">" + record.id + "</td>" +
+              "<td class=\"changed_field\" id=\"region_eng_" + record.idInDB + "\" align=\"left\">" + record.regionEng + "</td>" +
+              "<td class=\"changed_field\" id=\"region_rus_" + record.idInDB + "\" align=\"left\">" + record.regionRus + "</td>" +
+              "<td class=\"changed_field\" id=\"macro_region_eng_" + record.idInDB + "\" align=\"left\">" + record.macroRegionEng + "</td>" +
+              "<td class=\"changed_field\" id=\"macro_region_rus_" + record.idInDB + "\" align=\"left\">" + record.macroRegionRus + "</td>" +
+              "<td class=\"number_field\" id=\"priority_" + record.idInDB + "\" align=\"left\">" + record.priority + "</td>" +
+              "<td class=\"changed_field\" id=\"email_" + record.idInDB + "\" align=\"left\">" + record.email + "</td>" +
+              "<td class=\"number_field\" id=\"logo_id_" + record.idInDB + "\" align=\"left\">" + record.logoId + "</td>" +
+              "<td class=\"number_field\" id=\"status_" + record.idInDB + "\" align=\"left\">" + record.status + "</td>" +
+              "<td class=\"changed_field\" id=\"phone_b2c_" + record.idInDB + "\" align=\"left\">" + record.phoneB2C + "</td>" +
+              "<td class=\"changed_field\" id=\"phone_b2b_" + record.idInDB + "\" align=\"left\">" + record.phoneB2B + "</td>" +
+              "<td class=\"changed_field\" id=\"delivery_group_status_" + record.idInDB + "\" align=\"left\">" + record.deliveryGroupStatus + "</td>" +
+              "<td> <button id=\"" + record.idInDB + "\" onClick=\"onClickDeleteButton(this)\">" +
+              "<div id=\"delete-button\" >Удалить</div>" + "</button> </td>" +
+              "<td> <button id=\"" + record.idInDB + "\" onClick=\"onClickUpdateButton(this)\">" +
+              "<div id=\"delete-button\" >Изменить</div>" + "</button>" + "</td>" +
+              "</tr>");
         }
-        out.println("<td align=\"left\"></td>" +
-        "<td class=\"number_field\" id=\"new_id\" align=\"left\">0</td>" +
-        "<td class=\"changed_field\" id=\"new_region_eng\" align=\"left\">-</td>" +
-        "<td class=\"changed_field\" id=\"new_region_rus\" align=\"left\">-</td>" +
-        "<td class=\"changed_field\" id=\"new_macro_region_eng\" align=\"left\">-</td>" +
-        "<td class=\"changed_field\" id=\"new_macro_region_rus\" align=\"left\">-</td>" +
-        "<td class=\"number_field\" id=\"new_priority\" align=\"left\">0</td>" +
-        "<td class=\"changed_field\" id=\"new_email\" align=\"left\">-</td>" +
-        "<td class=\"number_field\" id=\"new_logo_id\" align=\"left\">0</td>" +
-        "<td class=\"number_field\" id=\"new_status\" align=\"left\">0</td>" +
-        "<td class=\"changed_field\" id=\"new_phone_b2c\" align=\"left\">-</td>" +
-        "<td class=\"changed_field\" id=\"new_phone_b2b\" align=\"left\">-</td>" +
-        "<td class=\"changed_field\" id=\"new_delivery_group_status\" align=\"left\">-</td>" +
-        "<td> <button onClick=\"onClickAddButton()\">" +
-            "<div id=\"delete-button\" >Добавить</div>" + "</button>" + "</td>"
-        );
+//        out.println("<td align=\"left\"></td>" +
+//            "<td class=\"number_field\" id=\"new_id\" align=\"left\">0</td>" +
+//            "<td class=\"changed_field\" id=\"new_region_eng\" align=\"left\">-</td>" +
+//            "<td class=\"changed_field\" id=\"new_region_rus\" align=\"left\">-</td>" +
+//            "<td class=\"changed_field\" id=\"new_macro_region_eng\" align=\"left\">-</td>" +
+//            "<td class=\"changed_field\" id=\"new_macro_region_rus\" align=\"left\">-</td>" +
+//            "<td class=\"number_field\" id=\"new_priority\" align=\"left\">0</td>" +
+//            "<td class=\"changed_field\" id=\"new_email\" align=\"left\">-</td>" +
+//            "<td class=\"number_field\" id=\"new_logo_id\" align=\"left\">0</td>" +
+//            "<td class=\"number_field\" id=\"new_status\" align=\"left\">0</td>" +
+//            "<td class=\"changed_field\" id=\"new_phone_b2c\" align=\"left\">-</td>" +
+//            "<td class=\"changed_field\" id=\"new_phone_b2b\" align=\"left\">-</td>" +
+//            "<td class=\"changed_field\" id=\"new_delivery_group_status\" align=\"left\">-</td>" +
+//            "<td> <button onClick=\"onClickAddButton()\">" +
+//                "<div id=\"delete-button\" >Добавить</div>" + "</button>" + "</td>"
+//        );
 
     %>
 
