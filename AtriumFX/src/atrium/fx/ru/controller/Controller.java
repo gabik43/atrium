@@ -159,14 +159,9 @@ public class Controller{
 
                 @Override
                 public void run() {
-
                     ZIPArchive.start(ClientApplication.getSelectedFiles(), new File(zipFilePath));
-                    Platform.runLater(new Runnable() {
-                        @Override
-                        public void run() {
-                            InternalInterface.showDelayedWindow();
-                        }
-                    });
+
+                    InternalInterface.showDelayedWindow();
                 }
             }).start();
 

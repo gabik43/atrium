@@ -1,6 +1,9 @@
 package atrium.fx.ru.print;
 
+import atrium.fx.ru.InternalInterface;
 import atrium.fx.ru.LogDB;
+import atrium.fx.ru.arhive.ZIPArchive;
+import atrium.fx.ru.core.ClientApplication;
 
 import javax.print.*;
 import javax.print.attribute.HashPrintRequestAttributeSet;
@@ -28,6 +31,7 @@ public class PrinterTask {
     private PrintJobListener printJobListener;
     private int maxQueueSize = 1;  // more or equals 1 //TODO вынести в клиентский конфиг
     private int sleepTime = 100;
+    PrintService printService;
 
     public PrinterTask(List<File> files) {
         this.files = files;
@@ -141,30 +145,44 @@ public class PrinterTask {
 //            }
 //        }
 //        runWhenFinish();
-        LogDB.info("Принтер выбран, печать начата");
-        DocPrintJob printJob;
-        for (File fileToPrint : files) {
-            try {
-                printingDoc++;
-                printJob = myService.createPrintJob();
-                printJob.addPrintJobListener(printJobListener);
-                printJob.print(new SimpleDoc(new FileInputStream(fileToPrint), DocFlavor.INPUT_STREAM.AUTOSENSE, null), new HashPrintRequestAttributeSet());
-                while (new Integer(myService.getAttribute(QueuedJobCount.class).toString()).intValue() > maxQueueSize - 1) {
-                    Thread.sleep(sleepTime);
+
+        printService = myService;
+
+        InternalInterface.prepareDelayedSHow(InternalInterface.modalWindow);
+        InternalInterface.modalWindow.setMessage("Не закрывайте окно, идет печать документов");
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                LogDB.info("Принтер выбран, печать начата");
+                DocPrintJob printJob;
+                for (File fileToPrint : files) {
+                    try {
+                        printingDoc++;
+                        printJob = printService.createPrintJob();
+                        printJob.addPrintJobListener(printJobListener);
+                        printJob.print(new SimpleDoc(new FileInputStream(fileToPrint), DocFlavor.INPUT_STREAM.AUTOSENSE, null), new HashPrintRequestAttributeSet());
+                        while (new Integer(printService.getAttribute(QueuedJobCount.class).toString()).intValue() > maxQueueSize - 1) {
+                            Thread.sleep(sleepTime);
+                        }
+                        if (maxQueueSize==1) {
+                            LogDB.trace("Файл отправлен на принтер: " + fileToPrint);
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        failedFiles.add(fileToPrint);
+                    }
                 }
-                if (maxQueueSize==1) {
-                    LogDB.trace("Файл отправлен на принтер: " + fileToPrint);
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-                failedFiles.add(fileToPrint);
+                runWhenFinish();
             }
-        }
-        runWhenFinish();
+        }).start();
     }
 
     private void runWhenFinish() {
         LogDB.info("Печать закончена");
+
+        InternalInterface.showDelayedWindow();
+
 //        System.out.println("Отправлены на принтер: " + successFiles.toString());
 //        System.out.println("Завершено с ошибкой: " + failedFiles.toString());
     }
