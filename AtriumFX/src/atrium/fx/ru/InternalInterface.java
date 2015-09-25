@@ -20,7 +20,7 @@ public class InternalInterface {
     // метод устанавливает форму для отображения
     public static void showWindow(UITemplate ui) {
         InternalInterface.modalWindowNeedToClose = false;
-        ui.start();
+        ui.show();
     }
 
     //метод полготавливает систему к установке новой формы для отображдения
@@ -36,7 +36,7 @@ public class InternalInterface {
             @Override
             public void handle(long now) {
                 if (InternalInterface.modalWindowNeedToClose){
-                    InternalInterface.delayedWindow.start();
+                    InternalInterface.delayedWindow.show();
                     this.stop();
                 }
             }

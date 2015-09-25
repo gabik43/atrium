@@ -156,19 +156,20 @@ public class Controller{
             InternalInterface.showWindow(InternalInterface.modalWindow);
             InternalInterface.modalWindow.setMessage("Не закрывайте окно. Идет архивирование");
             InternalInterface.prepareDelayedSHow(InternalInterface.clientApplication);
-            
-            new Thread(new Runnable() {
+
+             new Thread(new Runnable() {
+                ClientApplication clientApplication;
+
                 @Override
                 public void run() {
-                    ZIPArchive.start(ClientApplication.getSelectedFiles(), new File(zipFilePath));
 
+                    ZIPArchive.start(ClientApplication.getSelectedFiles(), new File(zipFilePath));
                     Platform.runLater(new Runnable() {
                         @Override
                         public void run() {
                             InternalInterface.showDelayedWindow();
                         }
                     });
-
                 }
             }).start();
 

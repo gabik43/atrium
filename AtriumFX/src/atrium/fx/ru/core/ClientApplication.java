@@ -45,11 +45,15 @@ public class ClientApplication implements UITemplate{
         this.stage = stage;
     }
 
-    @Override
     public void start(){
         initApplication();
         readStructFileAndFolder();
         generateThreeView();
+        displayView();
+    }
+
+    @Override
+    public void show() {
         displayView();
     }
 
@@ -96,20 +100,20 @@ public class ClientApplication implements UITemplate{
         ObservableList<Node> children = anchorPane.getChildren();
         VBox vBox = (VBox)children.get(0);
         ObservableList<Node> childrenVbox = vBox.getChildren();
-
+        stage.show();
 
 
         TreeView treeView = (TreeView)childrenVbox.get(0);
         treeView.setRoot(rootNode);
         treeView.setCellFactory(CheckBoxTreeCell.<String>forTreeView());
-        stage.show();
+
 
         // Получаем кнопки
         printButton = (Button)scene.lookup("#start_print_button");
         archiveButton = (Button)scene.lookup("#start_archive_button");
 
         printButton.setDisable(true);
-        archiveButton.setDisable(true);
+        archiveButton.setDisable(false);
 
     }
 

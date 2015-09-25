@@ -38,12 +38,17 @@ public class ModalWindow  implements UITemplate{
         this.stage = stage;
     }
 
-    @Override
+
     public void start(){
         initApplication();
         displayView();
     }
 
+
+    @Override
+    public void show(){
+        displayView();
+    }
 
     /*?????? xml ? ????????, ????????? ???????? ?????*/
     private void initApplication(){
@@ -63,10 +68,10 @@ public class ModalWindow  implements UITemplate{
         stage.setScene(scene);
         scene.setFill(Color.LIGHTGRAY);
 
+        stage.show();
+
         // Получаем кнопки
         message = (Text)scene.lookup("#message");
-
-        stage.show();
 
     }
 

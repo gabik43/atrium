@@ -5,6 +5,6 @@ package atrium.fx.ru.core;
  */
 public interface  UITemplate{
 
-        public void start();
+        public void show();
 
 }

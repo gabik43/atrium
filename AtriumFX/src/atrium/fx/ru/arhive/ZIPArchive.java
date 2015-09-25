@@ -1,7 +1,9 @@
 package atrium.fx.ru.arhive;
 
 import atrium.fx.ru.AppConfiguration;
+import atrium.fx.ru.InternalInterface;
 import atrium.fx.ru.LogDB;
+import atrium.fx.ru.core.ClientApplication;
 
 import java.io.*;
 import java.util.List;
@@ -11,7 +13,15 @@ import java.util.zip.ZipOutputStream;
 /**
  * Created by localadmin on 08.09.2015.
  */
-public class ZIPArchive {
+public class ZIPArchive extends Thread{
+
+    public List<File> listFileForArhive;
+    public File OutPath;
+
+    public void run() {
+        start(listFileForArhive, OutPath);
+        InternalInterface.showDelayedWindow();
+    }
 
     public static void start(List<File> listFileForArhive, File OutPath){
         try
