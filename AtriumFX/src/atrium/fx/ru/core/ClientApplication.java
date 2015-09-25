@@ -45,15 +45,20 @@ public class ClientApplication implements UITemplate{
         this.stage = stage;
     }
 
-    public void start(){
-        initApplication();
+    public void init(){
         readStructFileAndFolder();
+    }
+
+    public void start() {
+        initApplication();
         generateThreeView();
         displayView();
     }
 
     @Override
     public void show() {
+        initApplication();
+        generateThreeView();
         displayView();
     }
 

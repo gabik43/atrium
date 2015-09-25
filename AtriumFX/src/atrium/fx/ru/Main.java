@@ -28,7 +28,19 @@ public class Main extends Application {
         InternalInterface.modalWindow.setMessage("Подождите, идет загрузка");
 
         InternalInterface.clientApplication = new ClientApplication(stage);
-        InternalInterface.clientApplication.start();
+        InternalInterface.prepareDelayedSHow(InternalInterface.clientApplication);
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                InternalInterface.clientApplication.init();
+                InternalInterface.setDelayedWindow(InternalInterface.clientApplication);
+                InternalInterface.showDelayedWindow();
+            }
+        }).start();
+
+
+
 
 
 
