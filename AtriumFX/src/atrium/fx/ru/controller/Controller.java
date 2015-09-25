@@ -2,13 +2,11 @@ package atrium.fx.ru.controller;
 
 import atrium.fx.ru.InternalInterface;
 import atrium.fx.ru.LogDB;
-import atrium.fx.ru.PrinterTask;
 import atrium.fx.ru.arhive.ZIPArchive;
 import atrium.fx.ru.core.ClientApplication;
 import atrium.fx.ru.file.FileHandler;
+import atrium.fx.ru.print.PrinterTask;
 import atrium.fx.ru.viewPDF.PDFViewer;
-import javafx.animation.AnimationTimer;
-import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -20,7 +18,6 @@ import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.io.File;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
@@ -52,7 +49,7 @@ public class Controller{
 //        }
 //        new PrinterTask(files).printWithQueue();
 
-        new PrinterTask(ClientApplication.getSelectedFiles()).printWithQueue();
+        new PrinterTask(ClientApplication.getSelectedFiles()).print();
     }
 
     /* Клик по папке в дереве (открытие содержимого папки)*/
