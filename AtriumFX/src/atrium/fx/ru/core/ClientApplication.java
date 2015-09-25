@@ -29,7 +29,7 @@ import java.util.*;
  * Created by A.Gabdrakhmanov on 08.09.2015.
  * Логика инициализации приложения.
  */
-public class ClientApplication {
+public class ClientApplication implements UITemplate{
 
     private Stage stage, archStage;
     private Parent root;
@@ -40,30 +40,12 @@ public class ClientApplication {
     Button printButton;
     Button archiveButton;
 
-    public void showArchiveWindow(){
-        Scene archScene = new Scene(VBoxBuilder.create()
-                .children(new Text("Идет архивирование"))
-                .spacing(30)
-                .alignment(Pos.CENTER)
-                .build());
-
-        stage.setScene(archScene);
-
-
-
-    }
-
-    public void closeArchiveWindow(){
-        stage.setScene(scene);
-
-    }
-
 
     public ClientApplication(Stage stage){
         this.stage = stage;
     }
 
-
+    @Override
     public void start(){
         initApplication();
         readStructFileAndFolder();

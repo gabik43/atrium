@@ -1,6 +1,7 @@
 package atrium.fx.ru;
 
 import atrium.fx.ru.core.ClientApplication;
+import atrium.fx.ru.core.ModalWindow;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
@@ -18,7 +19,10 @@ public class Main extends Application {
         LogDB.setupConnection();
         LogDB.info("Start client application");
         AppConfiguration.readConfigFile();
-        ClientApplication clientApplication = new ClientApplication(stage);
-        clientApplication.start();
+        InternalInterface.clientApplication = new ClientApplication(stage);
+        InternalInterface.modalWindow = new ModalWindow(stage);
+
+        InternalInterface.showWindow(InternalInterface.clientApplication);
+
     }
 }
