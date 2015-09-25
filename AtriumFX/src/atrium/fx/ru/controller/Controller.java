@@ -1,14 +1,11 @@
 package atrium.fx.ru.controller;
 
-import atrium.fx.ru.InternalInterface;
 import atrium.fx.ru.LogDB;
-import atrium.fx.ru.PrinterTask;
+import atrium.fx.ru.print.PrinterTask;
 import atrium.fx.ru.arhive.ZIPArchive;
 import atrium.fx.ru.core.ClientApplication;
 import atrium.fx.ru.file.FileHandler;
 import atrium.fx.ru.viewPDF.PDFViewer;
-import javafx.animation.AnimationTimer;
-import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -44,15 +41,15 @@ public class Controller{
     @FXML
     private void start_print(ActionEvent actionEvent) {
 
-//        List<File> files = new LinkedList();
-//        try {
-//            files.add(new File("C:/ForPrint/50kb.pdf"));
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//        new PrinterTask(files).printWithQueue();
+        List<File> files = new LinkedList();
+        try {
+            files.add(new File("C:/ForPrint/50kb.pdf"));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        new PrinterTask(files).print();
 
-        new PrinterTask(ClientApplication.getSelectedFiles()).printWithQueue();
+//        new PrinterTask(ClientApplication.getSelectedFiles()).print();
     }
 
     /* Клик по папке в дереве (открытие содержимого папки)*/
@@ -140,10 +137,6 @@ public class Controller{
     private boolean waitArchFlag = true;
     public void start_arhive(ActionEvent actionEvent) {
 
-        InternalInterface.showWindow(InternalInterface.modalWindow);
-        InternalInterface.modalWindow.setMessage("Не закрывайте окно. Идет архивирование");
-        InternalInterface.prepareDelayedSHow(InternalInterface.clientApplication);
-
         JFileChooser fc = new JFileChooser();
         FileNameExtensionFilter xmlFilter = new FileNameExtensionFilter("Zip files (*.zip)", "zip");
         fc.resetChoosableFileFilters();
@@ -154,25 +147,28 @@ public class Controller{
         if ( fc.showSaveDialog(null) == JFileChooser.APPROVE_OPTION ) {
             ClientApplication.getSelectedFiles();
             zipFilePath = fc.getSelectedFile().getPath();
-            if (!zipFilePath.endsWith(".zip") && !zipFilePath.endsWith(".ZIP"))
+            if(!zipFilePath.endsWith(".zip")&& !zipFilePath.endsWith(".ZIP"))
                 zipFilePath += ".zip";
 
             new Thread(new Runnable() {
                 @Override
                 public void run() {
                     ZIPArchive.start(ClientApplication.getSelectedFiles(), new File(zipFilePath));
-
-                    InternalInterface.showDelayedWindow();
-                }
+                    waitArchFlag = false;
+            }
             }).start();
 
             Set<File> foldersSet = ClientApplication.getNoChildFolders();
-            for (File file : foldersSet) {
+            for(File file:foldersSet){
                 //String filePath = file.getAbsolutePath().substring(file.getAbsolutePath().indexOf(AppConfiguration.FOLDER_FILE) + AppConfiguration.FOLDER_FILE.length() + 1);
-                LogDB.info("Архивирование документов из папки " + file.getAbsolutePath());
+                LogDB.info("Архивирование документов из папки " +  file.getAbsolutePath());
             }
+
         }
 
     }
+
+
+
 
 }
