@@ -459,6 +459,7 @@ public class GeneratorXML {
             if (ALL_FIELD[i][FIELD_NAME_IN_XML].equals("DELIVERY_GROUP")){
                 if (clientElement.get(prefix + ALL_FIELD[i][FIELD_NAME_IN_XML]) == null || clientElement.get(prefix + ALL_FIELD[i][FIELD_NAME_IN_XML]) == ""
                         || clientElement.get(prefix + ALL_FIELD[i][FIELD_NAME_IN_XML]) == " - "){
+                    // СЮДА
                     addElementDirect("DELIVERY_GROUP", "Без группы доставки");
                 } else {
                     String clientElementString = (clientElement.get(prefix + ALL_FIELD[i][FIELD_NAME_IN_XML])).toString();
