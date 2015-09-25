@@ -139,6 +139,7 @@ public class Controller{
     private String zipFilePath = "";
     private boolean waitArchFlag = true;
     public void start_arhive(ActionEvent actionEvent) {
+
         JFileChooser fc = new JFileChooser();
         FileNameExtensionFilter xmlFilter = new FileNameExtensionFilter("Zip files (*.zip)", "zip");
         fc.resetChoosableFileFilters();
@@ -161,7 +162,13 @@ public class Controller{
                 public void run() {
                     ZIPArchive.start(ClientApplication.getSelectedFiles(), new File(zipFilePath));
 
-                    InternalInterface.showDelayedWindow();
+                    Platform.runLater(new Runnable() {
+                        @Override
+                        public void run() {
+                            InternalInterface.showDelayedWindow();
+                        }
+                    });
+
                 }
             }).start();
 
