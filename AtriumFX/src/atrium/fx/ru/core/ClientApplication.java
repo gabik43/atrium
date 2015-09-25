@@ -8,7 +8,6 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -16,9 +15,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.CheckBoxTreeCell;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.layout.VBoxBuilder;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.File;
@@ -67,7 +64,7 @@ public class ClientApplication implements UITemplate{
     private void initApplication(){
         try {
             root = FXMLLoader.load(getClass().getResource("form.fxml"));
-            scene = new Scene(root, 800, 600);
+            scene = new Scene(root, 1024, 768);
         } catch (IOException e) {
             e.printStackTrace();
         }
