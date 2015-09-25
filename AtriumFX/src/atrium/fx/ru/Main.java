@@ -25,7 +25,7 @@ public class Main extends Application {
 
         InternalInterface.modalWindow = new ModalWindow(stage);
         InternalInterface.modalWindow.start();
-        InternalInterface.modalWindow.setMessage("Подождите, идет загрузка");
+        InternalInterface.modalWindow.setMessage("РџРѕРґРѕР¶РґРёС‚Рµ, РёРґРµС‚ Р·Р°РіСЂСѓР·РєР°");
 
         InternalInterface.clientApplication = new ClientApplication(stage);
         InternalInterface.clientApplication.start();
