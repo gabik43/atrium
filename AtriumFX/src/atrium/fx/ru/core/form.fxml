@@ -20,7 +20,7 @@
       <RowConstraints />
    </rowConstraints>
    <children>
-      <AnchorPane blendMode="EXCLUSION" prefHeight="600.0" prefWidth="800.0">
+      <AnchorPane prefHeight="600.0" prefWidth="800.0">
          <children>
             <SplitPane fx:id="split" dividerPositions="0.4321608040201005" prefHeight="160.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
               <items>
@@ -28,8 +28,8 @@
                      <children>
                         <VBox prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
-                              <TreeView fx:id="three" onMouseClicked="#tree_mouse_clicked" prefHeight="587.0" prefWidth="341.0" style="-fx-background-color: BABABA;" />
-                              <HBox alignment="CENTER_RIGHT" prefHeight="71.0" prefWidth="341.0">
+                              <TreeView fx:id="three" onMouseClicked="#tree_mouse_clicked" prefHeight="587.0" prefWidth="341.0" />
+                              <HBox alignment="CENTER_RIGHT" blendMode="DIFFERENCE" prefHeight="71.0" prefWidth="341.0">
                                  <children>
                                     <Button fx:id="start_print_button" mnemonicParsing="false" onAction="#start_print" text="Печать">
                                        <font>
@@ -66,20 +66,6 @@
          <opaqueInsets>
             <Insets />
          </opaqueInsets>
-         <effect>
-            <Lighting>
-               <bumpInput>
-                  <Shadow />
-               </bumpInput>
-               <light>
-                  <Light.Distant azimuth="14.63" elevation="45.02" />
-               </light>
-            </Lighting>
-         </effect>
       </AnchorPane>
    </children>
-   <effect>
-      <DropShadow color="#767787c4" />
-   </effect>
-
 </GridPane>
