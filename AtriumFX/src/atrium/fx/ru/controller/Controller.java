@@ -7,7 +7,6 @@ import atrium.fx.ru.core.ClientApplication;
 import atrium.fx.ru.file.FileHandler;
 import atrium.fx.ru.print.PrinterTask;
 import atrium.fx.ru.viewPDF.PDFViewer;
-import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;

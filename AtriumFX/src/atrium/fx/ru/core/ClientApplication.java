@@ -44,18 +44,17 @@ public class ClientApplication implements UITemplate{
 
     public void init(){
         readStructFileAndFolder();
+        generateThreeView();
     }
 
     public void start() {
         initApplication();
-        generateThreeView();
         displayView();
     }
 
     @Override
     public void show() {
         initApplication();
-        generateThreeView();
         displayView();
     }
 
