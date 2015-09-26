@@ -35,7 +35,7 @@
                         url : href="<c:url value="/static/resources/JavaFXApp.jnlp"/>",
                         placeholder : 'javafx-app-placeholder',
                         width : '100%',
-                        height : '100%'
+                        height : '80%'
                     },
                     {
                         javafx : '2.2+'
