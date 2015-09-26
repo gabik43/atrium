@@ -523,7 +523,7 @@ public class GeneratorXML {
         if (typeInField.equals("1")){
             return B2C;
         } else if (typeInField.equals("5")){
-            return B2B_CDMA;
+            return B2C_CDMA;
         } else if (typeInField.equals("2") || typeInField.equals("3")){
             return B2B;
         } else if (typeInField.equals("6") || typeInField.equals("7")){
