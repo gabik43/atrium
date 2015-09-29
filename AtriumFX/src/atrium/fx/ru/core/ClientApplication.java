@@ -114,7 +114,7 @@ public class ClientApplication implements UITemplate{
         archiveButton = (Button)scene.lookup("#start_archive_button");
 
         printButton.setDisable(true);
-        archiveButton.setDisable(false);
+        archiveButton.setDisable(true);
 
     }
 
