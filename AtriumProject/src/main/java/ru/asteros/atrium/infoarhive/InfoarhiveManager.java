@@ -28,21 +28,20 @@ public class InfoarhiveManager {
     XhiveLibraryIf charterXMLFiles;
 
     public InfoarhiveManager() throws IOException {
-        XhivePageCacheIf pageCache =
-                XhiveDriverFactory.getFederationFactory().createPageCache(4096);
-        XhiveFederationSetIf fs =
-                XhiveFederationSetFactory.getFederationSet(AppConfiguration.get("INFOARHIVE_URL"),
-                        pageCache);
-        XhiveDriverIf driver = fs.getFederation(AppConfiguration.get("INFOARHIVE_FEDERATION_NAME"));
-
-        session = driver.createSession();
-        session.connect(AppConfiguration.get("INFOARHIVE_USER"), AppConfiguration.get("INFOARHIVE_PASSWORD"), AppConfiguration.get("INFOARHIVE_FEDERATION_NAME"));
-
     }
 
 
-    public void UploadXMLFile(File file) {
+    public synchronized void UploadXMLFile(File file) throws IOException {
         try {
+            XhivePageCacheIf pageCache =
+                    XhiveDriverFactory.getFederationFactory().createPageCache(4096);
+            XhiveFederationSetIf fs =
+                    XhiveFederationSetFactory.getFederationSet(AppConfiguration.get("INFOARHIVE_URL"),
+                            pageCache);
+            XhiveDriverIf driver = fs.getFederation(AppConfiguration.get("INFOARHIVE_FEDERATION_NAME"));
+
+            session = driver.createSession();
+            session.connect(AppConfiguration.get("INFOARHIVE_USER"), AppConfiguration.get("INFOARHIVE_PASSWORD"), AppConfiguration.get("INFOARHIVE_FEDERATION_NAME"));
             session.begin();
             String absolutePath = file.getAbsolutePath();
             String[] threeFolderName = getFoldersName(file.getName());

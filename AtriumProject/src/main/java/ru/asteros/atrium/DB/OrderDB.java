@@ -2,6 +2,7 @@ package ru.asteros.atrium.DB;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import ru.asteros.atrium.AppConfiguration;
 import ru.asteros.atrium.DataBaseTemplateProvider.DataBaseTemplateProvider;
@@ -314,5 +315,14 @@ public class OrderDB {
         }
     }
 
-
+    /* Функция получения id активного региона*/
+    public static String getActiveIdOrder(){
+        try {
+            String query = "SELECT id FROM  " + TBL_ORDER + "  WHERE stats =  '" + STATUS_PERFORMED + "'";
+            String returnValue = dbConnector.queryForObject(query, null, String.class);
+            return returnValue;
+        } catch (DataAccessException ex){
+            return "id_not_found";
+        }
+    }
 }

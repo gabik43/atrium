@@ -7,6 +7,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import ru.asteros.atrium.AppConfiguration;
+import ru.asteros.atrium.DB.OrderDB;
 import ru.asteros.atrium.DB.RegionInfo;
 import ru.asteros.atrium.DB.RegionInfoUtility;
 import ru.asteros.atrium.DB.SubOrderDB;
@@ -132,7 +133,7 @@ public class ExecutiveSubOrder {
         try {
             subOrderDB.setStPerformed(AppConfiguration.PERFORMED_GET_CUSTOMER_DATA, subOrderDB.MODE_DOCUMENT_GENERATION);
             xml.delete(0, xml.length());
-            xml = GeneratorXML.getXMLStringFromDWH(regionInfoCurrent);
+            xml = GeneratorXML.getXMLStringFromDWH(regionInfoCurrent, OrderDB.getActiveIdOrder());
         } catch (AtriumException ex){   // Поймали внутренее исключение приложение, высылаем дальше.
             throw ex;
         } catch (Exception ex){

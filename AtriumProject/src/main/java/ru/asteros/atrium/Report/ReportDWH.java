@@ -2,13 +2,11 @@ package ru.asteros.atrium.Report;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import ru.asteros.atrium.AppConfiguration;
 import ru.asteros.atrium.DB.RegionInfoUtility;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
 
 /**
  * Created by Timofey on 24.09.2015.
@@ -25,7 +23,7 @@ public class ReportDWH {
      * @param nameField - имя клиента у которого возникла ошибка
      * @param message - описание ошибки
      */
-    public static void addWarning(int idOrder, String idRecord, String nameField, String message) {
+    public static void addWarning(String idOrder, String idRecord, String nameField, String message) {
 
         File fileForReport = null;
         FileWriter fw = null;

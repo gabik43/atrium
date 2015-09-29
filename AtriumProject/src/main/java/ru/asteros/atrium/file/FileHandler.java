@@ -57,6 +57,7 @@ public class FileHandler extends Thread {
             File[] filesXml = directory.listFiles();
             infoarhiveManager = new InfoarhiveManager();
             infoarhiveManager.UploadXMLFile(filesXml[0]);
+
             removeProcessedFile(new File(path + "/" + AppConfiguration.get("XML_DIRECTORY_OUTPUT") + " / tele2_base.xml"));
                     log.info("Thread completed. Folder: " + path + ". Job status: " + treatedRegion.get(regionInfo.regionEng));
             treatedRegion.remove(regionInfo.regionEng);

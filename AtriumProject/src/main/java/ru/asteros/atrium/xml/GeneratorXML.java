@@ -7,9 +7,11 @@ import ru.asteros.atrium.DB.RegionInfo;
 import ru.asteros.atrium.DB.TemplateDB;
 import ru.asteros.atrium.DB.TemplateInfo;
 import ru.asteros.atrium.DataBaseTemplateProvider.DataBaseTemplateProvider;
-import ru.asteros.atrium.IAFileNameFormatter.IAFileNameFormatter;
+import ru.asteros.atrium.stringVerification.ClearedStringAndString;
+import ru.asteros.atrium.stringVerification.StringVerification;
 import ru.asteros.atrium.ProjectException.AtriumError;
 import ru.asteros.atrium.ProjectException.AtriumException;
+import ru.asteros.atrium.Report.ReportDWH;
 import ru.asteros.atrium.Utils.Pair;
 
 import java.math.BigDecimal;
@@ -36,6 +38,8 @@ public class GeneratorXML {
 
     /*Информация, уникальная для региона*/
     private static RegionInfo regionInfo = new RegionInfo();
+
+    private static String orderId;
 
     /*Номер столбца отведенного для имени таблицы в описании полей*/
     private final static int TABLE_NAME = 0;
@@ -228,7 +232,8 @@ public class GeneratorXML {
 
     /*Формирование xml из базы данных DWH
     * @param regionEng - имя региона считываемого из базы.*/
-    public static StringBuilder getXMLStringFromDWH(RegionInfo regionInfoInput) throws Exception {
+    public static StringBuilder getXMLStringFromDWH(RegionInfo regionInfoInput, String idOrder) throws Exception {
+        GeneratorXML.orderId = idOrder;
         GeneratorXML.regionInfo = regionInfoInput;
         GeneratorXML.templateInfo = TemplateDB.getCurrentTemplateInfo();
         log.info("Receiving StringBuilder - xml. Region id: " + regionInfo.id);
@@ -457,13 +462,14 @@ public class GeneratorXML {
         outputXml.append("<").append(teg).append(">");
         for (int i = 0; i < ALL_FIELD.length; i++){
             if (ALL_FIELD[i][FIELD_NAME_IN_XML].equals("DELIVERY_GROUP")){
-                if (clientElement.get(prefix + ALL_FIELD[i][FIELD_NAME_IN_XML]) == null || clientElement.get(prefix + ALL_FIELD[i][FIELD_NAME_IN_XML]) == ""
-                        || clientElement.get(prefix + ALL_FIELD[i][FIELD_NAME_IN_XML]) == " - "){
-                    // СЮДА
+                if (clientElement.get(prefix + ALL_FIELD[i][FIELD_NAME_IN_XML]) == null || clientElement.get(prefix + ALL_FIELD[i][FIELD_NAME_IN_XML]) == ""){
+                    addElementDirect("DELIVERY_GROUP", "Без группы доставки");
+                } else if (clientElement.get(prefix + ALL_FIELD[i][FIELD_NAME_IN_XML]) == " - ") {
+                    ReportDWH.addWarning(orderId, currentPrimaryKey, "DELIVERY_GROUP", "у поля недопустимое значение: -");
                     addElementDirect("DELIVERY_GROUP", "Без группы доставки");
                 } else {
                     String clientElementString = (clientElement.get(prefix + ALL_FIELD[i][FIELD_NAME_IN_XML])).toString();
-                    addElementDirect("DELIVERY_GROUP", IAFileNameFormatter.getNameFolder(clientElementString));
+                    addElementWithReport(clientElementString, "DELIVERY_GROUP", "DELIVERY_GROUP");
                 }
             } else {
                 addElement(prefix, ALL_FIELD[i][FIELD_NAME_IN_XML], clientElement);
@@ -489,12 +495,19 @@ public class GeneratorXML {
 
     }
 
+    private static void addElementWithReport(String clientElementString,String nameFieldForAddInXml, String nameFieldForWarningMessage) {
+        ClearedStringAndString clearedStringAndString = StringVerification.getClearedStringAndStringWitchErrorSymbols(clientElementString);
+        addElementDirect(nameFieldForAddInXml, clearedStringAndString.clearedString);
+        if (clearedStringAndString.isFindPermSymbols){
+            ReportDWH.addWarning(orderId, currentPrimaryKey, nameFieldForWarningMessage, "Нaйдены недопустимые символы, они отмечены в квадратных скобках []: " + clearedStringAndString.stringWithPermissionSymbols);
+        }
+    }
+
     /*Добавление секции со служебными полями
     * @param clientElement - строка БД из которой берутся данные;*/
     private static void addServOption(Map clientElement){
         outputXml.append("<SERVOPTION>");
-
-        addElementDirect("FILE_NAME", IAFileNameFormatter.getNameFolder(serverOption.fileName));
+        addElementWithReport(serverOption.fileName, "FILE_NAME", "ACCOUNT + CONTRACT_INN + NAME + OB_EDATE");
         addElementDirect("YEAR_QUERY", serverOption.yearQuery);
         addElementDirect("MONTH_REQUEST", serverOption.monthRequest);
         addElementDirect("LOGO_ID", regionInfo.logoId);

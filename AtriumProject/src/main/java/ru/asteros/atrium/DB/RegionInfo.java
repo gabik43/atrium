@@ -1,10 +1,13 @@
 package ru.asteros.atrium.DB;
 
-import org.springframework.jdbc.core.JdbcTemplate;
-import ru.asteros.atrium.DataBaseTemplateProvider.DataBaseTemplateProvider;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import ru.asteros.atrium.Utils.Pair;
+import ru.asteros.atrium.stringVerification.ClearedStringAndString;
+import ru.asteros.atrium.stringVerification.StringVerification;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by A.Gabdrakhmanov on 19.08.2015.
@@ -26,24 +29,29 @@ public class RegionInfo {
     public String deliveryGroupStatus = "";
     public List<Pair<String, String>>  deliveryGroupStatusArray = new ArrayList<Pair<String, String>>();
 
-    private static JdbcTemplate dbConnector = DataBaseTemplateProvider.getInternalDataBaseJdbcTemplate();
+    private static Logger log = LoggerFactory.getLogger(RegionInfo.class);
 
     public RegionInfo(String id, String regionEng, String regionRus, String macroRegionEng, String macroRegionRus, String priority,
                       String email, String logoId, String status, String phoneB2C, String phoneB2B, String deliveryGroupStatus,
                       List<Pair<String, String>>  deliveryGroupStatusArray){
-        this.id = id;
-        this.regionEng = regionEng;
-        this.regionRus = regionRus;
-        this.macroRegionEng = macroRegionEng;
-        this.macroRegionRus = macroRegionRus;
-        this.logoId = logoId;
-        this.priority = priority;
-        this.email = email;
-        this.status = status;
-        this.phoneB2C = phoneB2C;
-        this.phoneB2B = phoneB2B;
-        this.deliveryGroupStatus = deliveryGroupStatus;
+        this.id = getStringWitchoutControllSymbols(id);
+        this.regionEng = getStringWitchoutControllSymbols(regionEng);
+        this.regionRus = getStringWitchoutControllSymbols(regionRus);
+        this.macroRegionEng = getStringWitchoutControllSymbols(macroRegionEng);
+        this.macroRegionRus = getStringWitchoutControllSymbols(macroRegionRus);
+        this.logoId = getStringWitchoutControllSymbols(logoId);
+        this.priority = getStringWitchoutControllSymbols(priority);
+        this.email = getStringWitchoutControllSymbols(email);
+        this.status = getStringWitchoutControllSymbols(status);
+        this.phoneB2C = getStringWitchoutControllSymbols(phoneB2C);
+        this.phoneB2B = getStringWitchoutControllSymbols(phoneB2B);
+        this.deliveryGroupStatus = getStringWitchoutControllSymbols(deliveryGroupStatus);
         this.deliveryGroupStatusArray = deliveryGroupStatusArray;
+    }
+
+    private String getStringWitchoutControllSymbols(String inputString){
+        ClearedStringAndString clearedStringAndString = StringVerification.getClearedStringAndStringWitchErrorSymbols(inputString);
+        return clearedStringAndString.clearedString;
     }
 
     public RegionInfo(String idInDB, String id, String regionEng, String regionRus, String macroRegionEng, String macroRegionRus, String priority,
