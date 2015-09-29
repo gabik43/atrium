@@ -151,7 +151,7 @@ public class Controller{
                 zipFilePath += ".zip";
 
             InternalInterface.showWindow(InternalInterface.modalWindow);
-            InternalInterface.modalWindow.setMessage("Не закрывайте окно. Идет архивирование");
+            InternalInterface.modalWindow.setMessage("Не закрывайте окно. Идёт архивирование");
             InternalInterface.prepareDelayedSHow(InternalInterface.clientApplication);
 
              new Thread(new Runnable() {

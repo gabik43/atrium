@@ -7,7 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * Created by localadmin on 24.09.2015.
+ * Created by Timofey Boldyrev on 24.09.2015.
  */
 public class PrintDialog extends JDialog {
 

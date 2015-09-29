@@ -54,7 +54,7 @@ public class ModalWindow  implements UITemplate{
     private void initApplication(){
         try {
             root = FXMLLoader.load(getClass().getResource("modalWindow.fxml"));
-            scene = new Scene(root, 800, 600);
+            scene = new Scene(root, 1024, 768);
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -113,12 +113,13 @@ public class ClientApplication implements UITemplate{
         printButton = (Button)scene.lookup("#start_print_button");
         archiveButton = (Button)scene.lookup("#start_archive_button");
 
-        printButton.setDisable(true);
-        archiveButton.setDisable(true);
+        printButton.setDisable(noChildFolders.isEmpty()?true : false);
+        archiveButton.setDisable(noChildFolders.isEmpty()?true : false);
 
     }
 
     public void findNoChildFolders(final CheckBoxTreeItem<String> node) {
+        if (node==null) return;
         if (node.getChildren().isEmpty()) {
             node.selectedProperty().addListener(new ChangeListener<Boolean>() {
                 @Override

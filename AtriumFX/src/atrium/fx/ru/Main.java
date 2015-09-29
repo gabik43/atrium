@@ -22,7 +22,7 @@ public class Main extends Application {
 
         InternalInterface.modalWindow = new ModalWindow(stage);
         InternalInterface.modalWindow.start();
-        InternalInterface.modalWindow.setMessage("Подождите, идет загрузка");
+        InternalInterface.modalWindow.setMessage("Подождите, идёт загрузка");
 
         InternalInterface.clientApplication = new ClientApplication(stage);
         InternalInterface.prepareDelayedSHow(InternalInterface.clientApplication);

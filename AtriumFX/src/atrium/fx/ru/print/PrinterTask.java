@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Timofey on 10.09.2015.
+ * Created by Timofey Boldyrev on 10.09.2015.
  */
 public class PrinterTask {
 
@@ -110,7 +110,7 @@ public class PrinterTask {
 
             DocFlavor flavor = DocFlavor.SERVICE_FORMATTED.PAGEABLE;
             PrintRequestAttributeSet patts = new HashPrintRequestAttributeSet();
-            patts.add(Sides.DUPLEX);
+//            patts.add(Sides.DUPLEX);
 
             PrintService[] ps = PrintServiceLookup.lookupPrintServices(flavor, patts);
             if (ps.length == 0) {
@@ -126,34 +126,18 @@ public class PrinterTask {
     }
 
     public void startPrint (PrintService myService) {
-//        while (!files.isEmpty()) {
-//            try {
-//                DocPrintJob printJob = myService.createPrintJob();
-//                printJob.addPrintJobListener(printJobListener);
-//                printJob.print(new SimpleDoc(new FileInputStream(files.get(0)), DocFlavor.INPUT_STREAM.AUTOSENSE, null), new HashPrintRequestAttributeSet());
-//                while (new Integer(myService.getAttribute(QueuedJobCount.class).toString()).intValue() > maxQueueSize - 1) {
-//                    Thread.sleep(sleepTime);
-//                }
-//                if (maxQueueSize==1) {
-//                    System.out.println("File has been sent to the printer: " + files.get(0));
-//                }
-//                files.remove(0);
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//                failedFiles.add(files.get(0));
-//                files.remove(0);
-//            }
-//        }
-//        runWhenFinish();
 
         printService = myService;
 
         InternalInterface.prepareDelayedSHow(InternalInterface.modalWindow);
-        InternalInterface.modalWindow.setMessage("Не закрывайте окно, идет печать документов");
+        InternalInterface.modalWindow.setMessage("Не закрывайте окно, идёт печать документов");
+        InternalInterface.showDelayedWindow();
+//        InternalInterface.showWindow(InternalInterface.modalWindow);
+//        InternalInterface.modalWindow.setMessage("Не закрывайте окно. Идёт архивирование");
 
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
+//        new Thread(new Runnable() {
+//            @Override
+//            public void run() {
                 LogDB.info("Принтер выбран, печать начата");
                 DocPrintJob printJob;
                 for (File fileToPrint : files) {
@@ -174,13 +158,14 @@ public class PrinterTask {
                     }
                 }
                 runWhenFinish();
-            }
-        }).start();
+//            }
+//        }).start();
     }
 
     private void runWhenFinish() {
-        LogDB.info("Печать закончена");
 
+        LogDB.info("Печать закончена");
+        InternalInterface.prepareDelayedSHow(InternalInterface.clientApplication);
         InternalInterface.showDelayedWindow();
 
 //        System.out.println("Отправлены на принтер: " + successFiles.toString());
