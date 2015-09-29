@@ -164,7 +164,7 @@ public class RegionInfoUtility {
                     " ,  " + newRecord.status +
                     " , '" + newRecord.phoneB2C + "' " +
                     " , '" + newRecord.phoneB2B + "' " +
-                    " , '" + newRecord.deliveryGroupStatus + "' )";
+                    " , N'" + newRecord.deliveryGroupStatus + "' )";
 
             dbConnector.update(query);
 
@@ -212,7 +212,7 @@ public class RegionInfoUtility {
                     " [" + STATUS + "] =  " + newRecord.status + " ," +
                     " [" + PHONE_B2C + "] =  '" + newRecord.phoneB2C + "' ," +
                     " [" + PHONE_B2B + "] =  '" + newRecord.phoneB2B + "' ," +
-                    " [" + DELIVERY_GROUP_STATUS + "] =  '" + newRecord.deliveryGroupStatus + "' " +
+                    " [" + DELIVERY_GROUP_STATUS + "] =  N'" + newRecord.deliveryGroupStatus + "' " +
                     " WHERE [" + ID_IN_DB + "] = " + idInDB;
 
             dbConnector.update(query);
