@@ -60,7 +60,8 @@
             String orderId = orderData.get("id").toString();
             String orderName = "Заказ №" + orderData.get("id").toString();
             String orderLink = "http://ya.ru";
-            String orderStatus = orderData.get("stats").toString();
+            String orderStatusEng = orderData.get("stats").toString();
+            String orderStatus = Status.valueOf(orderStatusEng).translate();
             String orderTime;
             try{
                 orderTime = orderData.get("createTime").toString();
