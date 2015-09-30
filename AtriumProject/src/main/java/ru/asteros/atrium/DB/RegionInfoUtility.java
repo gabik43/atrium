@@ -33,8 +33,8 @@ public class RegionInfoUtility {
     private final static String DELIVERY_GROUP_STATUS = "DELIVERY_GROUP_STATUS";
 
 
-    public final static String PAIR_DIVIDER =        ";";
-    public final static String ELEMENT_DIVIDER =     "-";
+    public final static String PAIR_DIVIDER =        ";;";
+    public final static String ELEMENT_DIVIDER =     "--";
 
     public static List<RegionInfo> getAllRecords() {
 
