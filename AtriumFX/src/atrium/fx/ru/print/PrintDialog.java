@@ -20,6 +20,7 @@ public class PrintDialog extends JDialog {
         this.ps = ps;
         create();
         setVisible(true);
+        setAlwaysOnTop(true);
     }
 
     private void create() {
