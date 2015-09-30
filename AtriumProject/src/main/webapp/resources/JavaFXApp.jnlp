@@ -12,7 +12,7 @@
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
     <jar href="JavaFXApp.jar" size="18718" download="eager" main="true"/>
-
+    <jar href="atrium/Libs/sqljdbc4-4.0.jar" size="585020" download="eager" />
   </resources>
   <applet-desc  width="1024" height="768" main-class="com.javafx.main.NoJavaFXFallback"  name="JavaFXApp" >
     <param name="requiredFXVersion" value="2.2+"/>
