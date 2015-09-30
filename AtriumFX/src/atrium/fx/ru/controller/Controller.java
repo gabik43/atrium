@@ -144,7 +144,9 @@ public class Controller{
         fc.setFileFilter(xmlFilter);
         fc.setAcceptAllFileFilterUsed(false);
 
-        if ( fc.showSaveDialog(null) == JFileChooser.APPROVE_OPTION ) {
+        if ( fc.showSaveDialog(new JDialog() {{
+                                  setAlwaysOnTop(true);
+                               }} ) == JFileChooser.APPROVE_OPTION ) {
             ClientApplication.getSelectedFiles();
             zipFilePath = fc.getSelectedFile().getPath();
             if (!zipFilePath.endsWith(".zip") && !zipFilePath.endsWith(".ZIP"))
