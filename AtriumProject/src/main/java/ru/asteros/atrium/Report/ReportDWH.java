@@ -34,7 +34,7 @@ public class ReportDWH {
 
             if (!fileExists) {
                 fileForReport.createNewFile();
-                fw.write("idRecord     nameField     message");
+                fw.write("ITG_CLNT_ID     nameField (or GroupNameFields)     message");
             }
             fw.write("\r\n" + idRecord + "   " + nameField + "   " + message);
 
