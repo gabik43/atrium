@@ -9,7 +9,7 @@
 
 <html class="no-js" lang="">
 <head>
-    <link href="//fonts.googleapis.com/css?family=Roboto:100italic,100,300italic,300,400italic,400,500italic,500,700italic,700,900italic,900" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css">
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Atrium. Панель управления</title>
@@ -21,7 +21,7 @@
 </head>
 <body>
 <div class = "header material_shadow">
-    <img id = logo src="http://ru.tele2.ru/img/logo.png"></img>
+   <!-- <img id = logo src="http://ru.tele2.ru/img/logo.png"></img>-->
 </div>
 
 <div class = "middle">
