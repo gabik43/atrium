@@ -3,19 +3,22 @@ package ru.asteros.atrium.xml;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.JdbcTemplate;
+import ru.asteros.atrium.AppConfiguration;
 import ru.asteros.atrium.DB.RegionInfo;
 import ru.asteros.atrium.DB.TemplateDB;
 import ru.asteros.atrium.DB.TemplateInfo;
 import ru.asteros.atrium.DataBaseTemplateProvider.DataBaseTemplateProvider;
-import ru.asteros.atrium.stringVerification.ClearedStringAndString;
-import ru.asteros.atrium.stringVerification.StringVerification;
 import ru.asteros.atrium.ProjectException.AtriumError;
 import ru.asteros.atrium.ProjectException.AtriumException;
 import ru.asteros.atrium.Report.ReportDWH;
 import ru.asteros.atrium.Utils.Pair;
+import ru.asteros.atrium.stringVerification.ClearedStringAndString;
+import ru.asteros.atrium.stringVerification.StringVerification;
 
+import java.io.*;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.nio.charset.Charset;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -26,10 +29,15 @@ import java.util.*;
 public class GeneratorXML {
     private static Logger log = LoggerFactory.getLogger(GeneratorXML.class);
 
+
+    private static String pathJobInputDirectory = AppConfiguration.get("PATH_TO_XML_FOR_XPRESSION");
+
     private static JdbcTemplate wayDatabase = DataBaseTemplateProvider.getDwhJdbcTemplate();
 
-    /*Строка, содержащая XML, сформированного из базы*/
-    public static StringBuilder outputXml = new StringBuilder();
+
+
+    private static FileWriter fw;
+    private static OutputStreamWriter char_output;
 
 
     private static ServerOption serverOption = new ServerOption();
@@ -185,27 +193,27 @@ public class GeneratorXML {
         queryString.append(" FROM " + REPORT_TABLE_NAME + " LEFT JOIN " + ACT_TABLE_NAME + " ON " + REPORT_TABLE_NAME + ".P_ITG_CLNT_ID = " + ACT_TABLE_NAME + ".P_ITG_CLNT_ID LEFT JOIN "
                 + PAYMENT_TABLE_NAME + " ON " + REPORT_TABLE_NAME + ".P_ITG_CLNT_ID = " + PAYMENT_TABLE_NAME + ".P_ITG_CLNT_ID WHERE " + REPORT_TABLE_NAME +
                 ".BRANCH_ID = '" + regionInfo.id + "'");
-        //queryString.append(" AND ");
-        //queryString.append(FormatDeliveryQualification(REPORT_TABLE_NAME+ ".BDT_ID", REPORT_TABLE_NAME+ ".DG_ID", regionInfoInput ));
+        queryString.append(FormatDeliveryQualification(REPORT_TABLE_NAME+ ".BDT_NAME", REPORT_TABLE_NAME+ ".DELIVERY_GROUP", regionInfoInput ));
 
         return queryString;
     }
 
     private static String FormatDeliveryQualification(String firstColumn, String secondColumn, RegionInfo regionInfoInput){
-        String qualification ="";
+        if (regionInfoInput.deliveryGroupStatusArray.size() == 0) return "";
+        String qualification =" AND ";
         String delimiter = " AND ";
 
         for(Pair<String,String> pair:regionInfoInput.deliveryGroupStatusArray){
             if(pair.getL().equals("null")){
                 qualification += " NOT(" + firstColumn + " is null AND ";
             } else {
-                qualification += " NOT(" + firstColumn + " = " + pair.getL() + " AND ";
+                qualification += " NOT((" + firstColumn + " = '" + pair.getL() + "' AND " + firstColumn + " is not null) AND ";
             }
 
             if(pair.getR().equals("null")){
                 qualification += secondColumn + " is null  ) ";
             } else {
-                qualification += secondColumn + " = " + pair.getR() + "  ) ";
+                qualification += "(" + secondColumn + " = '" + pair.getR() + "' AND " + secondColumn + " is not null))";
             }
 
             qualification += delimiter;
@@ -232,66 +240,86 @@ public class GeneratorXML {
 
     /*Формирование xml из базы данных DWH
     * @param regionEng - имя региона считываемого из базы.*/
-    public static StringBuilder getXMLStringFromDWH(RegionInfo regionInfoInput, String idOrder) throws Exception {
-        GeneratorXML.orderId = idOrder;
-        GeneratorXML.regionInfo = regionInfoInput;
-        GeneratorXML.templateInfo = TemplateDB.getCurrentTemplateInfo();
-        log.info("Receiving StringBuilder - xml. Region id: " + regionInfo.id);
-        log.info("Started process generation XML. Expected...: ");
-        outputXml.delete(0, outputXml.length());
-        outputXml.append("<ROOT>");
-        addElementDirect("TEMPLATE_SET", templateInfo.TEMPLATE_SET);
-        addElementDirect("TEMPLATE_BILL", templateInfo.TEMPLATE_BILL);
-        addElementDirect("TEMPLATE_DETAIL", templateInfo.TEMPLATE_DETAIL);
-        addElementDirect("TEMPLATE_ACT", templateInfo.TEMPLATE_ACT);
-        addElementDirect("TEMPLATE_INVOICE", templateInfo.TEMPLATE_INVOICE);
-        addElementDirect("TEMPLATE_INVOICE_AVANS", templateInfo.TEMPLATE_INVOICE_AVANS);
-        addElementDirect("TEMPLATE_NOTICE", templateInfo.TEMPLATE_NOTICE);
-        StringBuilder clientSetQuery = GenerateSelectNotRepeatedTable(regionInfoInput);
-
-        // Проход по таблице клиентов
-        long lBegin = System.currentTimeMillis();
-        List<Map<String, Object>> clientList = wayDatabase.queryForList(clientSetQuery.toString());
-        if (clientList.size() == 0) throw new AtriumException(AtriumError.ZERO_CUSTOMER);
-        log.info("Region id: " + regionInfo.id + ". Number of record: " + clientList.size());
-        for (Map clientElement : clientList) {
-            initServerOptionForClient(clientElement);
-            currentPrimaryKey = clientElement.get(PREFIX_REPORT + "P_ITG_CLNT_ID").toString();
-            outputXml.append("<CLIENTREPORT>");
-            addPrimaryKey();
-            addClientSection(clientElement, "CLIENTROW", ALL_FIELD_REPORT, PREFIX_REPORT);
-            addSection(clientElement, "PAYROW", ALL_FIELD_PAY, PREFIX_PAY);
-
-            addDetailSection();
-
-            if (serverOption.clientType.equals(B2B) || serverOption.clientType.equals(B2B_CDMA)) {
-                addFacturaSection();
-                addSection(clientElement, "ACTPSROW", ALL_FIELD_ACT, PREFIX_ACT);
+    public static void getXMLStringFromDWH(RegionInfo regionInfoInput, String idOrder) throws Exception {
+        try {
+            File fileForJob = new File(pathJobInputDirectory + "tele2_base.xml");
+            if (fileForJob.exists()){
+                fileForJob.delete();
             }
 
-            addServOption(clientElement);
-            outputXml.append("</CLIENTREPORT>");
-        }
 
-        outputXml.append("</ROOT>");
-        long lEnd = System.currentTimeMillis();
-        long lDelta = lEnd - lBegin;
-        log.info("Data sampling rate: " + lDelta);
-        return outputXml;
+            char_output = new OutputStreamWriter(new FileOutputStream(fileForJob), Charset.forName("UTF-8").newEncoder());
+            fileForJob.createNewFile();
+            GeneratorXML.orderId = idOrder;
+            GeneratorXML.regionInfo = regionInfoInput;
+            GeneratorXML.templateInfo = TemplateDB.getCurrentTemplateInfo();
+            log.info("Receiving StringBuilder - xml. Region id: " + regionInfo.id);
+            log.info("Started process generation XML. Expected...: ");
+            writeText("<ROOT>");
+            addElementDirect("TEMPLATE_SET", templateInfo.TEMPLATE_SET);
+            addElementDirect("TEMPLATE_BILL", templateInfo.TEMPLATE_BILL);
+            addElementDirect("TEMPLATE_DETAIL", templateInfo.TEMPLATE_DETAIL);
+            addElementDirect("TEMPLATE_ACT", templateInfo.TEMPLATE_ACT);
+            addElementDirect("TEMPLATE_INVOICE", templateInfo.TEMPLATE_INVOICE);
+            addElementDirect("TEMPLATE_INVOICE_AVANS", templateInfo.TEMPLATE_INVOICE_AVANS);
+            addElementDirect("TEMPLATE_NOTICE", templateInfo.TEMPLATE_NOTICE);
+            StringBuilder clientSetQuery = GenerateSelectNotRepeatedTable(regionInfoInput);
+
+            // Проход по таблице клиентов
+            long lBegin = System.currentTimeMillis();
+            List<Map<String, Object>> clientList = wayDatabase.queryForList(clientSetQuery.toString());
+            if (clientList.size() == 0) throw new AtriumException(AtriumError.ZERO_CUSTOMER);
+            log.info("Region id: " + regionInfo.id + ". Number of record: " + clientList.size());
+            for (Map clientElement : clientList) {
+                initServerOptionForClient(clientElement);
+                currentPrimaryKey = clientElement.get(PREFIX_REPORT + "P_ITG_CLNT_ID").toString();
+                writeText("<CLIENTREPORT>");
+                addPrimaryKey();
+                addClientSection(clientElement, "CLIENTROW", ALL_FIELD_REPORT, PREFIX_REPORT);
+                addSection(clientElement, "PAYROW", ALL_FIELD_PAY, PREFIX_PAY);
+
+                addDetailSection();
+
+                if (serverOption.clientType.equals(B2B) || serverOption.clientType.equals(B2B_CDMA)) {
+                    addFacturaSection();
+                    addSection(clientElement, "ACTPSROW", ALL_FIELD_ACT, PREFIX_ACT);
+                }
+
+                addServOption(clientElement);
+                writeText("</CLIENTREPORT>");
+            }
+
+            writeText("</ROOT>");
+            long lEnd = System.currentTimeMillis();
+            long lDelta = lEnd - lBegin;
+            log.info("Data sampling rate: " + lDelta);
+        } catch (AtriumException ex){
+            throw ex;
+        } finally {
+            char_output.close();
+        }
+    }
+
+    private static void writeText(Object text){
+        try {
+            char_output.write(text.toString());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private static void addPrimaryKey(){
-        outputXml.append("<CLIENTREPORT_ID>");
-        outputXml.append(currentPrimaryKey);
-        outputXml.append("</CLIENTREPORT_ID>");
+        writeText("<CLIENTREPORT_ID>");
+        writeText(currentPrimaryKey);
+        writeText("</CLIENTREPORT_ID>");
     }
 
     private static void addDetailSection(){
-        outputXml.append("<DETAIL>");
+        writeText("<DETAIL>");
         addPrimaryKey();
         addPaymentSection();
         addMsisDnSection();
-        outputXml.append("</DETAIL>");
+        writeText("</DETAIL>");
     }
 
     private static void addPaymentSection(){
@@ -299,11 +327,11 @@ public class GeneratorXML {
                 PAYMENT_TABLE_NAME + ".MSISDN, " + PAYMENT_TABLE_NAME + ".KASSA_BANK, " + PAYMENT_TABLE_NAME + ".SUMM_PAY_$ AS SUMM_PAY FROM " + PAYMENT_TABLE_NAME +" WHERE " + PAYMENT_TABLE_NAME + ".P_ITG_CLNT_ID =" + currentPrimaryKey;
         List<Map<String, Object>> tableList = wayDatabase.queryForList(selectTable);
         for (Map<String, Object> tableElement : tableList){
-            outputXml.append("<PAYMENT>");
+            writeText("<PAYMENT>");
             for (Map.Entry<String, Object> elementMat: tableElement.entrySet()){
                 addElement("", elementMat.getKey().toString(),tableElement);
             }
-            outputXml.append("</PAYMENT>");
+            writeText("</PAYMENT>");
         }
     }
 
@@ -318,7 +346,7 @@ public class GeneratorXML {
         List<Map<String, Object>> clientList = wayDatabase.queryForList(selectClient);
         int indexWithGBRID_1000000000 = 0;
         for (Map<String, Object>  clientElement : clientList){
-            outputXml.append("<MSISDNSET>");
+            writeText("<MSISDNSET>");
             addPrimaryKey();
             String selectTable = "SELECT " + DETAIL_TABLE_NAME + ".P_ITG_CLNT_ID, " + DETAIL_TABLE_NAME + ".P_SUBS_ID, " + DETAIL_TABLE_NAME + ".CLNT_ID, " +
                     DETAIL_TABLE_NAME + ".GRP_NB, " + DETAIL_TABLE_NAME + ".CHARGE_GROUP, " + DETAIL_TABLE_NAME + ".CHARGE_TYPE, " +
@@ -349,7 +377,7 @@ public class GeneratorXML {
                         log.warn("Not read field KOLVO. P_ITG_CLNT_ID = " + transElement.get("P_ITG_CLNT_ID"));
                     }
                 }
-                outputXml.append("<MSISDNROW>");
+                writeText("<MSISDNROW>");
                 for (Map.Entry<String, Object> elementMat: transElement.entrySet()){
                     if(!elementMat.getKey().toString().equals("ADM_SUB_SUM") &&
                             !elementMat.getKey().toString().equals("MSISDN") &&
@@ -379,7 +407,7 @@ public class GeneratorXML {
                         }
                     }
                 }
-                outputXml.append("</MSISDNROW>");
+                writeText("</MSISDNROW>");
             }
             if (transList.size() > 0) {
                     addElement("", "CHARGE_SUM", transList.get(indexWithGBRID_1000000000));
@@ -387,12 +415,12 @@ public class GeneratorXML {
                     addElement("", "MSISDN", transList.get(0));
                     addElement("", "TRPL_NAME", transList.get(0));
 
-                    outputXml.append("<CHARGE_ID>");
-                    outputXml.append(GetChargeId(grpNb));
-                    outputXml.append("</CHARGE_ID>");
+                writeText("<CHARGE_ID>");
+                writeText(GetChargeId(grpNb));
+                writeText("</CHARGE_ID>");
             }
 
-            outputXml.append("</MSISDNSET>");
+            writeText("</MSISDNSET>");
         }
     }
 
@@ -422,7 +450,7 @@ public class GeneratorXML {
     /*Добавление секции с фактурой
     * @param key - внешний ключ таблицы (P_ITG_CLNT_ID) */
     private static void addFacturaSection(){
-        outputXml.append("<FACTURASET>");
+        writeText("<FACTURASET>");
         String selectTable = "SELECT " + FACTURA_TABLE_NAME + ".P_ITG_CLNT_ID, " + FACTURA_TABLE_NAME + ".FACT_ID, " + FACTURA_TABLE_NAME + ".FACT_DATE, " +
                 FACTURA_TABLE_NAME + ".FACT_NUM, " + FACTURA_TABLE_NAME + ".DET_NAME, " + FACTURA_TABLE_NAME + ".WOVAT_$ AS WOVAT, " + FACTURA_TABLE_NAME + ".VAT_$ AS VAT, " +
                 FACTURA_TABLE_NAME + ".SUMM_$ AS SUMM, " + FACTURA_TABLE_NAME + ".FT_ID FROM " + FACTURA_TABLE_NAME +" WHERE " + FACTURA_TABLE_NAME + ".P_ITG_CLNT_ID =" + currentPrimaryKey;
@@ -430,13 +458,13 @@ public class GeneratorXML {
         for (Map<String, Object> tableElement : tableList){
             // В зависимости от поля FT_ID записываем в разные теги таблицы: FACTURAROW_1 или FACTURAROW_2
             Boolean typeFacturaOne = tableElement.get("FT_ID").toString().equals("1") ? true : false;
-            outputXml.append(typeFacturaOne ? "<FACTURAROW_1>" : "<FACTURAROW_2>");
+            writeText(typeFacturaOne ? "<FACTURAROW_1>" : "<FACTURAROW_2>");
             for (Map.Entry<String, Object> elementMat: tableElement.entrySet()){
                 addElement("", elementMat.getKey().toString(),tableElement);
             }
-            outputXml.append(typeFacturaOne ? "</FACTURAROW_1>" : "</FACTURAROW_2>");
+            writeText(typeFacturaOne ? "</FACTURAROW_1>" : "</FACTURAROW_2>");
         }
-        outputXml.append("</FACTURASET>");
+        writeText("</FACTURASET>");
     }
 
 
@@ -446,11 +474,11 @@ public class GeneratorXML {
     * @param ALL_FIELD - поля, необходимые для добавления в xml;
     * @prefix - префикс таблицы, для создания уникальности имен полей.*/
     private static void addSection(Map clientElement, String teg, String[][] ALL_FIELD, String prefix){
-        outputXml.append("<").append(teg).append(">");
+        writeText("<" + teg + ">");
         for (int i = 0; i < ALL_FIELD.length; i++){
             addElement(prefix, ALL_FIELD[i][FIELD_NAME_IN_XML], clientElement);
         }
-        outputXml.append("</").append(teg).append(">");
+        writeText("</" + teg + ">");
     }
 
     /*Добавление секции клиентов
@@ -459,7 +487,7 @@ public class GeneratorXML {
 * @param ALL_FIELD - поля, необходимые для добавления в xml;
 * @prefix - префикс таблицы, для создания уникальности имен полей.*/
     private static void addClientSection(Map clientElement, String teg, String[][] ALL_FIELD, String prefix){
-        outputXml.append("<").append(teg).append(">");
+        writeText("<" + teg + ">");
         for (int i = 0; i < ALL_FIELD.length; i++){
             if (ALL_FIELD[i][FIELD_NAME_IN_XML].equals("DELIVERY_GROUP")){
                 if (clientElement.get(prefix + ALL_FIELD[i][FIELD_NAME_IN_XML]) == null || clientElement.get(prefix + ALL_FIELD[i][FIELD_NAME_IN_XML]) == ""){
@@ -491,7 +519,7 @@ public class GeneratorXML {
 
         addElementDirect("CLIENT_TYPE", serverOption.clientType);
 
-        outputXml.append("</").append(teg).append(">");
+        writeText("</" + teg + ">");
 
     }
 
@@ -506,13 +534,13 @@ public class GeneratorXML {
     /*Добавление секции со служебными полями
     * @param clientElement - строка БД из которой берутся данные;*/
     private static void addServOption(Map clientElement){
-        outputXml.append("<SERVOPTION>");
+        writeText("<SERVOPTION>");
         addElementWithReport(serverOption.fileName, "FILE_NAME", "ACCOUNT + CONTRACT_INN + NAME + OB_EDATE");
         addElementDirect("YEAR_QUERY", serverOption.yearQuery);
         addElementDirect("MONTH_REQUEST", serverOption.monthRequest);
         addElementDirect("LOGO_ID", regionInfo.logoId);
 
-        outputXml.append("</SERVOPTION>");
+        writeText("</SERVOPTION>");
     }
 
     public static String getNameXML(){
@@ -550,7 +578,7 @@ public class GeneratorXML {
     * @param field Имя поля. Имя поля, которое добавиться в xml.
     * @param element Набор для получения значения элемента. Значения хранятся в виде префикс + имя.*/
     private static void addElement(String prefix, String field, Map element){
-        outputXml.append("<").append(field).append(">");
+        writeText("<" + field + ">");
         if (element.get(prefix + field) instanceof String)          // Строка
         {
             addTextElement(prefix, field, element);
@@ -563,7 +591,7 @@ public class GeneratorXML {
                 addNullElement(field);
             }
         }
-        outputXml.append("</").append(field).append(">");
+        writeText("</" + field + ">");
     }
 
     /*Добавление текстового элемента в xml. Текстовый элемент считается любым
@@ -572,7 +600,7 @@ public class GeneratorXML {
     * @param fieldName - имя поля из массива element для добавления;
     * @element - коллекция хранения строки, в которой необходимо искать поле.*/
     private static void addTextElement(String prefix, String fieldName, Map element){
-        outputXml.append(getCorrectString((String) element.get(prefix + fieldName)));
+        writeText(getCorrectString((String) element.get(prefix + fieldName)));
     }
 
     /*Замена запрещенных символов в строке*/
@@ -587,7 +615,7 @@ public class GeneratorXML {
     * @param fieldName - имя поля из массива element для добавления;
     * @element - коллекция хранения строки, в которой необходимо искать поле.*/
     private static void addNumberElement(String prefix, String field, Map element){
-        outputXml.append(element.get(prefix + field));
+        writeText(element.get(prefix + field));
     }
 
     /*Добавление Даты в xml в формате, описанном полем dateFormat*
@@ -597,9 +625,9 @@ public class GeneratorXML {
      */
     private static void addDateElement(String prefix, String field, Map element){
         if (!field.equals("DATE_NEXT_MONTH")) {
-            outputXml.append(dateFormat.format(element.get(prefix + field)));
+            writeText(dateFormat.format(element.get(prefix + field)));
         } else {
-            outputXml.append(dateFormat20d.format(element.get(prefix + field)));
+            writeText(dateFormat20d.format(element.get(prefix + field)));
         }
     }
 
@@ -607,17 +635,17 @@ public class GeneratorXML {
     * @param fieldName - имя поля*/
     private static void addNullElement(String fieldName){
         if (exclusionNullFields.contains(fieldName)){
-            outputXml.append("0");
+            writeText("0");
         } else {
-            outputXml.append("");
+            writeText("");
         }
     }
 
     // Создание тега на прямую по имени fieldName
     private static void addElementDirect(String fieldName, Object value) {
-        outputXml.append("<").append(fieldName).append(">");
-        outputXml.append(value);
-        outputXml.append("</").append(fieldName).append(">");
+        writeText("<" + fieldName + ">");
+        writeText(value);
+        writeText("</" + fieldName + ">");
     }
 
     /*Хранение структуры информации о полях, высчитываемых для каждого клиента*/

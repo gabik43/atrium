@@ -39,9 +39,6 @@ public class ExecutiveSubOrder {
     // Информация о текущем обрабатываемом регионе.
     private RegionInfo regionInfoCurrent;
 
-    // Данные, взятые из DWH и сформированные в виде xml.
-    private StringBuilder xml = new StringBuilder();
-
     // установка статусов производится через этот объект
     private SubOrderDB subOrderDB;
 
@@ -122,7 +119,7 @@ public class ExecutiveSubOrder {
     private void XMLStorage() throws AtriumException {
         try {
             subOrderDB.setStPerformed(AppConfiguration.PERFORMED_SAVE_XML, subOrderDB.MODE_DOCUMENT_GENERATION);
-            SaveXML.saveToFile(xml, regionInfoCurrent);
+            SaveXML.saveToFile(regionInfoCurrent);
         } catch (Exception ex){
             ex.printStackTrace();
             throw new AtriumException(AtriumError.SAVING_XML);
@@ -132,9 +129,8 @@ public class ExecutiveSubOrder {
     private void processingDWHData() throws AtriumException {
         try {
             subOrderDB.setStPerformed(AppConfiguration.PERFORMED_GET_CUSTOMER_DATA, subOrderDB.MODE_DOCUMENT_GENERATION);
-            xml.delete(0, xml.length());
-            xml = GeneratorXML.getXMLStringFromDWH(regionInfoCurrent, OrderDB.getActiveIdOrder());
-        } catch (AtriumException ex){   // Поймали внутренее исключение приложения, высылаем дальше.
+            GeneratorXML.getXMLStringFromDWH(regionInfoCurrent, OrderDB.getActiveIdOrder());
+        } catch (AtriumException ex){   // Поймали внутренее исключение приложение, высылаем дальше.
             throw ex;
         } catch (Exception ex){
             ex.printStackTrace();

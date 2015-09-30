@@ -6,10 +6,6 @@ import ru.asteros.atrium.AppConfiguration;
 import ru.asteros.atrium.DB.RegionInfo;
 
 import java.io.File;
-import java.io.FileOutputStream;
-import java.io.OutputStreamWriter;
-import java.io.PrintWriter;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 
 /**
@@ -26,16 +22,9 @@ public class SaveXML {
     Сохранения в два места необходимо, т.к. возможна ситуация, когда в каталоге для xPression будет перезаписан
     файл, еще не выложенный в Infoarhive.
     * @param xml - Строка содержащая xml файл для сохранения*/
-    public static void saveToFile(StringBuilder xml, RegionInfo regionInfo) throws Exception {
+    public static void saveToFile(RegionInfo regionInfo) throws Exception {
         File fileForJob = new File(pathJobInputDirectory + "tele2_base.xml");
-        File directoryForJob = new File(pathJobInputDirectory);
-        PrintWriter out = new PrintWriter(new OutputStreamWriter(new FileOutputStream(fileForJob.getAbsoluteFile()),
-                StandardCharsets.UTF_8), true);
         try {
-            directoryForJob.mkdirs();
-            fileForJob.createNewFile();
-            out.print(xml);
-            out.flush();
             String pathForInfoarhive = pathInfoarhiveInputDirectory + regionInfo.macroRegionEng + "/" + regionInfo.regionEng + "/" + AppConfiguration.get("XML_DIRECTORY_OUTPUT") + "/";
             File fileForInfoarhive = new File(pathForInfoarhive  + GeneratorXML.getNameXML() + ".xml");
             File directoryForInfoarhive = new File(pathForInfoarhive);
@@ -46,10 +35,7 @@ public class SaveXML {
             Files.copy(fileForJob.toPath(), fileForInfoarhive.toPath());
 
         } catch (Exception ex){
-            log.error("Failed to create and write to a file: " + fileForJob.getAbsolutePath(), ex.getMessage());
-        } finally {
-            out.close();
-
+            log.error("Failed to copy and write to a file: " + fileForJob.getAbsolutePath(), ex.getMessage());
         }
         log.info("Generate xml file complete. File: " + fileForJob.getAbsolutePath());
     }
