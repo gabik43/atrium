@@ -220,7 +220,7 @@ public class SubOrderDB {
 
             String sql =  "update "+TBL_SUBORDER+" set  " + // set tbl name
                     " "+getStatusFieldNameFromMode(mode)+" = '"+status+"', " + // set status
-                    " "+getStatusMSGFieldNameFromMode(mode)+" = N'"+stMsg+";    ', " + // set status message
+                    " "+getStatusMSGFieldNameFromMode(mode)+" = N'"+stMsg+".    ', " + // set status message
                     //" "+FIELD_INFORMATION+" = "+FIELD_INFORMATION+"  + cast (N'"+information+"' as nvarchar(max) ), " + // set information
                     " "+FIELD_SERVER_NAME+" = '"+AppConfiguration.get(CONFIG_SERVER_NAME)+"' " + // set server name
 

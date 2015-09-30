@@ -134,7 +134,7 @@ public class ExecutiveSubOrder {
             subOrderDB.setStPerformed(AppConfiguration.PERFORMED_GET_CUSTOMER_DATA, subOrderDB.MODE_DOCUMENT_GENERATION);
             xml.delete(0, xml.length());
             xml = GeneratorXML.getXMLStringFromDWH(regionInfoCurrent, OrderDB.getActiveIdOrder());
-        } catch (AtriumException ex){   // Поймали внутренее исключение приложение, высылаем дальше.
+        } catch (AtriumException ex){   // Поймали внутренее исключение приложения, высылаем дальше.
             throw ex;
         } catch (Exception ex){
             ex.printStackTrace();
