@@ -13,7 +13,7 @@ import java.util.Properties;
 
 public class AppConfiguration {
     // параметр хранит имя кофигурационного файла
-    private final static String PROPERTIES_FILE_NAME = "src/atrium/AtriumConfig.properties";
+    private final static String PROPERTIES_FILE_NAME = "AtriumConfig.properties";
     // параметр хранит данные из конфигурационного файла
     private static Map<String, String> configData = new HashMap<String, String>();
     private static boolean isConfigRead = false;
