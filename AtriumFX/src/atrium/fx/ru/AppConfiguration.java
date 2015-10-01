@@ -13,18 +13,9 @@ import java.util.Properties;
 
 public class AppConfiguration {
     // параметр хранит имя кофигурационного файла
-    public final static String PROPERTIES_FILE_NAME = "AtriumConfig.properties";
-
-    public final static String SERVER_IP = "10.101.145.239";
-    public final static String FOLDER_FILE = "DOC"; //OutputFilesForUser
-    public final static String PATH_TO_OUT_FOLDER = "//" + SERVER_IP + "/" + FOLDER_FILE + "/";
-    public final static int COUNT_PARENT_FOLDER_FILE = 5;
-    public final static String TITLE = "Tele2";
-    public final static String NAME_ROOT_ELEMENT = "Макрорегионы";
-
-
+    private final static String PROPERTIES_FILE_NAME = "src/atrium/AtriumConfig.properties";
+    // параметр хранит данные из конфигурационного файла
     private static Map<String, String> configData = new HashMap<String, String>();
-
     private static boolean isConfigRead = false;
 
     public AppConfiguration(){
@@ -37,7 +28,10 @@ public class AppConfiguration {
      * @return значение параметра
      */
     public static String get(String paramName){
-        if(!isConfigRead || configData.containsKey(paramName)){
+        if(!isConfigRead) {
+            readConfigFile();
+        }
+        if(configData.containsKey(paramName)){
             return configData.get(paramName);
         } else{
             return null;
@@ -88,9 +82,11 @@ public class AppConfiguration {
      * иначе isConfigRead = false
      */
     public static void readConfigFile(){
+
         FileInputStream inputStream = null;
         File configFile = new File(PROPERTIES_FILE_NAME);
         Properties prop = new Properties();
+
         try {
             inputStream = new FileInputStream(configFile);
 
@@ -98,12 +94,9 @@ public class AppConfiguration {
                 prop.load(inputStream);
             } else {
                 LogDB.error("Can't load configuration file. ");
-
-
                 // вывод тестовых данных в файл
                 prop.setProperty("exampleKey", "exampleValue");
                 prop.store(new BufferedWriter(new OutputStreamWriter(new FileOutputStream(PROPERTIES_FILE_NAME), "UTF-8")), null);
-
                 return;
             }
 
@@ -111,6 +104,8 @@ public class AppConfiguration {
                 String value = prop.getProperty(key);
                 configData.put(key, value);
             }
+            configData.put ("PATH_TO_OUT_FOLDER", "//" + configData.get("SERVER_IP") + "/" + configData.get("FOLDER_FILE") + "/");
+            configData.put("NAME_ROOT_ELEMENT", "Макрорегионы");
             // станавливаем флаг успешного чтения данных из файла
             isConfigRead = true;
 
@@ -123,6 +118,7 @@ public class AppConfiguration {
             }
             isConfigRead = false;
             LogDB.error("Exception while reading configuration file: " + configFile.getAbsolutePath() + e);
+
         } finally {
             try {
                 inputStream.close();

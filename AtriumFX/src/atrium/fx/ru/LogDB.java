@@ -1,7 +1,10 @@
 package atrium.fx.ru;
 
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -104,7 +107,8 @@ public class LogDB {
 
     static void setupConnection() {
         final String MYSQL_DRIVER = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
-        String  username = "atrium", pw = "atrium";
+        String  username = AppConfiguration.get("LOG_DB_USERNAME");
+        String pw = AppConfiguration.get("LOG_DB_PASSWORD");
         try {
             Class.forName(MYSQL_DRIVER);
             System.out.println("... registered " + MYSQL_DRIVER);
@@ -112,8 +116,8 @@ public class LogDB {
             e.printStackTrace();
         }
         try {
-            connection = DriverManager.getConnection("jdbc:sqlserver://10.101.145.234:1433;" +
-            "databaseName=atrium", username, pw);
+            connection = DriverManager.getConnection("jdbc:sqlserver://" + AppConfiguration.get("LOG_DB_SERVER") + ";" +
+            "databaseName=" + AppConfiguration.get("LOG_DB_NAME"), username, pw);
             System.out.println("... connected as '" + username );
         } catch (SQLException e) {
             System.out.println("... error while creating DB connection");

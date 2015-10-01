@@ -34,7 +34,7 @@ public class ZIPArchive extends Thread{
 
                 // create zip file structure
                 String filePath = fileCurrent.getPath();
-                filePath = filePath.substring(filePath.indexOf(AppConfiguration.FOLDER_FILE) + AppConfiguration.FOLDER_FILE.length() + 1);
+                filePath = filePath.substring(filePath.indexOf(AppConfiguration.get("FOLDER_FILE")) + AppConfiguration.get("FOLDER_FILE").length() + 1);
 
                 out.putNextEntry(new ZipEntry(filePath));
                 while ((len=in.read(buf))>0)

@@ -2,20 +2,15 @@ package atrium.fx.ru.print;
 
 import atrium.fx.ru.InternalInterface;
 import atrium.fx.ru.LogDB;
-import atrium.fx.ru.arhive.ZIPArchive;
-import atrium.fx.ru.core.ClientApplication;
 
 import javax.print.*;
 import javax.print.attribute.HashPrintRequestAttributeSet;
 import javax.print.attribute.PrintRequestAttributeSet;
 import javax.print.attribute.standard.QueuedJobCount;
-import javax.print.attribute.standard.Sides;
-import javax.print.event.PrintJobAdapter;
 import javax.print.event.PrintJobEvent;
 import javax.print.event.PrintJobListener;
 import java.io.File;
 import java.io.FileInputStream;
-import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 

@@ -47,7 +47,7 @@ public class Controller{
 //        } catch (Exception e) {
 //            e.printStackTrace();
 //        }
-//        new PrinterTask(files).printWithQueue();
+//        new PrinterTask(files).print();
 
         new PrinterTask(ClientApplication.getSelectedFiles()).print();
     }

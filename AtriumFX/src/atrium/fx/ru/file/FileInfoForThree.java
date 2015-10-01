@@ -38,7 +38,7 @@ public class FileInfoForThree {
         File fileCurrent = file.getParentFile();
         int countFolder = 1;
         while (true){
-            if (fileCurrent.getName().equals(AppConfiguration.FOLDER_FILE)){
+            if (fileCurrent.getName().equals(AppConfiguration.get("FOLDER_FILE"))){
                 return countFolder;
             }
             fileCurrent = fileCurrent.getParentFile();

@@ -32,7 +32,7 @@ public class ThreeHandler {
     public static File getFolder(TreeItem<String> treeItem){
         StringBuilder pathFile = new StringBuilder();
 
-        pathFile.append("//").append(AppConfiguration.SERVER_IP).append("/").append(AppConfiguration.FOLDER_FILE).append("/");
+        pathFile.append("//").append(AppConfiguration.get("SERVER_IP")).append("/").append(AppConfiguration.get("FOLDER_FILE")).append("/");
         int countFolderAndFileName = getCountParent(treeItem);
 
         TreeItem<String> currentTreeItem = treeItem;
@@ -56,7 +56,7 @@ public class ThreeHandler {
         TreeItem<String> rootNodeCurrent = rootNode.getParent();
         int countParrent = 1;
         while (true){
-            if (rootNodeCurrent.getValue().equals(AppConfiguration.NAME_ROOT_ELEMENT)){
+            if (rootNodeCurrent.getValue().equals(AppConfiguration.get("NAME_ROOT_ELEMENT"))){
                 return countParrent;
             }
             countParrent++;

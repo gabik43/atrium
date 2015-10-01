@@ -31,7 +31,7 @@ public class ClientApplication implements UITemplate{
     private Stage stage, archStage;
     private Parent root;
     private Scene scene, archScene;
-    private CheckBoxTreeItem<String> rootNode = new CheckBoxTreeItem<String>(AppConfiguration.NAME_ROOT_ELEMENT);
+    private CheckBoxTreeItem<String> rootNode = new CheckBoxTreeItem<String>(AppConfiguration.get("NAME_ROOT_ELEMENT"));
     List<FileInfoForThree> fileInfoForThrees;
     private static Set<File> noChildFolders = new HashSet();
     Button printButton;
@@ -72,7 +72,7 @@ public class ClientApplication implements UITemplate{
     /*Чтение всех файлов из папки и преобразование их в структуру FileInfoForThree*/
     private void readStructFileAndFolder(){
         FileHandler fileHandlerManager = new FileHandler();
-        List<File> fileList = fileHandlerManager.getFolderList(AppConfiguration.PATH_TO_OUT_FOLDER);
+        List<File> fileList = fileHandlerManager.getFolderList(AppConfiguration.get("PATH_TO_OUT_FOLDER"));
         fileInfoForThrees = new ArrayList<FileInfoForThree>();
         for (File file : fileList){
             FileInfoForThree fileInfoForThree = new FileInfoForThree(file);
@@ -90,7 +90,7 @@ public class ClientApplication implements UITemplate{
 
     /* Установка настроек сцены, связываение view элекментов с данными с данными*/
     private void displayView(){
-        stage.setTitle(AppConfiguration.TITLE);
+        stage.setTitle(AppConfiguration.get("TITLE"));
         stage.setScene(scene);
         scene.setFill(Color.LIGHTGRAY);
 
