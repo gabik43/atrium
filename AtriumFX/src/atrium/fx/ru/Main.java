@@ -3,7 +3,10 @@ package atrium.fx.ru;
 import atrium.fx.ru.core.ClientApplication;
 import atrium.fx.ru.core.ModalWindow;
 import javafx.application.Application;
+import javafx.application.Platform;
+import javafx.event.EventHandler;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 import java.io.IOException;
 
@@ -18,7 +21,20 @@ public class Main extends Application {
     public void start(Stage stage) throws IOException {
         LogDB.setupConnection();
         LogDB.info("Start client application");
-        //AppConfiguration.readConfigFile();
+
+        stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent event) {
+//                Thread.currentThread().interrupt();
+//                System.out.println(Thread.getAllStackTraces().keySet().size());
+//                for (Thread t : Thread.getAllStackTraces().keySet()) {
+//                    System.out.println(t);
+//                }
+//                PlatformImpl.tkExit();
+                Platform.exit();
+                System.exit(0);
+            }
+        });
 
         InternalInterface.modalWindow = new ModalWindow(stage);
         InternalInterface.modalWindow.start();
@@ -35,12 +51,5 @@ public class Main extends Application {
                 InternalInterface.showDelayedWindow();
             }
         }).start();
-
-
-
-
-
-
-
     }
 }

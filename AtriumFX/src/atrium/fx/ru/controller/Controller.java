@@ -144,9 +144,10 @@ public class Controller{
         fc.setFileFilter(xmlFilter);
         fc.setAcceptAllFileFilterUsed(false);
 
-        if ( fc.showSaveDialog(new JDialog() {{
-                                  setAlwaysOnTop(true);
-                               }} ) == JFileChooser.APPROVE_OPTION ) {
+        int userAnswer = fc.showSaveDialog(new JDialog() {{
+            setAlwaysOnTop(true);
+        }});
+        if (userAnswer == JFileChooser.APPROVE_OPTION) {
             ClientApplication.getSelectedFiles();
             zipFilePath = fc.getSelectedFile().getPath();
             if (!zipFilePath.endsWith(".zip") && !zipFilePath.endsWith(".ZIP"))
@@ -156,7 +157,7 @@ public class Controller{
             InternalInterface.modalWindow.setMessage("Не закрывайте окно. Идёт архивирование");
             InternalInterface.prepareDelayedSHow(InternalInterface.clientApplication);
 
-             new Thread(new Runnable() {
+             Thread archiveThread = new Thread(new Runnable() {
                 ClientApplication clientApplication;
 
                 @Override
@@ -165,7 +166,9 @@ public class Controller{
 
                     InternalInterface.showDelayedWindow();
                 }
-            }).start();
+            });
+//            thread.setDaemon(true);
+            archiveThread.start();
 
             Set<File> foldersSet = ClientApplication.getNoChildFolders();
             for (File file : foldersSet) {

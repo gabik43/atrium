@@ -81,7 +81,7 @@ public class AppConfiguration {
      * в случае успешного чтения, устанавливает свойство isConfigRead = true
      * иначе isConfigRead = false
      */
-    public static void readConfigFile(){
+    private static void readConfigFile(){
 
         FileInputStream inputStream = null;
         File configFile = new File(PROPERTIES_FILE_NAME);
