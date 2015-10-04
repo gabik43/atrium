@@ -1,27 +1,14 @@
 package atrium.fx.ru.core;
 
 import atrium.fx.ru.AppConfiguration;
-import atrium.fx.ru.controller.ThreeHandler;
-import atrium.fx.ru.file.FileHandler;
-import atrium.fx.ru.file.FileInfoForThree;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
-import javafx.scene.control.cell.CheckBoxTreeCell;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-import java.io.File;
 import java.io.IOException;
-import java.util.*;
 
 /**
  * Created by Andrey.A.Koshkin on 24.09.2015.

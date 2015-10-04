@@ -12,7 +12,7 @@
     <link rel="stylesheet" type="text/css" href="<c:url value="/static/resources/css/screen.css"/>"/>
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/main.css">
-    <SCRIPT src="http://java.com/js/dtjava.js"></SCRIPT>
+    <SCRIPT src="<c:url value="/static/resources/css/djava.js"/>"></SCRIPT>
     <script>
         function launchApplication(jnlpfile) {
             dtjava.launch(            {
@@ -49,7 +49,6 @@
 
 </head><body bgcolor="#8B8484">
 <div class = "header material_shadow">
-    <img id = logo src="http://ru.tele2.ru/img/logo.png"></img>
 </div>
 
 <div class = "middle">

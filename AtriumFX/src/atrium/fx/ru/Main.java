@@ -39,20 +39,13 @@ public class Main extends Application {
             }
         });
 
-        InternalInterface.modalWindow = new ModalWindow(stage);
-        InternalInterface.modalWindow.start();
-        InternalInterface.modalWindow.setMessage("Подождите, идёт загрузка");
 
         InternalInterface.clientApplication = new ClientApplication(stage);
-        InternalInterface.prepareDelayedSHow(InternalInterface.clientApplication);
+        InternalInterface.modalWindow = new ModalWindow(stage);
 
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                InternalInterface.clientApplication.init();
-                InternalInterface.setDelayedWindow(InternalInterface.clientApplication);
-                InternalInterface.showDelayedWindow();
-            }
-        }).start();
+        InternalInterface.clientApplication.start();
+        InternalInterface.modalWindow.start();
+
+        InternalInterface.clientApplication.show();
     }
 }

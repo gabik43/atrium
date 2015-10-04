@@ -548,15 +548,38 @@ public class GeneratorXML {
     }
     private static void initServerOptionForClient(Map clientElement){
 
-        String allName = getCorrectString(clientElement.get(PREFIX_REPORT + "NAME").toString());
+        String allName = getCorrectString(getStringElementDirectForServerOption("NAME", clientElement.get(PREFIX_REPORT + "NAME")));
         // Возможна ситуация, когда после образания строки до 20 символов, обрежится запрещенный в xml символ и вместо
         // "&gt;" останется "&". В этом случае необходимо еще заменить "&" на " "
         String shortName = (allName.length() <= 20 ? allName : allName.substring(0,20).replace("&"," "));
-        serverOption.fileName = clientElement.get(PREFIX_REPORT + "ACCOUNT").toString() + "_" + clientElement.get(PREFIX_REPORT + "CONTRACT_INN")
-                + "_" + shortName + "_" + dateFormat.format(clientElement.get(PREFIX_REPORT + "OB_EDATE"));
-        serverOption.clientType = setClientType(clientElement.get(PREFIX_REPORT + "CJT_ID").toString());
-        serverOption.monthRequest = dateFormatTextMonth.format((Date)clientElement.get(PREFIX_REPORT + "OB_EDATE"));
-        serverOption.yearQuery = dateFormatYear.format((Date)clientElement.get(PREFIX_REPORT + "OB_EDATE"));
+        serverOption.fileName = getStringElementDirectForServerOption("ACCOUNT", clientElement.get(PREFIX_REPORT + "ACCOUNT")) + "_" + getStringElementDirectForServerOption("CONTRACT_INN",clientElement.get(PREFIX_REPORT + "CONTRACT_INN"))
+                + "_" + shortName + "_" + dateFormat.format(getDateElementDirectForServerOption("OB_EDATE", clientElement.get(PREFIX_REPORT + "OB_EDATE")));
+        serverOption.clientType = setClientType(getStringElementDirectForServerOption("CJT_ID", clientElement.get(PREFIX_REPORT + "CJT_ID")));
+        serverOption.monthRequest = dateFormatTextMonth.format(getDateElementDirectForServerOption("OB_EDATE", clientElement.get(PREFIX_REPORT + "OB_EDATE")));
+        serverOption.yearQuery = dateFormatYear.format(getDateElementDirectForServerOption("OB_EDATE", clientElement.get(PREFIX_REPORT + "OB_EDATE")));
+    }
+
+    /*Безопасное добавление элемента String,
+    * при наличии ошибочных данных записывается сообщение в отчет*/
+    public static String getStringElementDirectForServerOption(String nameElement, Object element){
+        if (element == null) {
+            ReportDWH.addWarning(orderId, currentPrimaryKey, nameElement, "Поле имеет недопустимое значение: null");
+            return "";
+        }
+        return element.toString();
+    }
+
+    /*Безопасное добавление элемента Date,
+    * при наличии ошибочны данных записывается сообщение в отчет*/
+    public static Date getDateElementDirectForServerOption(String nameElement, Object element){
+        if (element == null) {
+            ReportDWH.addWarning(orderId, currentPrimaryKey, nameElement, "Поле имеет недопустимое значение: null");
+            return new Date();}
+        if (element instanceof Date) {
+            return (Date)element;
+        }
+        ReportDWH.addWarning(orderId, currentPrimaryKey, nameElement, "Поле имеет недопустимое значение: ожидается дата");
+        return new Date();
     }
 
     /*Установка типа клиента в зависимости от значения поля*/

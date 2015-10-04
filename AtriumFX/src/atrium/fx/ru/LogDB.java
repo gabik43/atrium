@@ -116,8 +116,9 @@ public class LogDB {
             e.printStackTrace();
         }
         try {
-            connection = DriverManager.getConnection("jdbc:sqlserver://" + AppConfiguration.get("LOG_DB_SERVER") + ";" +
-            "databaseName=" + AppConfiguration.get("LOG_DB_NAME"), username, pw);
+            //connection = DriverManager.getConnection("jdbc:sqlserver://10.101.145.234:1433;" +
+            connection = DriverManager.getConnection("jdbc:sqlserver://10.78.248.250:1433;" +
+            "databaseName=atrium", username, pw);
             System.out.println("... connected as '" + username );
         } catch (SQLException e) {
             System.out.println("... error while creating DB connection");

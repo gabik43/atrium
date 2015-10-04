@@ -3,8 +3,6 @@ package atrium.fx.ru.controller;
 
 import atrium.fx.ru.AppConfiguration;
 import atrium.fx.ru.file.FileInfoForThree;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.scene.control.CheckBoxTreeItem;
 import javafx.scene.control.TreeItem;
@@ -56,7 +54,7 @@ public class ThreeHandler {
         TreeItem<String> rootNodeCurrent = rootNode.getParent();
         int countParrent = 1;
         while (true){
-            if (rootNodeCurrent.getValue().equals(AppConfiguration.get("NAME_ROOT_ELEMENT"))){
+            if (rootNodeCurrent.getValue().equals(AppConfiguration.NAME_ROOT_ELEMENT)){
                 return countParrent;
             }
             countParrent++;
