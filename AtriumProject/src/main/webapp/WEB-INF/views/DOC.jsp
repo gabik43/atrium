@@ -3,7 +3,6 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <html><head>
-    <link href="//fonts.googleapis.com/css?family=Roboto:100italic,100,300italic,300,400italic,400,500italic,500,700italic,700,900italic,900" rel="stylesheet" type="text/css">
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Работа с документами</title>
@@ -12,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="<c:url value="/static/resources/css/screen.css"/>"/>
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/main.css">
-    <SCRIPT src="<c:url value="/static/resources/css/djava.js"/>"></SCRIPT>
+    <SCRIPT src="<c:url value="/static/resources/css/dtjava.js"/>"></SCRIPT>
     <script>
         function launchApplication(jnlpfile) {
             dtjava.launch(            {
