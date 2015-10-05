@@ -17,7 +17,10 @@ import javafx.scene.input.MouseEvent;
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.io.File;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -143,6 +146,9 @@ public class Controller{
         fc.addChoosableFileFilter(xmlFilter);
         fc.setFileFilter(xmlFilter);
         fc.setAcceptAllFileFilterUsed(false);
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String date = dateFormat.format(new Date());
+        fc.setSelectedFile(new File("Архив документов " + date));
 
         int userAnswer = fc.showSaveDialog(new JDialog() {{
             setAlwaysOnTop(true);
