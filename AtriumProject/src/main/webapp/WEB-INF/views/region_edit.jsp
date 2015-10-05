@@ -36,7 +36,8 @@
                 document.location.href = "./delete?id_in_db=" + obj.id;
         }
         function onClickUpdateButton(obj){
-            document.location.href = "./update?id_in_db=" + obj.id +
+            var dataFromInput =
+                    "id_in_db=" + obj.id +
                     "&id=" + document.getElementById("id_" + obj.id).innerHTML +
                     "&region_eng=" + document.getElementById("region_eng_" + obj.id).innerHTML +
                     "&region_rus=" + document.getElementById("region_rus_" + obj.id).innerHTML +
@@ -49,6 +50,24 @@
                     "&phone_b2c=" + document.getElementById("phone_b2c_" + obj.id).innerHTML +
                     "&phone_b2b=" + document.getElementById("phone_b2b_" + obj.id).innerHTML +
                     "&delivery_group_status=" + document.getElementById("delivery_group_status_" + obj.id).innerHTML;
+            var dataForRequest = encodeURI(dataFromInput);
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "./update", true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded;charset=UTF-8");
+            xhr.send(dataForRequest);
+//            document.location.href = "./update?id_in_db=" + obj.id +
+//                    "&id=" + document.getElementById("id_" + obj.id).innerHTML +
+//                    "&region_eng=" + document.getElementById("region_eng_" + obj.id).innerHTML +
+//                    "&region_rus=" + document.getElementById("region_rus_" + obj.id).innerHTML +
+//                    "&macro_region_eng=" + document.getElementById("macro_region_eng_" + obj.id).innerHTML +
+//                    "&macro_region_rus=" + document.getElementById("macro_region_rus_" + obj.id).innerHTML +
+//                    "&priority=" + document.getElementById("priority_" + obj.id).innerHTML +
+//                    "&email=" + document.getElementById("email_" + obj.id).innerHTML +
+//                    "&logo_id=" + document.getElementById("logo_id_" + obj.id).innerHTML +
+//                    "&status=" + document.getElementById("status_" + obj.id).innerHTML +
+//                    "&phone_b2c=" + document.getElementById("phone_b2c_" + obj.id).innerHTML +
+//                    "&phone_b2b=" + document.getElementById("phone_b2b_" + obj.id).innerHTML +
+//                    "&delivery_group_status=" + document.getElementById("delivery_group_status_" + obj.id).innerHTML;
         }
         function onClickAddButton(){
             document.location.href = "./add?" +
@@ -82,7 +101,7 @@
             <th align="left">&nbsp;Активность&nbsp;<br>&nbsp;региона&nbsp;</th>
             <th align="left">&nbsp;Короткий&nbsp;<br>&nbsp;номер<br>&nbsp;B2C</th>
             <th align="left">&nbsp;Короткий&nbsp;<br>&nbsp;номер<br>&nbsp;B2B</th>
-            <th align="left">&nbsp;Актив-<br>&nbsp;ность&nbsp;<br>&nbsp;групп<br>&nbsp;доставки&nbsp;</th>
+            <th align="left">&nbsp;Активность&nbsp;<br>&nbsp;групп<br>&nbsp;доставки&nbsp;</th>
             <th align="left"></th>
             <th align="left"></th>
         </tr>
@@ -103,7 +122,7 @@
             <td class="changed_field" id="new_phone_b2c" align="left">-</td>
             <td class="changed_field" id="new_phone_b2b" align="left">-</td>
             <td class="changed_field" id="new_delivery_group_status" align="left">-</td>
-            <td> <button onClick="onClickAddButton()">
+            <td> <button id="add_button" onClick="onClickAddButton()">
                 <div id="delete-button">Добавить</div></button></td>
         </tr>
 
@@ -127,7 +146,7 @@
               "<td class=\"changed_field\" id=\"delivery_group_status_" + record.idInDB + "\" align=\"left\">" + record.deliveryGroupStatus + "</td>" +
               "<td> <button id=\"" + record.idInDB + "\" onClick=\"onClickDeleteButton(this)\">" +
               "<div id=\"delete-button\" >Удалить</div>" + "</button> </td>" +
-              "<td> <button id=\"" + record.idInDB + "\" onClick=\"onClickUpdateButton(this)\">" +
+              "<td> <button class=\"update_button\" id=\"" + record.idInDB + "\" onClick=\"onClickUpdateButton(this)\">" +
               "<div id=\"delete-button\" >Изменить</div>" + "</button>" + "</td>" +
               "</tr>");
         }
@@ -151,6 +170,7 @@
     %>
 
         <script type="text/javascript">
+
             $(function()	{
                 $(".changed_field").click(function(e)	{
                     //ловим элемент, по которому кликнули
@@ -169,6 +189,7 @@
                     });
                 });
             });
+
             $(function()	{
                 $(".number_field").click(function(e)	{
                     //ловим элемент, по которому кликнули
@@ -187,12 +208,20 @@
                     });
                 });
             });
+
             $(window).keydown(function(event){
                 //ловим событие нажатия клавиши
                 if(event.keyCode == 13) {	//если это Enter
                     $('#edit').blur();	//снимаем фокус с поля ввода
                 }
             });
+
+            $(function() {
+                $(".update_button").click(function()	{
+                    $(this).closest('tr').children().css("color", "black");
+                });
+            });
+
         </script>
 
     </table>

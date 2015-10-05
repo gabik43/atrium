@@ -196,7 +196,7 @@ public class MemberController {
         return "redirect:/region_edit";
     }
 
-    @RequestMapping(value = "update", method = RequestMethod.GET)
+    @RequestMapping(value = "update", method = RequestMethod.POST)
     public String update(HttpServletRequest request) {
         RegionInfoUtility.updateRecord(request.getParameter("id_in_db"),
                 new RegionInfo(request.getParameter("id_in_db"),

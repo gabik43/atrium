@@ -32,7 +32,6 @@ public class RegionInfoUtility {
     private final static String PHONE_B2B = "B2B_PHONE_SHORT";
     private final static String DELIVERY_GROUP_STATUS = "DELIVERY_GROUP_STATUS";
 
-
     public final static String PAIR_DIVIDER =        ";;";
     public final static String ELEMENT_DIVIDER =     "--";
 
@@ -154,16 +153,16 @@ public class RegionInfoUtility {
                     " ,[" + DELIVERY_GROUP_STATUS + "]) " +
                     " VALUES " +
                     " (  " + newRecord.id +
-                    " , '" + newRecord.regionEng + "' " +
+                    " , N'" + newRecord.regionEng + "' " +
                     " , N'" + newRecord.regionRus + "' " +
-                    " , '" + newRecord.macroRegionEng + "' " +
+                    " , N'" + newRecord.macroRegionEng + "' " +
                     " , N'" + newRecord.macroRegionRus + "' " +
                     " ,  " + newRecord.priority +
-                    " , '" + newRecord.email + "' " +
-                    " , '" + newRecord.logoId + "' " +
+                    " , N'" + newRecord.email + "' " +
+                    " , N'" + newRecord.logoId + "' " +
                     " ,  " + newRecord.status +
-                    " , '" + newRecord.phoneB2C + "' " +
-                    " , '" + newRecord.phoneB2B + "' " +
+                    " , N'" + newRecord.phoneB2C + "' " +
+                    " , N'" + newRecord.phoneB2B + "' " +
                     " , N'" + newRecord.deliveryGroupStatus + "' )";
 
             dbConnector.update(query);
@@ -202,16 +201,16 @@ public class RegionInfoUtility {
             String query = "UPDATE " + REGIONS_TABLE_NAME +
                     " SET " +
                     " [" + ID + "] =  " + newRecord.id + " ," +
-                    " [" + REGION_ENG + "] =  '" + newRecord.regionEng + "' ," +
+                    " [" + REGION_ENG + "] =  N'" + newRecord.regionEng + "' ," +
                     " [" + REGION_RUS + "] =  N'" + newRecord.regionRus + "' ," +
-                    " [" + MACRO_REGION_ENG + "] =  '" + newRecord.macroRegionEng + "' ," +
+                    " [" + MACRO_REGION_ENG + "] =  N'" + newRecord.macroRegionEng + "' ," +
                     " [" + MACRO_REGION_RUS + "] =  N'" + newRecord.macroRegionRus + "' ," +
                     " [" + PRIORITY + "] =  " + newRecord.priority + " ," +
-                    " [" + E_MAIL + "] =  '" + newRecord.email + "' ," +
-                    " [" + LOGO_ID + "] =  '" + newRecord.logoId + "' ," +
+                    " [" + E_MAIL + "] =  N'" + newRecord.email + "' ," +
+                    " [" + LOGO_ID + "] =  N'" + newRecord.logoId + "' ," +
                     " [" + STATUS + "] =  " + newRecord.status + " ," +
-                    " [" + PHONE_B2C + "] =  '" + newRecord.phoneB2C + "' ," +
-                    " [" + PHONE_B2B + "] =  '" + newRecord.phoneB2B + "' ," +
+                    " [" + PHONE_B2C + "] =  N'" + newRecord.phoneB2C + "' ," +
+                    " [" + PHONE_B2B + "] =  N'" + newRecord.phoneB2B + "' ," +
                     " [" + DELIVERY_GROUP_STATUS + "] =  N'" + newRecord.deliveryGroupStatus + "' " +
                     " WHERE [" + ID_IN_DB + "] = " + idInDB;
 
