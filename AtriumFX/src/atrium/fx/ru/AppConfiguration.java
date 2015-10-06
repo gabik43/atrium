@@ -1,6 +1,7 @@
 package atrium.fx.ru;
 
 import java.io.*;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
@@ -12,9 +13,16 @@ import java.util.Properties;
 /*Файл конфигурации приложения*/
 
 public class AppConfiguration {
-    // параметр хранит имя кофигурационного файла
-    private final static String PROPERTIES_FILE_NAME = "AtriumConfig.properties";
-    // параметр хранит данные из конфигурационного файла
+
+//    private final static String SERVER_NAME = "10.101.145.239";
+//    private final static String PATH = "config";
+//    private final static String FILE_NAME = "AtriumFXConfig.properties";
+//    private final static String PROPERTIES_FILE_URL = "//" + SERVER_NAME + "/" + PATH + "/" +FILE_NAME;
+//    private final static String PROPERTIES_FILE_URL = "//10.101.145.239/config/AtriumFXConfig.properties";
+
+    public static String APP_URL;
+//    private static String PROPERTIES_FILE_URL = "AtriumFXConfig.properties";
+
     private static Map<String, String> configData = new HashMap<String, String>();
     private static boolean isConfigRead = false;
 
@@ -51,7 +59,7 @@ public class AppConfiguration {
         FileInputStream inputStream = null;
 
         try {
-            File configFile = new File(PROPERTIES_FILE_NAME);
+            File configFile = new File(getPropertiesFileUrl());
             inputStream = new FileInputStream(configFile);
             Properties prop = new Properties();
 
@@ -83,12 +91,18 @@ public class AppConfiguration {
      */
     private static void readConfigFile(){
 
-        FileInputStream inputStream = null;
-        File configFile = new File(PROPERTIES_FILE_NAME);
+        URL configFile = null;
+//        File configFile = null;
+        InputStream inputStream = null;
         Properties prop = new Properties();
 
         try {
-            inputStream = new FileInputStream(configFile);
+            configFile = new URL(getPropertiesFileUrl());
+            System.out.println(configFile.getPath());
+            inputStream = configFile.openStream();
+//            configFile = new File(PROPERTIES_FILE_URL);
+//            System.out.println(configFile.getAbsolutePath());
+//            inputStream = new FileInputStream(configFile);
 
             if (inputStream != null) {
                 prop.load(inputStream);
@@ -96,7 +110,7 @@ public class AppConfiguration {
                 LogDB.error("Can't load configuration file. ");
                 // вывод тестовых данных в файл
                 prop.setProperty("exampleKey", "exampleValue");
-                prop.store(new BufferedWriter(new OutputStreamWriter(new FileOutputStream(PROPERTIES_FILE_NAME), "UTF-8")), null);
+                prop.store(new BufferedWriter(new OutputStreamWriter(new FileOutputStream(getPropertiesFileUrl()), "UTF-8")), null);
                 return;
             }
 
@@ -112,18 +126,18 @@ public class AppConfiguration {
         } catch (Exception e) {
             try {
                 prop.setProperty("exampleKey", "exampleValue");
-                prop.store(new BufferedWriter(new OutputStreamWriter(new FileOutputStream(PROPERTIES_FILE_NAME), "UTF-8")), null);
+                prop.store(new BufferedWriter(new OutputStreamWriter(new FileOutputStream(getPropertiesFileUrl()), "UTF-8")), null);
             } catch(Exception r){
 
             }
             isConfigRead = false;
-            LogDB.error("Exception while reading configuration file: " + configFile.getAbsolutePath() + e);
+            LogDB.error("Exception while reading configuration file: " + configFile.getPath() + e);
 
         } finally {
             try {
                 inputStream.close();
             }catch(Exception e){
-                LogDB.warn("Can't close configuration's fileInputStream" + configFile.getAbsolutePath());
+                LogDB.warn("Can't close configuration's fileInputStream" + configFile.getPath());
             }
         }
     }
@@ -134,6 +148,10 @@ public class AppConfiguration {
      */
     public static boolean isConfigLoad(){
         return isConfigRead;
+    }
+
+    private static String getPropertiesFileUrl() {
+        return APP_URL.substring(0, APP_URL.length()-3) + "static/resources/config/AtriumFXConfig.properties";
     }
 
 }
