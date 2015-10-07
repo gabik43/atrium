@@ -19,7 +19,9 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        AppConfiguration.APP_URL = getHostServices().getDocumentBase();
+        if (!AppConfiguration.LOCAL) {
+            AppConfiguration.setAppUrl(getHostServices().getDocumentBase());
+        }
         LogDB.setupConnection();
         LogDB.info("Start client application");
 

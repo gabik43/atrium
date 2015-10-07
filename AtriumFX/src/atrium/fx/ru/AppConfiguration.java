@@ -12,19 +12,17 @@ import java.util.Properties;
  */
 /*Файл конфигурации приложения*/
 
+// !!!Config файл должен находиться в AtriumProject/src/main/webapp/resources/config/AtriumFXConfig.properties!!!
 public class AppConfiguration {
 
-//    private final static String SERVER_NAME = "10.101.145.239";
-//    private final static String PATH = "config";
-//    private final static String FILE_NAME = "AtriumFXConfig.properties";
-//    private final static String PROPERTIES_FILE_URL = "//" + SERVER_NAME + "/" + PATH + "/" +FILE_NAME;
-//    private final static String PROPERTIES_FILE_URL = "//10.101.145.239/config/AtriumFXConfig.properties";
-
-    public static String APP_URL;
-//    private static String PROPERTIES_FILE_URL = "AtriumFXConfig.properties";
+    private static String APP_URL;
+    private static String PROPERTIES_FILE_PATH = "AtriumFXConfig.properties";
 
     private static Map<String, String> configData = new HashMap<String, String>();
     private static boolean isConfigRead = false;
+
+    // Запускаем локально или на сервере? true - локально.
+    public static boolean LOCAL = false;   ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     public AppConfiguration(){
     }
@@ -92,17 +90,20 @@ public class AppConfiguration {
     private static void readConfigFile(){
 
         URL configFile = null;
-//        File configFile = null;
+        File configFile2 = null;   ////////////////////////////////////////////////////////////////////////////////////////////////////////////
         InputStream inputStream = null;
         Properties prop = new Properties();
 
         try {
-            configFile = new URL(getPropertiesFileUrl());
-            System.out.println(configFile.getPath());
-            inputStream = configFile.openStream();
-//            configFile = new File(PROPERTIES_FILE_URL);
-//            System.out.println(configFile.getAbsolutePath());
-//            inputStream = new FileInputStream(configFile);
+            if (!LOCAL) {            ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                configFile = new URL(getPropertiesFileUrl());
+//                System.out.println(configFile.getPath());
+                inputStream = configFile.openStream();
+            } else {
+                configFile2 = new File(PROPERTIES_FILE_PATH);
+//                System.out.println(configFile2.getAbsolutePath());
+                inputStream = new FileInputStream(configFile2);
+            }
 
             if (inputStream != null) {
                 prop.load(inputStream);
@@ -131,13 +132,21 @@ public class AppConfiguration {
 
             }
             isConfigRead = false;
-            LogDB.error("Exception while reading configuration file: " + configFile.getPath() + e);
+            if(!LOCAL) {   ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                LogDB.error("Exception while reading configuration file: " + configFile.getPath() + e);
+            } else {
+                LogDB.error("Exception while reading configuration file: " + configFile2.getAbsolutePath() + e);
+            }
 
         } finally {
             try {
                 inputStream.close();
             }catch(Exception e){
-                LogDB.warn("Can't close configuration's fileInputStream" + configFile.getPath());
+                if(!LOCAL) {    ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                    LogDB.warn("Can't close configuration's fileInputStream" + configFile.getPath());
+                } else {
+                    LogDB.warn("Can't close configuration's fileInputStream" + configFile2.getAbsolutePath());
+                }
             }
         }
     }
@@ -150,8 +159,15 @@ public class AppConfiguration {
         return isConfigRead;
     }
 
+    public static void setAppUrl(String url) {
+        APP_URL = url;
+    }
+
     private static String getPropertiesFileUrl() {
-        return APP_URL.substring(0, APP_URL.length()-3) + "static/resources/config/AtriumFXConfig.properties";
+        if (!LOCAL) {   ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            return APP_URL.substring(0, APP_URL.length() - 3) + "static/resources/config/AtriumFXConfig.properties";
+        }
+        return PROPERTIES_FILE_PATH;
     }
 
 }

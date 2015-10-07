@@ -14,6 +14,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.CheckBoxTreeCell;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -110,8 +111,11 @@ public class ClientApplication implements UITemplate{
 
 
         // Получаем кнопки
-        printButton = (Button)scene.lookup("#start_print_button");
-        archiveButton = (Button)scene.lookup("#start_archive_button");
+//        printButton = (Button)scene.lookup("#start_print_button");
+//        archiveButton = (Button)scene.lookup("#start_archive_button");
+        HBox hbox = (HBox)childrenVbox.get(1);
+        printButton = (Button)hbox.getChildren().get(0);
+        archiveButton = (Button)hbox.getChildren().get(1);
 
         printButton.setDisable(noChildFolders.isEmpty()?true : false);
         archiveButton.setDisable(noChildFolders.isEmpty()?true : false);
